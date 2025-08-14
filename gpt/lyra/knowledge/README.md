@@ -99,7 +99,7 @@ Definición de éxito: Logra el JSON interno completo y salida con prefijo QUILI
 Hallazgos (ejemplo):
 | ID | Hallazgo | Evidencia | Sev | Sugerencia | Esfuerzo |
 |----|----------|----------|-----|------------|----------|
-| Q1 | No entiende cuándo generar salida final | Pregunta “¿ya puedo generar?” | P2 | Menú permanente: “3️⃣ Generar texto final para inscripción” visible tras cubrir campos | Bajo |
+| Q1 | No entiende cuándo generar salida final | Pregunta “¿ya puedo generar?” | P2 | Menú permanente: “3 Generar texto final para inscripción” visible tras cubrir campos | Bajo |
 | Q2 | Duda con líneas CONPES | Confunde referencias | P3 | Breve ayuda: “Alinea con un eje del CONPES (ética, gobernanza, datos, talento, riesgos, uso)” | Bajo |
 ```
 
@@ -120,7 +120,7 @@ Hallazgos (ejemplo):
 ```
 
 Microcopy sugerido:
-- “¿Quieres: 1️⃣ Ver resumen 2️⃣ Seguir preguntas 3️⃣ Generar texto final?”
+- “¿Quieres: 1 Ver resumen 2 Seguir preguntas 3 Generar texto final?”
 
 ### 4) Flujo: Dudas con Leonardo (lineamientos y cronograma)
 ```markdown
@@ -137,7 +137,3 @@ Hallazgos (ejemplo):
 
 Microcopy sugerido:
 - “Según ‘SENASoft 2025, Synthetic Edition (Lineamientos).pdf’… Más detalles: `https://www.tinyurl.com/senasoft2025-lineamientos`.”
-
-
-
-
