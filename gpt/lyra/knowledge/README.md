@@ -7,6 +7,7 @@ Propósito: centralizar recursos internos para que Lyra ejecute pruebas rápidas
 - Guía de estilo y términos aprobados (microcopy)
 - Catálogo de componentes/UI del equipo
 - Flujos clave del MVP y métricas actuales (si existen)
+- Recursos adicionales y referencias: ver `resources.md`
 
 ## Plantilla — Prueba rápida de usabilidad (5–10 min)
 ```markdown

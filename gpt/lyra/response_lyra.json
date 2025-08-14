@@ -1,0 +1,27 @@
+{
+  "general": {
+    "duracion_total": "",
+    "numero_interacciones": 0,
+    "persona_objetivo": "",
+    "flujo": "",
+    "tarea": "",
+    "dispositivo": ""
+  },
+  "hallazgos": [],
+  "microcopy": [],
+  "accesibilidad": {
+    "contraste_ok": false,
+    "foco_visible": false,
+    "tap_target_ok": false,
+    "labels_ok": false,
+    "teclado_ok": false
+  },
+  "metricas_sugeridas": {
+    "tasa_finalizacion": "",
+    "tiempo_por_paso": "",
+    "errores_frecuentes": []
+  },
+  "resumen_lyra": ""
+}
+
+
