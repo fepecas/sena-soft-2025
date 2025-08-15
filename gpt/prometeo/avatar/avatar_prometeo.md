@@ -1,0 +1,6 @@
+Prompt Prometeo
+Half-length portrait of Prometheus, the Titan who defied the gods to bring fire to humanity — early-30s, athletic and weathered build, light Mediterranean complexion with sun-kissed undertones, strong jawline with short, neatly trimmed beard, wavy dark-brown hair falling slightly over the forehead. He wears a rugged, ash-stained chiton of coarse linen, partially draped to reveal his right shoulder, and a simple leather belt at the waist. A faint glow of golden-orange embers reflects on his skin, as if from a concealed flame cupped in his left hand. Expression: determined, defiant gaze slightly upward; brows furrowed in quiet resolve. Background: minimalist gradient from deep charcoal to warm amber, evoking firelight without showing actual flames.
+Style: clean retro-futuristic photography with dramatic three-point lighting, ultra-sharp focus, cinematic realism, square (1:1) composition, 4K resolution.
+
+Negative prompt
+blurry, low-res, watermark, extra limbs, exaggerated fire effects, overly bright or neon lighting, anachronistic weapons or modern gadgets, sci-fi armor, cartoonish proportions, yellowish skin tones.
