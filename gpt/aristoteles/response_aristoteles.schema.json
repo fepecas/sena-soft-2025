@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Esquema de respuesta para Aristoteles",
+    "type": "object",
+    "properties": {
+    "General": {
+        "type": "object",
+        "properties": {
+            "nombre_aprendiz": { "type": "string" },
+            "duracion_total": { "type": "string" },
+            "numero_interacciones": { "type": "integer" },
+            "sentimiento": {
+                "type": "string",
+                "enum": [
+                    "inseguro",
+                    "confiado",
+                    "nervioso",
+                    "emocionado",
+                    "motivado"
+                    ]
+            },
+            "nivel_confianza": { "type": "string" },
+            "numero_practicas": { "type": "integer" }
+            }
+    },
+    "Especifico": {
+        "type": "object",
+        "properties": {
+        "tecnicas_respiracion": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "tecnicas_persuasion": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "tipo_publico": { "type": "string" },
+        "escenario_practica": { "type": "string" },
+        "desafios_oratoria": { "type": "string" },
+        "objetivo_aprendizaje": { "type": "string" },
+        "busca_mentor": { "type": "string" },
+        "descripcion_aristoteles": { "type": "string" }
+}
+}
+}
+}

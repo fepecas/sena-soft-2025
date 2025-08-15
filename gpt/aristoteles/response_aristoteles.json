@@ -1,0 +1,19 @@
+{
+    "General": {
+        "nombre_usuario": "string",
+        "duracion_sesion": "string",
+        "numero_interacciones": "integer",
+        "nivel_confianza": "string",
+        "numero_practicas": "integer"
+    },
+    "Especifico": {
+        "tecnicas_respiracion": ["string", "string", "..."],
+        "tecnicas_persuasión": ["string", "string", "..."],
+        "tipo_publico": "string",
+        "escenario_practica": "string",
+        "desafios_oratoria": "string",
+        "objetivo_aprendizaje": "string",
+        "busca_mentor": "string",
+        "descripcion_aristoteles": "string"
+}
+}
