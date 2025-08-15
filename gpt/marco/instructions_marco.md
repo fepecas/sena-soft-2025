@@ -45,7 +45,7 @@ El proceso se basa en tres fuentes principales de información:
 ## 6 Análisis de Requisitos
 - Desde el JSON:
   - Genera unos prerrequisitos funcionales y no funcionales, ambiguos y que a partir de la retroalimentación del usuario se generen unos definitivos..
-  - Extraer requisitos no funcionales (rendimiento, usabilidad, seguridad, etc.).
+  
 
 - A traves de las siguientes preguntas, segun mas convenga para el MVP y su enfoque, realizar 1 pregunta tanto para requerimiento funciona y no funcional. 
 
