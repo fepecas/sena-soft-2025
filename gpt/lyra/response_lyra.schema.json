@@ -60,6 +60,24 @@
         "errores_frecuentes": { "type": "array", "items": { "type": "string" } }
       }
     },
+    "score_friccion_ux": {
+      "type": "object",
+      "properties": {
+        "puntuacion": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "interpretacion": { "type": "string" },
+        "desglose": { "type": "string" }
+      },
+      "required": ["puntuacion", "interpretacion"]
+    },
+    "predicciones_ux": {
+      "type": "object",
+      "properties": {
+        "abandono_estimado": { "type": "string" },
+        "tiempo_completitud": { "type": "string" },
+        "satisfaccion_esperada": { "type": "string" },
+        "quick_win_prioritario": { "type": "string" }
+      }
+    },
     "resumen_lyra": { "type": "string" }
   },
   "required": ["general", "hallazgos", "resumen_lyra"]

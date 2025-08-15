@@ -21,6 +21,17 @@
     "tiempo_por_paso": "",
     "errores_frecuentes": []
   },
+  "score_friccion_ux": {
+    "puntuacion": 0,
+    "interpretacion": "",
+    "desglose": ""
+  },
+  "predicciones_ux": {
+    "abandono_estimado": "",
+    "tiempo_completitud": "",
+    "satisfaccion_esperada": "",
+    "quick_win_prioritario": ""
+  },
   "resumen_lyra": ""
 }
 

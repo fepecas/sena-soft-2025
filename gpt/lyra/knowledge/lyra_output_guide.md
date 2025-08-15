@@ -143,6 +143,17 @@
     "tiempo_por_paso": "<= 30s",
     "errores_frecuentes": ["prefijo invalido", "campo obligatorio"]
   },
+  "score_friccion_ux": {
+    "puntuacion": 25,
+    "interpretacion": "Buena, con mejoras menores",
+    "desglose": "1 P2 (10 pts) + 1 problema accesibilidad (15 pts)"
+  },
+  "predicciones_ux": {
+    "abandono_estimado": "12% (reducible a 5% con quick wins)",
+    "tiempo_completitud": "3.5 min (reducción esperada: 1 min)",
+    "satisfaccion_esperada": "7/10 ⭐",
+    "quick_win_prioritario": "Validación prefijo (impacto alto, esfuerzo bajo)"
+  },
   "resumen_lyra": "Clarificar el campo de cadena codificada mejora finalización y reduce dudas."
 }
 ```
