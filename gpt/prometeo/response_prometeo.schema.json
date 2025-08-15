@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de recomendaciones y planificación para Prometeo",
+  "type": "object",
+  "properties": {
+    "General": {
+      "type": "object",
+      "properties": {
+        "nombre_equipo": { "type": "string" },
+        "descripcion_proyecto": { "type": "string" },
+        "objetivos": { "type": "string" },
+        "plazo": { "type": "string" },
+        "nivel_complejidad": { "type": "string" }
+      },
+      "required": [
+        "nombre_equipo",
+        "descripcion_proyecto",
+        "objetivos",
+        "plazo",
+        "nivel_complejidad"
+      ]
+    },
+    "Equipo": {
+      "type": "object",
+      "properties": {
+        "miembros": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": { "type": "string" },
+              "rol": { "type": "string" },
+              "habilidades": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": ["nombre", "rol", "habilidades"]
+          }
+        }
+      },
+      "required": ["miembros"]
+    },
+    "Recomendaciones": {
+      "type": "object",
+      "properties": {
+        "stack": {
+          "type": "object",
+          "properties": {
+            "lenguajes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "frameworks": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "justificacion": { "type": "string" }
+          },
+          "required": ["lenguajes", "frameworks", "justificacion"]
+        },
+        "metodologia": {
+          "type": "object",
+          "properties": {
+            "tipo": { "type": "string" },
+            "justificacion": { "type": "string" }
+          },
+          "required": ["tipo", "justificacion"]
+        },
+        "tareas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tarea": { "type": "string" },
+              "rol_asignado": { "type": "string" },
+              "miembro": { "type": "string" },
+              "justificacion": { "type": "string" },
+              "oportunidad_aprendizaje": { "type": "string" }
+            },
+            "required": ["tarea", "rol_asignado", "miembro", "justificacion", "oportunidad_aprendizaje"]
+          }
+        },
+        "guias": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tema": { "type": "string" },
+              "descripcion": { "type": "string" },
+              "ejemplo": { "type": "string" }
+            },
+            "required": ["tema", "descripcion", "ejemplo"]
+          }
+        }
+      },
+      "required": ["stack", "metodologia", "tareas", "guias"]
+    }
+  },
+  "required": ["General", "Equipo", "Recomendaciones"]
+}

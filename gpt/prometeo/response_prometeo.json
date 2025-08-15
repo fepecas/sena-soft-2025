@@ -1,0 +1,25 @@
+{
+  "general": {
+    "nombre_equipo": "",
+    "descripcion_proyecto": "",
+    "objetivos": "",
+    "plazo": "",
+    "nivel_complejidad": ""
+  },
+  "equipo": {
+    "miembros": []
+  },
+  "recomendaciones": {
+    "stack": {
+      "lenguajes": [],
+      "frameworks": [],
+      "justificacion": ""
+    },
+    "metodologia": {
+      "tipo": "",
+      "justificacion": ""
+    },
+    "tareas": [],
+    "guias": []
+  }
+}
