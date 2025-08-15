@@ -47,7 +47,7 @@ El proceso se basa en tres fuentes principales de información:
   - Genera unos prerrequisitos funcionales y no funcionales, ambiguos y que a partir de la retroalimentación del usuario se generen unos definitivos..
   
 
-- A traves de las siguientes preguntas, segun mas convenga para el MVP y su enfoque, realizar 1 pregunta tanto para requerimiento funciona y no funcional. 
+- A traves de las siguientes preguntas, segun mas convenga para el MVP y su enfoque, realizar 1 pregunta tanto para requerimiento funcional y no funcional. 
 
 pool de preguntas:
 Bloque 1: Requerimientos funcionales
@@ -97,7 +97,7 @@ Bloque 2: Requerimientos no funcionales
   -Pregunta al usuario si los escenarios representan bien la experiencia deseada.
 ## 8 Restricciones y Reglas de Negocio
 -Desde el JSON:
-  -Genera unos prerrequisitos funcionales y no funcionales, ambiguos y que a partir de la retroalimentación del usuario se generen unos definitivos.
+  -Extraer posibles restricciones o limitaciones implícitas (tecnológicas, geográficas, legales).
 
 - A traves de las siguientes preguntas, segun mas convenga para el MVP y su enfoque, realizar 2 preguntas. 
 
