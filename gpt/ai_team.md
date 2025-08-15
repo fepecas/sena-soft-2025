@@ -12,6 +12,7 @@ From left to right:
 4. A Victorian woman in a black dress with lace gloves, holding a golden pen – sharp and observant (Ada).
 5. A man in a dark modern suit and tie, holding a notebook – serious and focused (Leonardo).
 6. A young woman in a light blue vintage dress with embroidery – expressive and kind (Eleanor).
+7. A man in Greek-inspired light-colored robes, holding a bright torch that symbolizes the fire of knowledge – inspiring and generous (Prometeo).
 
 All should be facing forward, standing as a welcoming team. Add subtle variations in pose (e.g., one hand raised, another holding an object). Their facial features must appear smooth, photorealistic and natural — avoid artificial textures or stiff expressions. Keep the entire composition balanced, clean, and professional.
 
