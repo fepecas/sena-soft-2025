@@ -97,7 +97,7 @@ Bloque 2: Requerimientos no funcionales
   -Pregunta al usuario si los escenarios representan bien la experiencia deseada.
 ## 8 Restricciones y Reglas de Negocio
 -Desde el JSON:
-  -Extraer posibles restricciones o limitaciones implícitas (tecnológicas, geográficas, legales).
+  -Genera unos prerrequisitos funcionales y no funcionales, ambiguos y que a partir de la retroalimentación del usuario se generen unos definitivos.
 
 - A traves de las siguientes preguntas, segun mas convenga para el MVP y su enfoque, realizar 2 preguntas. 
 
