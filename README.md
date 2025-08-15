@@ -1,77 +1,77 @@
-## Summary
+## Summary.
 
-Albert es un mentor virtual inspirado en la figura de Albert Einstein, diseñado para acompañar a *todos los participantes y actores de SENAsoft 2025*: aprendices, mentores, jurados, coordinadores y directivos.  
-Su misión es guiar a cada persona según su rol en el evento, a través de actividades, retos y simulaciones que fortalezcan habilidades técnicas, estratégicas y de liderazgo.  
-Albert no dicta respuestas, sino que plantea situaciones y preguntas desafiantes adaptadas al nivel, experiencia y función de cada usuario. Utiliza un tono cercano, curioso y motivador, fomentando la exploración, la innovación y el pensamiento crítico.
-
----
-
-## What's included
-
-- `gpt/albert/instructions_albert.md` : Rol, objetivos, dinámica de interacción, flujo de acompañamiento, principios y estructura de evaluación.  
-- `gpt/albert/avatar_albert.md` : Prompt de generación de avatar.  
-- `gpt/albert/avatar_albert.png` : Avatar generado por IA.  
-- `gpt/albert/knowledge` : Referencias y datos de apoyo para diseñar retos y escenarios adaptados a cada rol.  
+Albert is a virtual mentor inspired by Albert Einstein, designed to support *all participants and stakeholders of SENAsoft 2025*: apprentices, mentors, judges, coordinators, and executives.  
+His mission is to guide each person according to their role in the event through activities, challenges, and simulations that strengthen technical, strategic, and leadership skills.  
+Albert does not provide direct answers; instead, he presents thought-provoking situations and questions adapted to each user’s level, experience, and function. He uses a curious, approachable, and motivating tone, fostering exploration, innovation, and critical thinking.
 
 ---
 
-## Key features
+## What's included.
 
-- **Retos progresivos y adaptativos:** diseña actividades que aumentan la dificultad según el historial y desempeño del usuario.  
-- **Interacción diferenciada por rol:** adapta dinámicas para aprendices, mentores, jurados, coordinadores y directivos.  
-- **Retroalimentación inmediata:** resalta aciertos, áreas de mejora y oportunidades de crecimiento tras cada actividad.  
-- **Simulación de escenarios reales:** plantea situaciones prácticas de innovación, gestión, evaluación y liderazgo.  
-- **Evaluación continua:** registra avance, retos superados, habilidades destacadas y áreas a reforzar.  
-
-**Consolidated output:** genera resúmenes de progreso, reportes finales y planes de mejora individualizados.  
+- `gpt/albert/instructions_albert.md` : Role, goals, interaction dynamics, support flow, principles, and evaluation structure.  
+- `gpt/albert/avatar_albert.md` : Avatar generation prompt.  
+- `gpt/albert/avatar_albert.png` : AI-generated avatar.  
+- `gpt/albert/knowledge` : Reference data and resources to design challenges and scenarios tailored to each role.  
 
 ---
 
-## Role and scope
+## Key features.
 
-Albert entrena y prepara a cada participante de SENAsoft 2025 según su rol, asegurando un desarrollo integral en competencias técnicas, estratégicas y de liderazgo.  
-Su alcance incluye desde retos técnicos para aprendices hasta simulaciones de gestión y toma de decisiones para directivos y coordinadores.  
+- **Progressive and adaptive challenges:** designs activities that increase in difficulty based on user history and performance.  
+- **Role-based interaction:** adapts content for apprentices, mentors, judges, coordinators, and executives.  
+- **Immediate feedback:** highlights strengths, areas for improvement, and growth opportunities after each activity.  
+- **Real-world simulations:** presents practical scenarios of innovation, management, evaluation, and leadership.  
+- **Continuous evaluation:** tracks progress, completed challenges, skills demonstrated, and areas to strengthen.  
 
----
-
-## How to use
-
-Albert siempre inicia con una frase motivadora y una pregunta que identifica el rol del usuario.  
-A partir de ahí:  
-1. Explora nivel y expectativas.  
-2. Desarrolla retos progresivos.  
-3. Ofrece retroalimentación constructiva.  
-4. Genera resúmenes o recomendaciones personalizadas.  
-
-Ejemplo de inicio de conversación:  
-> "La creatividad es contagiosa… ¿qué papel juegas tú en esta edición de SENAsoft?"  
+**Consolidated output:** generates progress summaries, final reports, and personalized improvement plans.  
 
 ---
 
-## Data structure and output
+## Role and scope.
 
-Durante la interacción, Albert mantiene un registro interno en **JSON estructurado** que incluye:  
-
-- `rol_usuario` : aprendiz, mentor, jurado, coordinador o directivo.  
-- `nombre_usuario` : nombre completo si se menciona.  
-- `duracion_interaccion` : tiempo estimado en lenguaje natural.  
-- `numero_interacciones` : mensajes recibidos del usuario.  
-- `resumen_progreso` : síntesis breve del desempeño.  
-- `retos_completados` : lista de retos superados y su dificultad.  
-- `areas_por_mejorar` : lista de competencias a reforzar.  
-- `acciones_recomendadas` : próximos pasos sugeridos.  
+Albert trains and prepares each SENAsoft 2025 participant according to their role, ensuring comprehensive development in technical, strategic, and leadership skills.  
+His scope ranges from technical challenges for apprentices to large-scale decision-making simulations for coordinators and executives.  
 
 ---
 
-## Output formats
+## How to use.
 
-- **Resumen de progreso individual**: fortalezas, debilidades y evolución.  
-- **Sugerencias de próximos retos**: dinámicas adaptadas al rol.  
-- **Reporte final para competencia o gestión**: documento de habilidades entrenadas, escenarios abordados y nivel alcanzado.  
+Albert always starts with a short motivational phrase and a question to identify the user’s role.  
+From there, he:  
+1. Explores user level and expectations.  
+2. Presents progressive challenges.  
+3. Provides constructive feedback.  
+4. Generates summaries or personalized recommendations.  
+
+Example opening:  
+> "Creativity is contagious… what role do you play in this edition of SENAsoft?"  
 
 ---
 
-## Members 
+## Data structure and output.
+
+During interaction, Albert maintains an internal **structured JSON log** that includes:  
+
+- `user_role` : apprentice, mentor, judge, coordinator, or executive.  
+- `user_name` : full name if provided.  
+- `interaction_duration` : estimated time in natural language.  
+- `interaction_count` : number of user messages.  
+- `progress_summary` : brief synthesis of performance.  
+- `completed_challenges` : list of completed challenges with difficulty.  
+- `areas_to_improve` : list of skills or competencies to reinforce.  
+- `recommended_actions` : suggested next steps.  
+
+---
+
+## Output formats.
+
+- **Individual progress summary**: strengths, weaknesses, and overall progress.  
+- **Suggested next challenges**: role-adapted simulations and activities.  
+- **Final competition or management report**: document describing trained skills, scenarios tackled, and achieved level.  
+
+---
+
+## Members.
 
 -Kevin Daniel Villafrade Perez
 -Yuber Santiago Paez Villalba
