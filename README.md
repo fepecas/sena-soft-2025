@@ -1,40 +1,80 @@
-## 🔍 Solution Overview
+## Summary
 
-#### 📂 [admission/](admission/)
+Albert es un mentor virtual inspirado en la figura de Albert Einstein, diseñado para acompañar a *todos los participantes y actores de SENAsoft 2025*: aprendices, mentores, jurados, coordinadores y directivos.  
+Su misión es guiar a cada persona según su rol en el evento, a través de actividades, retos y simulaciones que fortalezcan habilidades técnicas, estratégicas y de liderazgo.  
+Albert no dicta respuestas, sino que plantea situaciones y preguntas desafiantes adaptadas al nivel, experiencia y función de cada usuario. Utiliza un tono cercano, curioso y motivador, fomentando la exploración, la innovación y el pensamiento crítico.
 
-Materials for the admission process, including forms and informational sections.
+---
 
-- [`form/`](admission/form/): forms used in the admission process.
-- [`memes/`](admission/memes/): funny images related to the competition.
+## What's included
 
-#### 📁 [community/](community/)
+- `gpt/albert/instructions_albert.md` : Rol, objetivos, dinámica de interacción, flujo de acompañamiento, principios y estructura de evaluación.  
+- `gpt/albert/avatar_albert.md` : Prompt de generación de avatar.  
+- `gpt/albert/avatar_albert.png` : Avatar generado por IA.  
+- `gpt/albert/knowledge` : Referencias y datos de apoyo para diseñar retos y escenarios adaptados a cada rol.  
 
-Resources for the community, shaping the look and feel of virtual spaces.
+---
 
-- [`github/`](community/github/): this platform will be used as a learning lab.
-- [`meet/`](community/meet/): live streaming.
-- [`spotify/`](community/spotify/): all the assets related to "Bitácora Sintética".
-- [`suno/`](community/meet/): this AI was used to cread the opening theme for the podcast.
-- [`whatsapp/`](community/whatsapp/): WhatsApp groups and resources.
+## Key features
 
-#### 📁 [gpt/](gpt/)
+- **Retos progresivos y adaptativos:** diseña actividades que aumentan la dificultad según el historial y desempeño del usuario.  
+- **Interacción diferenciada por rol:** adapta dinámicas para aprendices, mentores, jurados, coordinadores y directivos.  
+- **Retroalimentación inmediata:** resalta aciertos, áreas de mejora y oportunidades de crecimiento tras cada actividad.  
+- **Simulación de escenarios reales:** plantea situaciones prácticas de innovación, gestión, evaluación y liderazgo.  
+- **Evaluación continua:** registra avance, retos superados, habilidades destacadas y áreas a reforzar.  
 
-AI assistants and materials related to the Synthetic Team.
+**Consolidated output:** genera resúmenes de progreso, reportes finales y planes de mejora individualizados.  
 
-- [`ada/`](gpt/ada/): advice about the tech stack used by the teams.
-- [`alan/`](gpt/alan/): synthetic jury that evaluates tech requirements.
-- [`eleanor/`](gpt/eleanor/): advice about presenting the MVP in the AI Arena.
-- [`leonardo/`](gpt/leonardo/): answers frequent questions from participants.
-- [`magnus/`](gpt/magnus/): profiles the social and technical skills of participants.
-- [`quiliano/`](gpt/quiliano/): guides the ideation of AI-powered products.
+---
 
-#### 📁 [roadmap/](roadmap/)
+## Role and scope
 
-This folder contains everything used to create the illustrated roadmap for the competition.
+Albert entrena y prepara a cada participante de SENAsoft 2025 según su rol, asegurando un desarrollo integral en competencias técnicas, estratégicas y de liderazgo.  
+Su alcance incluye desde retos técnicos para aprendices hasta simulaciones de gestión y toma de decisiones para directivos y coordinadores.  
 
-- [`assets/`](roadmap/assets/): graphic elements added layer by layer.
-- [`deck/`](roadmap/deck/): assets used in the presentation deck.
-- [`layers/`](roadmap/layers/): prompts and intermediate images organized by generation.
-- [`reference/`](roadmap/reference/): [sketches and reference photos](roadmap/reference/photo_whiteboard_step6.jpg).
-- [`tests/`](roadmap/tests/): initial conceptual tests.
-- [`video/`](roadmap/video/): assets used in the offline-recording.
+---
+
+## How to use
+
+Albert siempre inicia con una frase motivadora y una pregunta que identifica el rol del usuario.  
+A partir de ahí:  
+1. Explora nivel y expectativas.  
+2. Desarrolla retos progresivos.  
+3. Ofrece retroalimentación constructiva.  
+4. Genera resúmenes o recomendaciones personalizadas.  
+
+Ejemplo de inicio de conversación:  
+> "La creatividad es contagiosa… ¿qué papel juegas tú en esta edición de SENAsoft?"  
+
+---
+
+## Data structure and output
+
+Durante la interacción, Albert mantiene un registro interno en **JSON estructurado** que incluye:  
+
+- `rol_usuario` : aprendiz, mentor, jurado, coordinador o directivo.  
+- `nombre_usuario` : nombre completo si se menciona.  
+- `duracion_interaccion` : tiempo estimado en lenguaje natural.  
+- `numero_interacciones` : mensajes recibidos del usuario.  
+- `resumen_progreso` : síntesis breve del desempeño.  
+- `retos_completados` : lista de retos superados y su dificultad.  
+- `areas_por_mejorar` : lista de competencias a reforzar.  
+- `acciones_recomendadas` : próximos pasos sugeridos.  
+
+---
+
+## Output formats
+
+- **Resumen de progreso individual**: fortalezas, debilidades y evolución.  
+- **Sugerencias de próximos retos**: dinámicas adaptadas al rol.  
+- **Reporte final para competencia o gestión**: documento de habilidades entrenadas, escenarios abordados y nivel alcanzado.  
+
+---
+
+## Members 
+
+-Kevin Daniel Villafrade Perez
+-Yuber Santiago Paez Villalba
+-Jose Luis Rodriguez Avila
+
+---
