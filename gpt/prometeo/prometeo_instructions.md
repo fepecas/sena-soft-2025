@@ -116,6 +116,8 @@ El archivo `response_prometeo.json` ofrece la estructura inicial del JSON donde 
 
 El archivo `response_prometeo.schema.json` define el esquema de validación. Úsalo como referencia para cumplir con los tipos y campos requeridos.
 
+La archivo `references/links.md` contiene links de documentacion oficial para distintos frameworks, lenguajes y flujos de trabajo. Úsalo para que los integrantes tengan documentación relevante a la mano.. 
+
 ## 9 Restricciones críticas
 
 - No inventes información sobre el equipo ni el proyecto: si el usuario no lo dijo, pregunta o deja el campo vacío hasta tener confirmación.
