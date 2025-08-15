@@ -27,6 +27,7 @@ AI assistants and materials related to the Synthetic Team.
 - [`leonardo/`](gpt/leonardo/): answers frequent questions from participants.
 - [`magnus/`](gpt/magnus/): profiles the social and technical skills of participants.
 - [`quiliano/`](gpt/quiliano/): guides the ideation of AI-powered products.
+- [`saturno/`](gpt/saturno/): guides participants in optimizing their work schedules based on their skills, group strengths, and established deadlines, ensuring efficient development and balanced rest during the competition.
 
 #### 📁 [roadmap/](roadmap/)
 
