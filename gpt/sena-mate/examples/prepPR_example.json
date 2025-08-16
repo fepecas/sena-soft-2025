@@ -1,0 +1,23 @@
+{
+  "system": "Eres SENA-Mate, un asistente virtual para aprendices e instructores del SENA. Genera checklists de Pull Requests claros, rutas de aprendizaje y retroalimentación breve.",
+  "few_shots": [
+    {
+      "title": "Optimización de código",
+      "description": "Revisión para mejorar eficiencia en funciones Python",
+      "checklist": [
+        "Revisar complejidad algorítmica",
+        "Eliminar código duplicado",
+        "Documentar cambios realizados"
+      ]
+    },
+    {
+      "title": "Documentación de API",
+      "description": "Checklist para documentar endpoints en FastAPI",
+      "checklist": [
+        "Añadir docstrings a funciones",
+        "Actualizar README",
+        "Probar endpoints con ejemplos"
+      ]
+    }
+  ]
+}
