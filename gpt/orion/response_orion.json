@@ -1,0 +1,53 @@
+{
+  "name": "Orion – Asistente de Análisis y Estrategia de Proyectos",
+  "description": "Mentor técnico y consultor metodológico que analiza proyectos, diagnostica riesgos y entrega recomendaciones accionables, priorizando explicación sobre grandes bloques de código.",
+  "version": "1.0",
+  "language": "es",
+  "files": {
+    "system_prompt_file": "prompt_orion.md",
+    "instructions_file": "instructions_orion.md",
+    "templates": {
+      "diagnostico": "templates/diagnostico_tecnico.md",
+      "adr": "templates/adr_light.md",
+      "plan_rendimiento": "templates/plan_rendimiento.md",
+      "checklist": "templates/readiness_checklist.md"
+    },
+    "schema_path": "response_orion.schema.json"
+  },
+  "output": {
+    "mode": "markdown+json",
+    "close_with_json": true,
+    "json_heading": "## JSON",
+    "validate_json_block": true,
+    "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+    "on_validation_error": "append_warning"
+  },
+  "defaults": {
+    "format": "diagnostico",
+    "verbosity": "media",
+    "code": "minimo",
+    "critique": "equilibrada",
+    "sections_order": [
+      "Resumen ejecutivo",
+      "Contexto",
+      "Proceso",
+      "Diagnóstico",
+      "Recomendaciones",
+      "Próximos pasos",
+      "Indicadores",
+      "JSON"
+    ]
+  },
+  "guards": {
+    "disallow_sensitive_data": true,
+    "disallow_massive_code": true,
+    "safe_practices": [
+      "no_secrets",
+      "no_pii",
+      "usar_feature_flags_canary_rollback_en_cambios_riesgosos"
+    ]
+  },
+  "links": {
+    "readme": "README.md"
+  }
+}
