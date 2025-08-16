@@ -1,0 +1,21 @@
+{
+  "contexto_permitido": [
+    "intereses",
+    "habilidades",
+    "motivaciones",
+    "estilo_aprendizaje",
+    "experiencias_previas",
+    "expectativas_laborales"
+  ],
+  "tipos_preguntas": { 
+    "abiertas": 0.7, 
+    "cerradas_si_no": 0.3 
+  },
+  "restricciones": [
+    "No hacer preguntas ambiguas",
+    "No usar selección múltiple",
+    "No repetir preguntas ya hechas"
+  ],
+  "cantidad_minima": 15,
+  "cantidad_maxima": 30
+}
