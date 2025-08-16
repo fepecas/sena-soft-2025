@@ -2,12 +2,12 @@
   <img src="./avatar.png" alt="Avatar de Alivio" width="400"/>
 </p>
 
-# 🤖 Alivio
+# 🎼🎶 Alivio
 
 ## 👥 Equipo: Three Amigos
 - #### Aprendiz 1: <i>Andres Felipe Vacca Jimenez</i>
 - #### Aprendiz 2: <i>Branndon Schneyder Suarez Jimenez</i>
-- #### Aprendiz 3: <i></i>
+- #### Aprendiz 3: <i>Andrea Florian Higuera</i>
 
 ---
 
