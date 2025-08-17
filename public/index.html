@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente Rembranth - Diseñador IA</title>
+    <style>
+        /* Reset y base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Layout principal */
+        .container {
+            display: flex;
+            height: 100vh;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        /* Secciones del sidebar */
+        .sidebar-section {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-section h3::before {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Drop zone */
+        .file-drop-zone {
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(249, 250, 251, 0.5);
+        }
+
+        .file-drop-zone:hover {
+            border-color: #3b82f6;
+            background: rgba(239, 246, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .file-drop-zone.dragover {
+            border-color: #1d4ed8;
+            background: rgba(219, 234, 254, 0.9);
+            transform: scale(1.02);
+        }
+
+        .drop-icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
+            color: #9ca3af;
+        }
+
+        .file-list {
+            margin-top: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(243, 244, 246, 0.8);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .file-item:hover {
+            background: rgba(229, 231, 235, 0.9);
+            transform: translateX(4px);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+
+        .file-icon {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .file-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .file-actions button:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Knowledge URLs */
+        .url-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .add-url-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-url-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .knowledge-url {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .url-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .url-title {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .url-address {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .url-status {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Configuración */
+        .config-section {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .config-group {
+            margin-bottom: 1rem;
+        }
+
+        .config-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .config-input,
+        .config-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+
+        .config-input:focus,
+        .config-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Chat principal */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .chat-header {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .chat-subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-action-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .chat-action-btn.clear {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+
+        .chat-action-btn.export {
+            background: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+        }
+
+        .chat-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mensajes del chat */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            scroll-behavior: smooth;
+            background: linear-gradient(180deg, rgba(249, 250, 251, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-message {
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .message-user {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .message-user .message-content {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px 20px 4px 20px;
+            max-width: 70%;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            word-wrap: break-word;
+        }
+
+        .message-assistant {
+            background: rgba(249, 250, 251, 0.8);
+            border-radius: 16px;
+            border-left: 4px solid #8b5cf6;
+            padding: 1.5rem;
+            max-width: 90%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 0.75rem;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .assistant-name {
+            font-weight: 600;
+            color: #7c3aed;
+            font-size: 1rem;
+        }
+
+        .message-content {
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .message-system {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Input del chat */
+        .chat-input-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .chat-input-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .send-btn:active {
+            transform: translateY(0);
+        }
+
+        .chat-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .quick-action {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .quick-action:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .input-hint {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(1);
+            animation: modalAppear 0.3s ease-out;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .close-modal:hover {
+            color: #374151;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .close-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Loading animation */
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+
+        /* Código y elementos especiales */
+        .code {
+            background: #1f2937;
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .inline-code {
+            background: rgba(229, 231, 235, 0.8);
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #dc2626;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fef3c7 100%);
+            padding: 0.125rem 0.25rem;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .message-assistant {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            
+            .sidebar-section {
+                min-width: 250px;
+                flex-shrink: 0;
+            }
+            
+            .chat-input-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .message-input {
+                border-radius: 12px;
+            }
+            
+            .send-btn {
+                width: 100%;
+                border-radius: 12px;
+            }
+            
+            .quick-actions {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-header {
+                padding: 1rem;
+            }
+            
+            .sidebar-section {
+                padding: 0.75rem;
+            }
+            
+            .chat-header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .chat-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .message-user .message-content {
+                max-width: 85%;
+            }
+            
+            .message-assistant {
+                padding: 1rem;
+                max-width: 100%;
+            }
+        }
+
+        /* Estados de entrada */
+        .file-input {
+            display: none;
+        }
+
+        /* Efectos hover mejorados */
+        .sidebar-section:hover {
+            background: rgba(249, 250, 251, 0.3);
+        }
+
+        .config-input:hover,
+        .config-select:hover {
+            border-color: #9ca3af;
+        }
+
+        /* Animaciones adicionales */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.4s ease-out;
+        }
+
+        /* Utilidades */
+        .hidden { display: none !important; }
+        .text-truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .flex { display: flex; }
+        .flex-1 { flex: 1; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .p-2 { padding: 0.5rem; }
+        .p-4 { padding: 1rem; }
+        .rounded { border-radius: 0.375rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-700 { color: #374151; }
+        .text-blue-500 { color: #3b82f6; }
+        .text-red-500 { color: #ef4444; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-blue-500 { background-color: #3b82f6; }
+        .cursor-pointer { cursor: pointer; }
+
+        /* Mejoras específicas para mejor UX */
+        .sidebar-section {
+            transition: all 0.2s ease;
+        }
+
+        .knowledge-url:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .file-item:hover .file-actions {
+            opacity: 1;
+        }
+
+        .file-actions {
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Estados de carga */
+        .loading-message {
+            opacity: 0.8;
+        }
+
+        .loading-message .message-content {
+            background: linear-gradient(90deg, #f3f4f6, #e5e7eb, #f3f4f6);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Header del sidebar -->
+            <div class="sidebar-header">
+                <h1>🎨 Rembranth</h1>
+                <p>Asistente de Diseño IA</p>
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <span>Sistema activo</span>
+                </div>
+            </div>
+
+            <!-- Sección de archivos -->
+            <div class="sidebar-section">
+                <h3>📁 Archivos</h3>
+                <div id="drop-zone" class="file-drop-zone">
+                    <div class="drop-icon">📎</div>
+                    <p><strong>Arrastra archivos aquí</strong></p>
+                    <p class="text-sm text-gray-500">o haz clic para seleccionar</p>
+                    <p class="text-xs text-gray-400 mt-2">Soporta: JPG, PNG, PDF, etc.</p>
+                </div>
+                <input type="file" id="file-input" class="file-input" multiple accept="image/*,.pdf,.doc,.docx">
+                <div id="file-list" class="file-list"></div>
+            </div>
+
+            <!-- Sección de URLs de conocimiento -->
+            <div class="sidebar-section">
+                <h3>🌐 Base de Conocimiento</h3>
+                <input type="url" id="url-input" class="url-input" placeholder="https://ejemplo.com/diseño-guía">
+                <button id="add-url-btn" class="add-url-btn">➕ Agregar URL</button>
+                <div id="knowledge-urls" class="mt-2"></div>
+            </div>
+
+            <!-- Configuración -->
+            <div class="sidebar-section config-section">
+                <h3>⚙️ Configuración</h3>
+                <div class="config-group">
+                    <label class="config-label">Industria</label>
+                    <select id="industria-select" class="config-select">
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="saas">SaaS</option>
+                        <option value="landing">Landing Pages</option>
+                        <option value="corporativo">Corporativo</option>
+                        <option value="educacion">Educación</option>
+                        <option value="salud">Salud</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="config-group">
+                    <label class="config-label">Público objetivo</label>
+                    <input type="text" id="publico-input" class="config-input" placeholder="Ej: Profesionales 25-45 años">
+                </div>
+                <div class="config-group">
+                    <label class="config-label">Objetivo principal</label>
+                    <select id="objetivo-select" class="config-select">
+                        <option value="conversion">Aumentar conversiones</option>
+                        <option value="engagement">Mejorar engagement</option>
+                        <option value="usabilidad">Optimizar usabilidad</option>
+                        <option value="branding">Fortalecer branding</option>
+                        <option value="accesibilidad">Mejorar accesibilidad</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat principal -->
+        <div class="chat-container">
+            <!-- Header del chat -->
+            <div class="chat-header">
+                <div>
+                    <h2 class="chat-title">💬 Chat con Rembranth</h2>
+                    <p class="chat-subtitle">Asistente especializado en diseño y UX/UI</p>
+                </div>
+                <div class="chat-actions">
+                    <button id="clear-chat" class="chat-action-btn clear">🗑️ Limpiar</button>
+                    <button id="export-chat" class="chat-action-btn export">💾 Exportar</button>
+                </div>
+            </div>
+
+            <!-- Mensajes del chat -->
+            <div id="chat-messages" class="chat-messages">
+                <!-- Mensaje de bienvenida inicial -->
+                <div class="chat-message message-assistant">
+                    <div class="message-header">
+                        <div class="avatar">R</div>
+                        <div class="assistant-name">Rembranth</div>
+                    </div>
+                    <div class="message-content">
+                        <p class="font-semibold text-blue-800">¡Hola! Soy Rembranth, tu asistente de diseño IA.</p>
+                        <p class="text-gray-700 mt-1">Puedo ayudarte con:</p>
+                        <ul class="mt-2 text-sm text-gray-600 list-disc list-inside">
+                            <li>Análisis y mejora de interfaces</li>
+                            <li>Generación de código HTML/CSS</li>
+                            <li>Optimización para conversión</li>
+                            <li>Análisis de imágenes y mockups</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-2">¿En qué proyecto puedo ayudarte hoy?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input del chat -->
+            <div class="chat-input-container">
+                <div class="chat-input-row">
+                    <input type="text" id="message-input" placeholder="Escribe tu consulta sobre diseño..." class="message-input">
+                    <button id="send-btn" class="send-btn">✈️ Enviar</button>
+                </div>
+                <div class="chat-controls">
+                    <div class="quick-actions">
+                        <button id="quick-analyze" class="quick-action">🔍 Análisis rápido</button>
+                        <button id="quick-improve" class="quick-action">✨ Sugerencias</button>
+                        <button id="quick-code" class="quick-action">💻 Generar código</button>
+                    </div>
+                    <div class="input-hint">
+                        Presiona Enter para enviar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para vista previa de archivos -->
+    <div id="file-preview-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Vista previa del archivo</h3>
+                <button id="close-modal" class="close-modal">
+                    <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="file-preview-content"></div>
+        </div>
+    </div>
+
+    <script>
+    class AgenteRembranthInterface {
+        constructor() {
+            this.API_BASE = '/api';
+            this.files = [];
+            this.knowledgeUrls = [];
+            this.chatHistory = [];
+
+            this.initializeEventListeners();
+            this.initializeDropZone();
+            this.loadSavedData();
+        }
+
+        // FUNCIÓN CORREGIDA PARA ANÁLISIS AUTOMÁTICO DE IMÁGENES
+        async handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            
+            for (const file of files) {
+                // Mostrar archivo en la lista inmediatamente
+                const fileInfo = {
+                    id: Date.now() + Math.random(),
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    file: file
+                };
+                
+                this.files.push(fileInfo);
+                this.addFileToList(fileInfo);
+
+                // Subir archivo al servidor CON ANÁLISIS
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    // Mostrar mensaje de subida
+                    this.addMessage('system', `📤 Subiendo "${file.name}"...`);
+                    
+                    // CAMBIO PRINCIPAL: Usar el endpoint de Rembranth para análisis automático
+                    const response = await fetch('/api/rembranth/uploads', {
+                        method: 'POST',
+                        body: formData
+                        });
+                    
+                    const data = await response.json();
+
+                    if (data.success) {
+                        this.addMessage('system', `✅ Archivo "${file.name}" procesado correctamente`);
+                        
+                        // NUEVO: Si hay análisis disponible, mostrarlo
+                        if (data.hasAnalysis && data.analysis) {
+                            this.displayImageAnalysis(data.analysis, file.name);
+                        }
+                        
+                        // Si es una imagen, mostrar sugerencias específicas
+                        if (file.type.startsWith('image/')) {
+                            if (data.hasAnalysis) {
+                                this.addMessage('assistant', this.formatImageAnalysisMessage(data.analysis));
+                            } else {
+                                this.addMessage('system', `🎨 Imagen lista para análisis. Escribe "analiza esta imagen" para obtener recomendaciones de diseño.`);
+                            }
+                        }
+                    } else {
+                        this.addMessage('system', `⚠️ Error al procesar "${file.name}": ${data.error}`);
+                    }
+                } catch (err) {
+                    console.error('Error subiendo archivo:', err);
+                    this.addMessage('system', `❌ Error subiendo "${file.name}": ${err.message}`);
+                }
+            }
+
+            // Limpiar input
+            e.target.value = '';
+            this.saveData();
+        }
+
+        initializeEventListeners() {
+            // Chat
+            document.getElementById('send-btn').addEventListener('click', () => this.sendMessage());
+            document.getElementById('message-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.sendMessage();
+            });
+
+            // Botones rápidos
+            document.getElementById('quick-analyze').addEventListener('click', () => {
+                document.getElementById('message-input').value = 'Analiza el diseño actual y dame recomendaciones específicas';
+                this.sendMessage();
+            });
+            document.getElementById('quick-improve').addEventListener('click', () => {
+                document.getElementById('message-input').value = 'Dame 3 mejoras concretas para optimizar la conversión';
+                this.sendMessage();
+            });
+            document.getElementById('quick-code').addEventListener('click', () => {
+                document.getElementById('message-input').value = 'Genera el código HTML/CSS para implementar estas mejoras';
+                this.sendMessage();
+            });
+
+            // Control del chat
+            document.getElementById('clear-chat').addEventListener('click', () => this.clearChat());
+            document.getElementById('export-chat').addEventListener('click', () => this.exportChat());
+
+            // Archivos
+            document.getElementById('file-input').addEventListener('change', (e) => this.handleFileSelect(e));
+
+            // URLs de conocimiento
+            document.getElementById('add-url-btn').addEventListener('click', () => this.addKnowledgeUrl());
+            document.getElementById('url-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.addKnowledgeUrl();
+            });
+
+            // Modal
+            document.getElementById('close-modal').addEventListener('click', () => this.closeModal());
+        }
+
+        initializeDropZone() {
+            const dropZone = document.getElementById('drop-zone');
+            
+            dropZone.addEventListener('click', () => {
+                document.getElementById('file-input').click();
+            });
+
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('dragover');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                this.handleFileSelect({ target: { files: e.dataTransfer.files } });
+            });
+        }
+
+        addFileToList(fileInfo) {
+            const fileList = document.getElementById('file-list');
+            const fileElement = document.createElement('div');
+            fileElement.className = 'file-item';
+            fileElement.innerHTML = `
+                <div class="file-info">
+                    <span class="file-icon">📄</span>
+                    <span class="text-truncate">${fileInfo.name}</span>
+                </div>
+                <div class="file-actions">
+                    <button onclick="agenteInterface.previewFile('${fileInfo.id}')" title="Vista previa">👁️</button>
+                    <button onclick="agenteInterface.removeFile('${fileInfo.id}')" title="Eliminar">🗑️</button>
+                </div>
+            `;
+            fileList.appendChild(fileElement);
+        }
+
+        previewFile(fileId) {
+            const fileInfo = this.files.find(f => f.id == fileId);
+            if (!fileInfo) return;
+
+            const modal = document.getElementById('file-preview-modal');
+            const content = document.getElementById('file-preview-content');
+            
+            if (fileInfo.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    content.innerHTML = `
+                        <img src="${e.target.result}" style="max-width: 100%; height: auto; border-radius: 8px;" alt="${fileInfo.name}">
+                        <div style="margin-top: 1rem; padding: 1rem; background: #f9fafb; border-radius: 8px;">
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Información del archivo:</h4>
+                            <p><strong>Nombre:</strong> ${fileInfo.name}</p>
+                            <p><strong>Tamaño:</strong> ${this.formatFileSize(fileInfo.size)}</p>
+                            <p><strong>Tipo:</strong> ${fileInfo.type}</p>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(fileInfo.file);
+            } else {
+                content.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">📄</div>
+                        <h4 style="font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">${fileInfo.name}</h4>
+                        <p style="color: #6b7280;">Tamaño: ${this.formatFileSize(fileInfo.size)}</p>
+                        <p style="color: #6b7280; margin-bottom: 1rem;">Tipo: ${fileInfo.type}</p>
+                        <button onclick="agenteInterface.analyzeFile('${fileId}')" 
+                                style="background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer;">
+                            🔍 Analizar con Rembranth
+                        </button>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        removeFile(fileId) {
+            this.files = this.files.filter(f => f.id != fileId);
+            this.refreshFileList();
+            this.saveData();
+        }
+
+        refreshFileList() {
+            const fileList = document.getElementById('file-list');
+            fileList.innerHTML = '';
+            this.files.forEach(file => this.addFileToList(file));
+        }
+
+        addKnowledgeUrl() {
+            const urlInput = document.getElementById('url-input');
+            const url = urlInput.value.trim();
+            
+            if (!url || !this.isValidUrl(url)) {
+                alert('Por favor ingresa una URL válida');
+                return;
+            }
+
+            const urlInfo = {
+                id: Date.now(),
+                url: url,
+                title: this.extractDomainFromUrl(url),
+                status: 'pending'
+            };
+
+            this.knowledgeUrls.push(urlInfo);
+            this.addUrlToList(urlInfo);
+            urlInput.value = '';
+            
+            // Simular procesamiento
+            this.processKnowledgeUrl(urlInfo);
+            this.saveData();
+        }
+
+        addUrlToList(urlInfo) {
+            const urlList = document.getElementById('knowledge-urls');
+            const urlElement = document.createElement('div');
+            urlElement.className = 'knowledge-url';
+            urlElement.innerHTML = `
+                <div class="url-header">
+                    <div style="flex: 1;">
+                        <div class="url-title">${urlInfo.title}</div>
+                        <div class="url-address">${urlInfo.url}</div>
+                    </div>
+                    <button onclick="agenteInterface.removeUrl('${urlInfo.id}')" 
+                            style="background: none; border: none; color: white; cursor: pointer; opacity: 0.8; padding: 0.25rem;">
+                        🗑️
+                    </button>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="url-status">
+                        ${urlInfo.status === 'processed' ? '✅ Procesada' : '⏳ Procesando...'}
+                    </span>
+                </div>
+            `;
+            urlList.appendChild(urlElement);
+        }
+
+        async processKnowledgeUrl(urlInfo) {
+            // Simular procesamiento de URL
+            setTimeout(() => {
+                urlInfo.status = 'processed';
+                this.refreshUrlList();
+                this.addMessage('system', `✅ URL procesada: ${urlInfo.title}. Conocimiento agregado a la base de datos.`);
+            }, 2000);
+        }
+
+        removeUrl(urlId) {
+            this.knowledgeUrls = this.knowledgeUrls.filter(u => u.id != urlId);
+            this.refreshUrlList();
+            this.saveData();
+        }
+
+        refreshUrlList() {
+            const urlList = document.getElementById('knowledge-urls');
+            urlList.innerHTML = '';
+            this.knowledgeUrls.forEach(url => this.addUrlToList(url));
+        }
+
+        async sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Agregar mensaje del usuario
+            this.addMessage('user', message);
+            input.value = '';
+
+            // Mostrar indicador de carga
+            this.addMessage('assistant', '<span class="loading-dots">Rembranth está analizando</span>', true);
+
+            try {
+                const response = await this.callRembranth(message);
+                // Remover mensaje de carga
+                this.removeLoadingMessage();
+                // Agregar respuesta
+                this.addMessage('assistant', response);
+            } catch (error) {
+                this.removeLoadingMessage();
+                this.addMessage('assistant', '❌ Error al conectar con Rembranth. Verifica que el servidor esté funcionando.');
+            }
+        }
+
+        async callRembranth(message) {
+            const contexto = this.buildContext(message);
+            
+            try {
+                const response = await fetch('/api/rembranth/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        mensaje: message,
+                        configuracion: {
+                            industria: contexto.industria,
+                            publico_objetivo: contexto.publico_objetivo,
+                            objetivo: contexto.objetivo
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    return data.mensaje;
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
+            } catch (error) {
+                console.error('Error calling backend:', error);
+                throw new Error(`Error conectando con Rembranth: ${error.message}`);
+            }
+        }
+
+        buildContext(message) {
+            return {
+                mensaje: message,
+                industria: document.getElementById('industria-select').value,
+                publico_objetivo: document.getElementById('publico-input').value || 'Usuarios generales',
+                objetivo: document.getElementById('objetivo-select').value,
+                archivos: this.files.map(f => ({ name: f.name, type: f.type })),
+                urls_conocimiento: this.knowledgeUrls.filter(u => u.status === 'processed').map(u => u.url),
+                historial: this.chatHistory.slice(-5)
+            };
+        }
+
+        addMessage(sender, content, isLoading = false) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${isLoading ? 'loading-message' : ''}`;
+            
+            if (sender === 'user') {
+                messageElement.className += ' message-user';
+                messageElement.innerHTML = `
+                    <div class="message-content" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; padding: 1rem 1.5rem; border-radius: 20px 20px 4px 20px; max-width: 70%; margin-left: auto;">
+                        <p>${content}</p>
+                    </div>
+                `;
+            } else if (sender === 'assistant') {
+                messageElement.className += ' message-assistant';
+                messageElement.innerHTML = `
+                    <div class="message-header">
+                        <div class="avatar">R</div>
+                        <div class="assistant-name">Rembranth</div>
+                    </div>
+                    <div class="message-content">${this.formatMessage(content)}</div>
+                `;
+            } else if (sender === 'system') {
+                messageElement.innerHTML = `
+                    <div class="message-system">
+                        ${content}
+                    </div>
+                `;
+            }
+            
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            if (!isLoading) {
+                this.chatHistory.push({ sender, content, timestamp: Date.now() });
+            }
+        }
+
+        formatMessage(content) {
+            return content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/```([\s\S]*?)```/g, '<pre class="code"><code>$1</code></pre>')
+                .replace(/`(.*?)`/g, '<code class="inline-code">$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        removeLoadingMessage() {
+            const loadingMessage = document.querySelector('.loading-message');
+            if (loadingMessage) {
+                loadingMessage.remove();
+            }
+        }
+
+        clearChat() {
+            if (confirm('¿Estás seguro de que quieres limpiar el chat?')) {
+                const messagesContainer = document.getElementById('chat-messages');
+                messagesContainer.innerHTML = `
+                    <div class="chat-message message-assistant">
+                        <div class="message-header">
+                            <div class="avatar">R</div>
+                            <div class="assistant-name">Rembranth</div>
+                        </div>
+                        <div class="message-content">
+                            <p>Chat reiniciado. ¿En qué puedo ayudarte?</p>
+                        </div>
+                    </div>
+                `;
+                this.chatHistory = [];
+            }
+        }
+
+        exportChat() {
+            const chatData = {
+                timestamp: new Date().toISOString(),
+                messages: this.chatHistory,
+                files: this.files.map(f => ({ name: f.name, type: f.type, size: f.size })),
+                knowledgeUrls: this.knowledgeUrls,
+                configuration: {
+                    industria: document.getElementById('industria-select').value,
+                    publico_objetivo: document.getElementById('publico-input').value,
+                    objetivo: document.getElementById('objetivo-select').value
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(chatData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rembranth-chat-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            this.addMessage('system', '💾 Chat exportado exitosamente');
+        }
+
+        closeModal() {
+            document.getElementById('file-preview-modal').classList.add('hidden');
+        }
+
+        // FUNCIÓN ACTUALIZADA PARA USAR EL SISTEMA REAL
+        analyzeFile(fileId) {
+            this.closeModal();
+            const fileInfo = this.files.find(f => f.id == fileId);
+            if (fileInfo) {
+                // En lugar de análisis simulado, usar el sistema real
+                const input = document.getElementById('message-input');
+                input.value = `Analiza en detalle la imagen "${fileInfo.name}" que subí`;
+                this.sendMessage();
+            }
+        }
+
+        // NUEVAS FUNCIONES PARA ANÁLISIS DE IMÁGENES
+
+        displayImageAnalysis(analysis, filename) {
+            // Crear o actualizar el contenedor de análisis
+            let analysisContainer = document.getElementById('analysis-result');
+            
+            if (!analysisContainer) {
+                analysisContainer = document.createElement('div');
+                analysisContainer.id = 'analysis-result';
+                analysisContainer.className = 'analysis-container';
+                
+                // Insertar después del área de archivos
+                const fileSection = document.querySelector('.file-section') || document.querySelector('#file-list').parentElement;
+                if (fileSection && fileSection.parentNode) {
+                    fileSection.parentNode.insertBefore(analysisContainer, fileSection.nextSibling);
+                } else {
+                    // Fallback: insertar en el body
+                    document.body.appendChild(analysisContainer);
+                }
+            }
+            
+            const score = analysis.analysis?.puntuacion || 'N/A';
+            const status = analysis.status === 'analysis_completed' ? '✅ Completado' : '❌ Error';
+            
+            analysisContainer.innerHTML = `
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <h3>📸 Análisis de Imagen: ${filename}</h3>
+                        <div class="analysis-score">
+                            <span class="score">${score}/100</span>
+                            <span class="label">Puntuación</span>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-status ${analysis.status}">
+                        <strong>Estado:</strong> ${status}
+                    </div>
+                    
+                    ${analysis.suggestions ? `
+                        <div class="analysis-suggestions">
+                            <h4>💡 Sugerencias:</h4>
+                            <ul>
+                                ${analysis.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    
+                    ${analysis.analysis?.completo?.mejoras ? `
+                        <div class="analysis-improvements">
+                            <h4>✨ Mejoras Identificadas:</h4>
+                            <ul>
+                                ${analysis.analysis.completo.mejoras.map(mejora => `
+                                    <li><strong>${mejora.titulo}:</strong> ${mejora.justificacion} 
+                                        <span class="impact">(${mejora.impacto})</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="analysis-actions">
+                        <button onclick="agenteInterface.askAboutImage('${filename}')" class="btn-primary">
+                            💬 Preguntar sobre esta imagen
+                        </button>
+                        <button onclick="agenteInterface.requestCodeSuggestions('${filename}')" class="btn-secondary">
+                            💻 Obtener código mejorado
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Agregar estilos si no existen
+            this.injectAnalysisStyles();
+        }
+
+        formatImageAnalysisMessage(analysis) {
+            if (!analysis.analysis?.completo) {
+                return `🎨 **Imagen analizada exitosamente**\n\n📊 **Estado:** ${analysis.status}\n\n💡 **Sugerencias:**\n${analysis.suggestions.map(s => `• ${s}`).join('\n')}`;
+            }
+            
+            const analisisCompleto = analysis.analysis.completo;
+            let mensaje = `🎨 **Análisis automático de imagen completado**\n\n`;
+            mensaje += `📊 **Puntuación:** ${analysis.analysis.puntuacion}/100\n\n`;
+            mensaje += `🔍 **Análisis:** ${analisisCompleto.analisis}\n\n`;
+            
+            if (analisisCompleto.mejoras && analisisCompleto.mejoras.length > 0) {
+                mensaje += `✨ **Mejoras sugeridas:**\n`;
+                analisisCompleto.mejoras.forEach((mejora, i) => {
+                    mensaje += `${i + 1}. **${mejora.titulo}:** ${mejora.justificacion}\n`;
+                });
+                mensaje += '\n';
+            }
+            
+            if (analisisCompleto.microcopys && analisisCompleto.microcopys.length > 0) {
+                mensaje += `💬 **Microcopys sugeridos:** ${analisisCompleto.microcopys.join(', ')}\n\n`;
+            }
+            
+            mensaje += `💡 *Pregúntame cualquier cosa específica sobre esta imagen*`;
+            
+            return mensaje;
+        }
+
+        askAboutImage(filename) {
+            const input = document.getElementById('message-input');
+            if (input) {
+                input.value = `Analiza más detalles de la imagen ${filename}`;
+                input.focus();
+            }
+        }
+
+        requestCodeSuggestions(filename) {
+            const input = document.getElementById('message-input');
+            if (input) {
+                input.value = `Dame el código HTML/CSS optimizado para la imagen ${filename}`;
+                input.focus();
+                // Auto-enviar
+                setTimeout(() => this.sendMessage(), 100);
+            }
+        }
+
+        injectAnalysisStyles() {
+            // Solo agregar estilos una vez
+            if (document.getElementById('analysis-styles')) return;
+            
+            const styleSheet = document.createElement("style");
+            styleSheet.id = 'analysis-styles';
+            styleSheet.textContent = `
+                .analysis-container {
+                    margin: 20px 0;
+                    padding: 0;
+                    z-index: 1000;
+                    position: relative;
+                }
+
+                .analysis-card {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border-radius: 12px;
+                    padding: 20px;
+                    margin: 10px 0;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                    animation: slideIn 0.3s ease-out;
+                }
+
+                @keyframes slideIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .analysis-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+
+                .analysis-header h3 {
+                    margin: 0;
+                    font-size: 1.2em;
+                    flex: 1;
+                    min-width: 200px;
+                }
+
+                .analysis-score {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    background: rgba(255,255,255,0.2);
+                    padding: 10px 15px;
+                    border-radius: 8px;
+                    backdrop-filter: blur(10px);
+                    min-width: 80px;
+                }
+
+                .analysis-score .score {
+                    font-weight: bold;
+                    font-size: 1.4em;
+                    line-height: 1;
+                }
+
+                .analysis-score .label {
+                    font-size: 0.8em;
+                    opacity: 0.9;
+                    white-space: nowrap;
+                }
+
+                .analysis-status {
+                    margin: 10px 0;
+                    font-size: 0.9em;
+                }
+
+                .analysis-status.analysis_completed {
+                    color: #4ade80;
+                    font-weight: 600;
+                }
+
+                .analysis-status.analysis_failed {
+                    color: #f87171;
+                    font-weight: 600;
+                }
+
+                .analysis-suggestions, .analysis-improvements {
+                    margin: 15px 0;
+                }
+
+                .analysis-suggestions h4, .analysis-improvements h4 {
+                    margin: 0 0 10px 0;
+                    font-size: 1em;
+                    font-weight: 600;
+                }
+
+                .analysis-suggestions ul, .analysis-improvements ul {
+                    margin: 0;
+                    padding-left: 20px;
+                    list-style-type: none;
+                }
+
+                .analysis-suggestions li, .analysis-improvements li {
+                    margin: 8px 0;
+                    line-height: 1.4;
+                    position: relative;
+                    padding-left: 0;
+                }
+
+                .analysis-suggestions li::before {
+                    content: "•";
+                    color: #4ade80;
+                    font-weight: bold;
+                    position: absolute;
+                    left: -15px;
+                }
+
+                .analysis-improvements li::before {
+                    content: "✨";
+                    position: absolute;
+                    left: -20px;
+                }
+
+                .analysis-improvements .impact {
+                    opacity: 0.8;
+                    font-style: italic;
+                    font-size: 0.9em;
+                    color: #a78bfa;
+                }
+
+                .analysis-actions {
+                    margin-top: 20px;
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                }
+
+                .btn-primary, .btn-secondary {
+                    padding: 10px 16px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 0.9em;
+                    font-weight: 500;
+                    transition: all 0.2s;
+                    flex: 1;
+                    min-width: 140px;
+                }
+
+                .btn-primary {
+                    background: #3b82f6;
+                    color: white;
+                }
+
+                .btn-primary:hover {
+                    background: #2563eb;
+                    transform: translateY(-1px);
+                }
+
+                .btn-secondary {
+                    background: rgba(255,255,255,0.2);
+                    color: white;
+                    backdrop-filter: blur(5px);
+                }
+
+                .btn-secondary:hover {
+                    background: rgba(255,255,255,0.3);
+                    transform: translateY(-1px);
+                }
+
+                @media (max-width: 768px) {
+                    .analysis-header {
+                        flex-direction: column;
+                        text-align: center;
+                    }
+                    
+                    .analysis-header h3 {
+                        min-width: auto;
+                        text-align: center;
+                    }
+                    
+                    .analysis-actions {
+                        flex-direction: column;
+                    }
+                    
+                    .btn-primary, .btn-secondary {
+                        width: 100%;
+                        min-width: auto;
+                    }
+
+                    .analysis-card {
+                        margin: 10px 5px;
+                        padding: 15px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .analysis-suggestions ul, .analysis-improvements ul {
+                        padding-left: 15px;
+                    }
+                    
+                    .analysis-suggestions li::before {
+                        left: -12px;
+                    }
+                    
+                    .analysis-improvements li::before {
+                        left: -15px;
+                    }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+
+        // Utilidades existentes
+        formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        extractDomainFromUrl(url) {
+            try {
+                const domain = new URL(url).hostname;
+                return domain.replace('www.', '');
+            } catch (_) {
+                return url.substring(0, 30) + '...';
+            }
+        }
+
+        saveData() {
+            const data = {
+                files: this.files.map(f => ({ 
+                    id: f.id, 
+                    name: f.name, 
+                    size: f.size, 
+                    type: f.type 
+                })),
+                knowledgeUrls: this.knowledgeUrls,
+                chatHistory: this.chatHistory
+            };
+            // Nota: localStorage no funciona en Claude.ai, usar solo para desarrollo local
+            try {
+                localStorage.setItem('rembranth-data', JSON.stringify(data));
+            } catch(e) {
+                console.log('LocalStorage no disponible');
+            }
+        }
+
+        loadSavedData() {
+            try {
+                const savedData = localStorage.getItem('rembranth-data');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    if (data.knowledgeUrls) {
+                        this.knowledgeUrls = data.knowledgeUrls;
+                        this.refreshUrlList();
+                    }
+                    if (data.chatHistory) {
+                        this.chatHistory = data.chatHistory;
+                    }
+                }
+            } catch (error) {
+                console.log('No se pudieron cargar los datos guardados:', error);
+            }
+        }
+    }
+
+    // Inicializar la interfaz cuando la página cargue
+    let agenteInterface;
+    document.addEventListener('DOMContentLoaded', () => {
+        agenteInterface = new AgenteRembranthInterface();
+        
+        // Mensaje de bienvenida adicional
+        setTimeout(() => {
+            agenteInterface.addMessage('system', '🚀 Sistema iniciado. Puedes cargar archivos, agregar URLs de conocimiento y comenzar a chatear.');
+        }, 1000);
+    });
+
+    // Prevenir que la página se recargue al arrastrar archivos
+    window.addEventListener('dragover', e => e.preventDefault());
+    window.addEventListener('drop', e => e.preventDefault());
+
+    // Cerrar modal con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('file-preview-modal');
+            if (!modal.classList.contains('hidden')) {
+                agenteInterface.closeModal();
+            }
+        }
+    });
+
+    // Easter egg: Konami code para modo desarrollador
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+    
+    document.addEventListener('keydown', (e) => {
+        konamiCode.push(e.code);
+        if (konamiCode.length > konamiSequence.length) {
+            konamiCode.shift();
+        }
+        
+        if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+            agenteInterface.addMessage('assistant', `🎮 **Modo Desarrollador Activado**
+
+¡Has desbloqueado funciones especiales!
+
+**Nuevas capacidades:**
+• Análisis técnico avanzado
+• Generación de código React/Vue
+• Optimizaciones de rendimiento
+• Debugging de interfaces
+
+*"Con gran poder viene gran responsabilidad"* - Rembranth 🕷️`);
+            konamiCode = [];
+        }
+    });
+    </script>
+</body>
+</html>

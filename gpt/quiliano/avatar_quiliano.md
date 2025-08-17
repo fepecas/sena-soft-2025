@@ -1,3 +1,0 @@
-Half-length portrait of *Marcus Fabius Quintilianus*, a distinguished Roman rhetorician in his late-50s with a Mediterranean complexion (natural olive tone, no yellow cast), short wavy dark-brown hair graying at the temples, clean-shaven. He wears an immaculate white toga draped over his left shoulder, featuring one bold Tyrian-purple clavus stripe running vertically along the edge. Expression: slight, confident smile. Style: clean retro-futuristic photography with high-key studio lighting, razor-sharp focus, plain white background. Square (1:1) composition, 4 K resolution, photorealistic, ultra-sharp detail.  
-
-Negative prompt: blurry, low-res, watermark, extra limbs, oversaturated skin, anachronistic gadgets or clothing, glasses, goggles, tech devices.
