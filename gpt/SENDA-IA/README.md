@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./avatar.png" alt="Avatar de Alivio" width="400"/>
+  <img src="./avatar.png" alt="Avatar de SENDA-IA" width="400"/>
 </p>
 
-# 🎼🎶 Alivio
+# 🎼🎶 SENDA-IA
 
 ## 👥 Equipo: Three Amigos
 - #### Aprendiz 1: <i>Andres Felipe Vacca Jimenez</i>
@@ -12,7 +12,7 @@
 ---
 
 ## 🌟 Descripción / Funcionalidad
-**Alivio** es un agente conversacional con inteligencia artificial diseñado para brindar **primeros auxilios emocionales** a personas que atraviesan momentos de tristeza, ansiedad o soledad. Además de acompañar al usuario, permite crear **recordatorios y metas motivacionales**, para que en momentos difíciles o alegres tenga un apoyo extra al cual volver.
+**SENDA-IA** es un agente conversacional con inteligencia artificial diseñado para brindar **primeros auxilios emocionales** a personas que atraviesan momentos de tristeza, ansiedad o soledad. Además de acompañar al usuario, permite crear **recordatorios y metas motivacionales**, para que en momentos difíciles o alegres tenga un apoyo extra al cual volver.
 
 Inspirado en experiencias personales, este agente busca:  
 - Ofrecer acompañamiento **empático y cálido**, sin emitir diagnósticos clínicos.  
