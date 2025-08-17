@@ -1,0 +1,45 @@
+{
+  "General": {
+    "nombre_usuario": "?", 
+    "rol_usuario": "aprendiz",
+    "duracion_total": "1 hora",
+    "numero_interacciones": 5,
+    "sentimiento_equipo": "motivado",
+    "nivel_confianza_IA": "medio"
+  },
+  "Especifico": {
+    "equipo_tipo": "startup",
+    "equipo_ubicacion": "Global",
+    "problemas_detectados": [
+      "Sobrecarga de tareas en algunos miembros",
+      "Retrasos por bloqueos no detectados a tiempo",
+      "Altos niveles de fatiga en entornos de presión"
+    ],
+    "mvp_funcionalidades": [
+      "Gestión inteligente de backlog",
+      "Monitor de bienestar con alertas tempranas",
+      "Orquestador integral que equilibre carga",
+      "Asesoría contextual en buenas prácticas"
+    ],
+    "comportamiento_agentico": "Debe actuar de forma autónoma al sugerir priorización de tareas y alertas de bienestar, pero siempre dejando la decisión final al equipo.",
+    "impacto_esperado": [
+      "Menor burnout en desarrolladores",
+      "Mayor eficiencia en gestión de proyectos",
+      "Entregas sostenibles en el tiempo",
+      "Equipos globales más equilibrados"
+    ],
+    "metricas_exito": [
+      "Reducción de burnout reportado en encuestas",
+      "Mayor tasa de cumplimiento en sprints",
+      "Mejor equilibrio entre calidad y tiempos de entrega"
+    ],
+    "desafios_producto": "Adopción cultural en equipos acostumbrados a métodos tradicionales y necesidad de confianza en recomendaciones de IA.",
+    "recursos_necesarios": [
+      "Integración con herramientas de gestión (Jira, GitHub)",
+      "Modelos de IA para análisis de interacción",
+      "Pruebas piloto en equipos de desarrollo reales"
+    ],
+    "busco_equipo": "Personas con experiencia en IA aplicada a productividad, psicología organizacional y desarrollo de software colaborativo.",
+    "descripcion_avicena": "AVICENA es un agente integral de IA que combina gestión inteligente de proyectos con cuidado del bienestar colectivo. Se alinea con los ejes 4, 5 y 6 del CONPES 4144, buscando equipos más humanos, sostenibles y productivos."
+  }
+}
