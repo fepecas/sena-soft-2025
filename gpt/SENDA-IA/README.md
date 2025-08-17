@@ -5,9 +5,9 @@
 # 🎼🎶 SENDA-IA
 
 ## 👥 Equipo: Three Amigos
-- #### Aprendiz 1: <i>Andres Felipe Vacca Jimenez</i>
-- #### Aprendiz 2: <i>Branndon Schneyder Suarez Jimenez</i>
-- #### Aprendiz 3: <i>Andrea Florian Higuera</i>
+- #### Aprendiz 1: <i>[Andrés Felipe Vacca Jiménez.](https://github.com/andresvacca)</i>
+- #### Aprendiz 2: <i>[Branndon Schneyder Suarez Jimenez.](https://github.com/Branndon-Suarez)</i>
+- #### Aprendiz 3: <i>[Andrea Viviana Florian Higuera.](https://github.com/andreaviviana)</i>
 
 ---
 
