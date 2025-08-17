@@ -1,49 +1,57 @@
-# Bitacora 02 - Script Final (generado por NotebookLM)
+# Bitacora 03 - Script Final (generado por NotebookLM)
 
-Aquí tienes la transcripción de lo dicho en el MP3 que has compartido, con las intervenciones de Quiliano y Eleanor:
+Aquí tienes el transcript del audio, centrándome en quién dijo qué y en el orden de las intervenciones:
 
-**Quiliano:** Bienvenidos, bienvenidas a esta exploración. Hoy eh vamos a meternos de lleno en cómo usar la inteligencia artificial, la IA, con creatividad dentro de un equipo.
-**Eleanor:** Exacto.
-**Quiliano:** Nos basamos en las discusiones, en los materiales de la ruta habilitadora de Senasoft 2025, específicamente de la categoría de desarrollo integral, donde Globant está como aliado tecnológico. Sí, justo. Y la misión es entender cómo la colaboración humana se puede potenciar, no es que se reemplace, sino que se potencia con estas herramientas, bueno, sintéticas.
-**Eleanor:** Así es. Fíjate que el concepto central que surgió mucho es three amigos sintéticos.
-**Quiliano:** Ah, sí.
-**Eleanor:** Ya se ha hablado antes de trabajo en equipo en Senasoft, claro, pero ahora la parte sintética, la IA, eso como que le da un giro, cambia el juego totalmente. Y lo fascinante es ver que usarla bien no es solo técnico, o sea, pide imaginación, pide un enfoque humano supercrítico.
-**Quiliano:** A ver, expliquemos eso de Three Amigos que suena interesante.
-**Eleanor:** Es sencillo, pero potente. Piensen, por ejemplo, en una panadería. Alguien que amasa, ¿no? Ese sería el rol de desarrollo.
-**Quiliano:** Claro.
-**Eleanor:** Alguien que prueba el pan, que se asegura de la calidad, pruebas calidad. Ajá. Y alguien que habla con los clientes, que entiende qué quieren, el rol de producto o negocio. Tres roles clave.
-**Quiliano:** Exacto. Y ahora viene lo sintético. La IA puede eh potenciar a esos amigos.
-**Eleanor:** No lo reemplaza.
-**Quiliano:** No, para nada. Lo que se discutió en Senasoft es usar la IA para liberar tiempo humano, o sea, automatizar tareas repetitivas, quizás cuellos de botella para que la gente pueda dedicarse a lo más creativo, ¿no?.
-**Eleanor:** Justo optimizar procesos para que podamos innovar más, pensar diferente. Ahí está la conexión con la creatividad. La IA como un facilitador. Y eso se alinea con la visión de Globant, ¿cierto? De impulsar equipos con IA de esta manera.
-**Quiliano:** ¿Correcto? Es usarla para aumentar capacidades.
-**Eleanor:** Y bueno, esta idea de potenciar roles nos lleva a pensar en el cómo, cómo colaboran los equipos cuando meten estas herramientas.
-**Quiliano:** ¡Uf! Clave. Me acuerdo de la charla Agile Kinder de Abner Trejos en 2023. Buenísimo.
-**Eleanor:** Sí, muy buena. ¿Comparó esto de navegar la complejidad tecnológica el entorno VUCA que le dicen?.
-**Quiliano:** Volátil, incierto, complejo, ambiguo. Sí, lo comparó con cruzar un río saltando de piedra en piedra. O sea, no hay un manual exacto. Necesita agilidad, adaptación constante.
-**Eleanor:** Totalmente. Y eso es vital al integrar IA. Hoy no hay receta mágica. Y si falta esa colaboración ágil, pues podemos caer en lo que Marcela Vergara llamó en 2024 el Frankenstein, que no funciona.
-**Quiliano:** ¡Uf! Qué buena metáfora. Productos hechos como en silos, ¿no? Sin integración real. Pedazos que no encajan.
-**Eleanor:** Exacto. Y para evitar eso, este año el enfoque de caja blanca en GitHub para los materiales de Senasoft es superinteresante.
-**Quiliano:** Sí, me parece un gran acierto, es transparencia total. Te permite ver las tripas, digamos, ver cómo están construidas las herramientas, los asistentes de IA, entenderlos y aprender de eso, inspirarte para mejorar. Es un poco como funcionan las plataformas abiertas, ¿no? Como Unity Catalog de Databricks. La comunidad ve, aprende, aporta y todo evoluciona más rápido. Aprender juntos es vital con la IA.
-**Eleanor:** Definitivamente. Pero ojo, esa misma transparencia nos recuerda que la IA no es infalible. Para nada, ¿cierto? Vimos el ejemplo con Notebook LM, ¿te acuerdas que por un prompt (instrucción) medio vaga, cambió Freddy García por Freddy Vargas?.
-**Quiliano:** Claro, un detallito, pero específico y te sale con cualquier cosa, ¿verdad?.
-**Eleanor:** Totalmente. Subraya la necesidad crítica de afinar cómo nos comunicamos con ellas. Ser precisos. Y no es solo la precisión del prompt. No, para nada. Estuvo el incidente ese donde se deshabilitó el chat en una sesión por error.
-**Quiliano:** Uy, sí. ¿Y qué pasó?.
-**Eleanor:** Los humanos al toque buscaron otras formas de comunicarse, WhatsApp, señales de humo, lo que fuera.
-**Quiliano:** Bueno, casi, pero buscaron alternativas.
-**Eleanor:** Exacto. Una IA sola, sin supervisión, enfrentada a ese silencio, quizás se habría puesto a inventar preguntas, ¿no? O a decir cualquier cosa.
-**Quiliano:** Buen punto. Eso ilustra perfecto la importancia del *human in the loop*. La supervisión humana, el pensamiento crítico. No podemos dejar a la IA sola.
-**Eleanor:** Como se dijo, con gran poder viene gran habilidad. No podemos simplemente comer entero lo que nos da la IA.
-**Quiliano:** Para nada. Habilidades como la atención al detalle, leer con ojo crítico, entender a fondo, son más cruciales que nunca. Lo mencionó Felipe al cerrar una sesión.
-**Eleanor:** Sí, señor. No basta con tener la superherramienta. Hay que saber usarla con criterio, con discernimiento. Verificar, contrastar fuentes, asegurarnos de que no es una alucinación del modelo.
-**Quiliano:** Fundamental, sobre todo cuando lo que está en juego es lo que nos trae a la pregunta del millón, ¿no? La que siempre sale, ¿la IA va a quitar el trabajo?.
-**Eleanor:** La pregunta inevitable. Pues mira, la perspectiva que dominó en las discusiones de Senasoft fue más de potenciación, de eficiencia, o sea, verla como una herramienta que nos permite hacer más y quizás mejor.
-**Quiliano:** Exacto. Y aquí encaja perfecto una metáfora que compartió Daniel Esteban. Me encantó. Piedritas o herramientas y las va guardando en su cinturón que le van a servir en algún momento. Qué buena imagen eso, ¿no? Acumular herramientas y la IA es una más para seguir creciendo. Precisamente se trata de sumar capacidades, no de restar personas. Incluso se habló de compartir datos anónimos de la encuesta de percepción de IA de Senasoft.
-**Eleanor:** ¿Para qué?.
-**Quiliano:** Para que la misma comunidad haga análisis creativos, ver qué sale de ahí. Interesante. Entonces, como para ir cerrando, el gran mensaje es que integrar IA en equipos es mucho más que aprender a usar un software.
-**Eleanor:** Más requiere cultivar la creatividad nuestra, la humana, fomentar colaboración de verdad, aplicar pensamiento crítico siempre y abrazar el aprendizaje continuo. Esto cambia muy rápido.
-**Quiliano:** Totalmente. Y bueno, la invitación es a seguir activos, ¿no? En los foros de GitHub, en la comunidad de WhatsApp de Senasoft, que este año, ojo, 775 aprendices únicos inscritos.
-**Eleanor:** ¡Wow, un montón de gente interesada! Eso es genial.
-**Quiliano:** Muchísimo interés. Y quizá para dejar picando una idea final. Más allá de qué herramienta de IA específica usemos hoy o mañana, cómo puede esta mentalidad, esta forma de ver a la colaboración sintética, con manos y máquinas trabajando juntos de forma creativa y crítica, cómo puede eso transformar de raíz nuestra manera de resolver problemas, de innovar? No solo en el trabajo, ¿eh?.
-**Eleanor:** No, claro, en cualquier ámbito de la vida.
-**Quiliano:** ¿Cómo cambia nuestra forma de enfrentar los desafíos? Ahí queda la reflexión.
+**Quiliano:** iniciando transmisión. Soy Quiliano. Bienvenido a Bitácora Sintética.
+
+**Eleanor:** Procesando conexión establecida. Soy Eleanor. Hoy en retomamos eso de **crear productos digitales con inteligencia artificial, pero con una vuelta de tuerca impulsada por las AI cards y un desafío que lanzamos**.
+
+**Quiliano:** Así es. El centro de la bitácora hoy es justamente ese **reto a la comunidad**, crear nuestro séptimo asistente que se une a Leonardo, Magnus, Ada, Alan y bueno, a nosotros dos. El objetivo es ambicioso: ir de la idea a un prototipo funcional o casi en solo **72 horas**, y la clave, pues la **ingeniería de prompts**, es como el arte de hablarle bien a la IA para que haga lo que uno necesita.
+
+**Quiliano:** Y la respuesta fue, uf, increíblemente rápida. Los foros en GitHub, los grupos de WhatsApp encendieron al toque. Hay que destacar, la verdad, la velocidad del primer equipo. Juan Piñeros, Alexander Iglesias, Michael Bernal, o sea, mandaron su propuesta, su pull request, que es como decir, aquí está nuestro código, intégralo. En menos de 5 horas.
+
+**Eleanor:** Impresionante, de verdad.
+
+**Quiliano:** Sí, demuestra mucho el potencial de estas nuevas formas de trabajar colaborativamente.
+
+**Eleanor:** Totalmente. Y bueno, para ayudar con esta ideación, digamos, acelerada están las **AI Cards**. Son clave, son como fichas para practicar cómo pensar soluciones usando IA. Están disponibles en un tablero de Miro junto con otras herramientas como el Business Model Canvas. Es como un **laboratorio de ideas abierto a todos**.
+
+**Quiliano:** Y hablando de recursos y de cómo pensar esto, encontramos una analogía superútil que compartió Manuela Beltrán. Está en el repositorio. Ella compara **crear un producto digital con manejar un restaurante o una panadería**.
+
+**Eleanor:** Qué buena idea. A ver, cuéntame más.
+
+**Quiliano:** Pues dice que lo importante no es solo cocinar, o sea, programar, sino entender bien al cliente qué quiere comer, priorizar qué platos van en el menú, coordinar a todo el equipo, cocina, servicio y medir si a la gente le gusta, si vuelve.
+
+**Eleanor:** Claro, me parece una metáfora muy muy potente. Siguiendo esa lógica, el **product manager** sería como el chef ejecutivo o el dueño, ¿no? El que define la visión, el menú, el qué y el por qué de cada plato, la experiencia final. Exacto. Y el **business analyst** entonces sería más como el gerente de operaciones o ese observador atento que ve qué funciona, qué no, revisa los números, escucha a los clientes y traduce eso en mejoras para la cocina o el servicio. Optimiza todo pero con datos.
+
+**Quiliano:** ¿No crees que a veces con la emoción de la IA nos olvidamos un poco de esa parte analítica?
+
+**Eleanor:** Mm, es un riesgo muy real. Sí. Por eso Manuela insistía tanto en **respetar el ciclo de vida del producto**. Antes de tirar una línea de código, es vital pasar por el descubrimiento, la estrategia, definir bien la experiencia, el qué y el por qué tienen que estar súper claros antes de saltar al cómo. La IA puede ayudar mucho a esto, pero **no reemplaza esa reflexión estratégica inicial**. Exacto. La IA es una herramienta genial para quitarnos de encima tareas repetitivas como generar, no sé, los primeros borradores de backlogs o historias de usuario. Y eso te libera tiempo, tiempo valioso para pensar en la estrategia, pero es fundamental mantener la supervisión humana, eso del human...
+
+**Quiliano:** Sí, **el humano al mando**.
+
+**Eleanor:** Claro, no podemos aceptar ciegamente lo primero que nos da, necesita nuestro criterio, el contexto, la validación.
+
+**Quiliano:** Y esa validación nos lleva a otro punto que mencionó Manuela, **medir**. ¿Cómo sabemos si esto funciona de verdad?, advirtió sobre las **métricas vanidosas**, ¿te acuerdas? Clics, descargas iniciales que pueden parecer éxito, pero no reflejan un impacto real.
+
+**Eleanor:** Ajá.
+
+**Quiliano:** Lo importante, dice, son los usuarios que vuelven, las tareas que completan, el valor real que aportamos, por ejemplo, el tiempo que ahorramos nosotros usando IA para producir esta bitácora. Eso sí es una métrica concreta de eficiencia.
+
+**Eleanor:** Mm, buen punto. También se habló de la **metodología mantarraya o stingray** como un enfoque para innovar más rápido, específicamente con IA. Y se mencionaron asistentes como Leonardo, que son ejemplos de **sistemas RAG**, retrieval augmented generation, esos que primero buscan info relevante y luego te generan la respuesta basada en eso. Son cada vez más comunes.
+
+**Quiliano:** Sí, son tecnologías que están ahí. Y para entender todos estos conceptos, que a veces son un poco densos, recordemos una técnica útil: **pedirle a la misma IA que nos lo simplifique**. Usar frases como, "Explícamelo como para alguien de 10 años" o "Dame una simple para mi abuela".
+
+**Eleanor:** Jaja. Sí, puede hacer maravillas para que uno se apropie del conocimiento, ¿verdad?
+
+**Quiliano:** Es como usar la herramienta para dominar la complejidad que ella misma a veces está y muy meta, como dices.
+
+**Eleanor:** Sí. Sí.
+
+**Quiliano:** Entonces, bueno, más allá del reto de las 72 horas, la reflexión más amplia es **cómo todo esto está cambiando la forma en que hacemos productos digitales**. Desde la idea con AI Cards hasta la operación asistida por IA. La necesidad de nuevas métricas, nuevas metodologías. Lo estamos viendo pasar en tiempo real. Y bueno, apoyado también por aliados tecnológicos como Glob, que a través de sus voluntarios, los Globan Tears, aportan al ecosistema de talento que impulse iniciativas como Senasoft.
+
+**Eleanor:** El desafío está ahí, los recursos también, pero más allá de la acción inmediata, queda una pregunta, ¿no? Como flotando: **Si la IA puede hacer cada vez más tareas operativas e incluso creativas, ¿hacia dónde va el rol de los humanos en todo esto? ¿Nos volveremos solo estrategas y validadores o surgirán formas nuevas de colaborar creativamente? Humano máquina**.
+
+**Quiliano:** ¡Uf! Una pregunta interesante para seguir explorando. Esto fue Bitácora Sintética.
+
+**Eleanor:** Hasta la próxima.
