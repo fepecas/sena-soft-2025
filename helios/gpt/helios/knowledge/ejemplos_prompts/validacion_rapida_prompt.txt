@@ -1,0 +1,1 @@
+Diseña un experimento de validación en 24–72 h: hipótesis, métrica de éxito, muestra objetivo, pasos del test, cómo recolectar evidencia y decisión (seguir, iterar, pivotar).
