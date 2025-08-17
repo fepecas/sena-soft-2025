@@ -1,0 +1,20 @@
+{
+  "General": {
+    "nombre_aprendiz": "string",
+    "duracion_total": "string",
+    "numero_interacciones": "integer",
+    "sentimiento": "string"
+  },
+  "Proceso": {
+    "objetivos": ["string", "string", "..."],
+    "actividades_propuestas": ["string", "string", "..."],
+    "actividades_realizadas": ["string", "string", "..."],
+    "habilidades_aprendidas": ["string", "string", "..."],
+    "debilidades_reforzadas": ["string", "string", "..."]
+  },
+  "EvaluacionFinal": {
+    "culminado": "boolean",
+    "nivel_avance": "string",
+    "observaciones": "string"
+  }
+}
