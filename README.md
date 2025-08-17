@@ -1,3 +1,37 @@
+## 🔄 Flujo de Demeter 
+Para probarla  añade tu base de MongoDB a `gpt/demeter/db.js`, para ejecutarlo escribe "node test.js" 
+1. **Interacción inicial**  
+   El aprendiz conversa con un agente Synthetic (ej: Quiliano).  
+
+2. **Pregunta de guardado**  
+   El agente le consulta al aprendiz:  
+   > “¿Deseas guardar esta conversación en tu memoria (Demeter)?”
+
+3. **Recopilación de datos**  
+   Si el aprendiz acepta, el agente recopila toda la conversación actual en un JSON estandarizado.  
+
+4. **Finalización de conversación**  
+   Cuando el aprendiz indica que finaliza, el agente envía el paquete de datos a **Demeter**.  
+
+5. **Demeter procesa**  
+   - Consume la información recibida.  
+   - La almacena en un repositorio de memoria (ej: repo en GitHub u otra base persistente).  
+   - Genera un **código único** que representa esa sesión guardada.  
+
+6. **Entrega al aprendiz**  
+   El código se devuelve al aprendiz como referencia.  
+   > Ejemplo: `conversation_id`  
+
+7. **Funcionalidades disponibles**  
+   Usando ese código, el aprendiz puede acceder a:  
+   - 📂 Recuperación de la conversación guardada.  
+   - 📊 Estadísticas e insights.  
+   - 🧩 Creación de perfiles unificados.  
+   - 🤝 Match inteligente para equipos.  
+   - 🛡️ Auditoría y trazabilidad para administrativos/jurados.  
+
+---
+
 ## 🔍 Solution Overview
 
 #### 📂 [admission/](admission/)

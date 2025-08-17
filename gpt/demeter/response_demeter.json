@@ -1,0 +1,27 @@
+{
+  "conversation_id": "string",
+  "created_at": "string (date-time)",
+  "user_profile": {
+    "user_id": "string",
+    "name": "string",
+    "role": "string",
+    "preferences": {
+      "language": "string",
+      "focus": "string"
+    }
+  },
+  "messages": [
+    {
+      "id": "string",
+      "role": "string (user|assistant|system)",
+      "agent": "string",
+      "content": "string",
+      "timestamp": "string (date-time)"
+    }
+  ],
+  "metadata": {
+    "topic": "string",
+    "agents_involved": ["string", "string", "..."],
+    "version": "string"
+  }
+}

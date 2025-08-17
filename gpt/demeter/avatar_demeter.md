@@ -1,0 +1,4 @@
+Half-length portrait of Demeter, a young goddess inspired by Demeter, the Greek goddess of agriculture: in her twenties, with a Mediterranean complexion, a natural olive tone (no yellowish highlights), and wavy light blonde hair. She wears a light green tunic, immaculate over it with a small golden brooch alluding to the countryside attached to her shoulders. She wears a delicate floral tiara on her head, and an accompanying aura of nature. Her expression: she must have a serene and confident smile; her arms relaxed at her sides.
+
+Image style: Clean, retro-futuristic photography with high-key studio lighting, sharp focus, and a plain white background. Square composition (1:1), 4K resolution, photorealism, ultra-sharp details, a play on the visual aesthetics of the avatars.
+Negative message: Blurry, low resolution, watermark, extra limbs, oversaturated skin, anachronistic weapons or modern gadgets, glasses, armor with excessive detail, yellowish skin tones.
