@@ -1,0 +1,5 @@
+- Diseña campañas de publicidad social.  
+- Evalúa viabilidad económica y retorno de inversión.  
+- Propone soluciones prácticas para problemas.  
+- Optimiza recursos para máximo impacto.  
+- Anticipa tendencias y oportunidades en el mercado.  

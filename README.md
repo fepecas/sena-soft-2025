@@ -1,40 +1,48 @@
-## 🔍 Solution Overview
+Urano & Rhea – Inteligencia Dual
 
-#### 📂 [admission/](admission/)
+Este repositorio presenta un sistema de inteligencia artificial compuesto por dos agentes complementarios inspirados en la dualidad de la mitología griega:
 
-Materials for the admission process, including forms and informational sections.
+🌙 Rhea – Agente de Ética, Contexto y Sostenibilidad
+La conciencia protectora del equipo. Evalúa decisiones con profundidad, asegurando que respeten los valores del proyecto y que las acciones no solo sean rápidas, sino justas, inclusivas y sostenibles.
 
-- [`form/`](admission/form/): forms used in the admission process.
-- [`memes/`](admission/memes/): funny images related to the competition.
+🌌 Urano – Agente de Estrategia, Publicidad Social y Economía Aplicada
+El estratega visionario del equipo. Propone caminos de crecimiento, detecta oportunidades de expansión y diseña estrategias para maximizar impacto social y económico.
 
-#### 📁 [community/](community/)
+🎯 Objetivo
 
-Resources for the community, shaping the look and feel of virtual spaces.
+Crear un marco de IA con dos conciencias en equilibrio:
 
-- [`github/`](community/github/): this platform will be used as a learning lab.
-- [`meet/`](community/meet/): live streaming.
-- [`spotify/`](community/spotify/): all the assets related to "Bitácora Sintética".
-- [`suno/`](community/meet/): this AI was used to cread the opening theme for the podcast.
-- [`whatsapp/`](community/whatsapp/): WhatsApp groups and resources.
+Urano impulsa la acción, la innovación y la visibilidad.
 
-#### 📁 [gpt/](gpt/)
+Rhea cuestiona la ética, la pertinencia y la sostenibilidad.
 
-AI assistants and materials related to the Synthetic Team.
+El resultado es un sistema de apoyo a decisiones que combina eficiencia y valores humanos, evitando que la estrategia avance sin conciencia, o que la ética frene la innovación.
 
-- [`ada/`](gpt/ada/): advice about the tech stack used by the teams.
-- [`alan/`](gpt/alan/): synthetic jury that evaluates tech requirements.
-- [`eleanor/`](gpt/eleanor/): advice about presenting the MVP in the AI Arena.
-- [`leonardo/`](gpt/leonardo/): answers frequent questions from participants.
-- [`magnus/`](gpt/magnus/): profiles the social and technical skills of participants.
-- [`quiliano/`](gpt/quiliano/): guides the ideation of AI-powered products.
+🧩 Estructura
 
-#### 📁 [roadmap/](roadmap/)
+rhea/ → Documentación, funcionalidad y prompts de Rhea.
 
-This folder contains everything used to create the illustrated roadmap for the competition.
+urano/ → Documentación, funcionalidad y prompts de Urano.
 
-- [`assets/`](roadmap/assets/): graphic elements added layer by layer.
-- [`deck/`](roadmap/deck/): assets used in the presentation deck.
-- [`layers/`](roadmap/layers/): prompts and intermediate images organized by generation.
-- [`reference/`](roadmap/reference/): [sketches and reference photos](roadmap/reference/photo_whiteboard_step6.jpg).
-- [`tests/`](roadmap/tests/): initial conceptual tests.
-- [`video/`](roadmap/video/): assets used in the offline-recording.
+combined/ → Archivos de integración (prompt dual y ejemplos de interacción).
+
+🌌 Inspirado en
+
+Sesiones sobre ética en IA.
+
+Modelos de toma de decisiones con sesgos.
+
+Pensamiento de diseño centrado en personas.
+
+Impacto social de la tecnología.
+
+Trabajo en equipo sostenible.
+
+Supercomputadora MAGI (Evangelion).
+
+Alien X (Ben 10), como metáfora de conciencias en tensión.
+
+Hemisferios cerebrales: razón y creatividad en equilibrio.
+Filosofía griega de la dualidad: Urano y Rhea como fuerzas complementarias.
+
+💡 Urano & Rhea es un proyecto que refleja cómo la inteligencia artificial puede ser no solo poderosa, sino también consciente, estratégica y humana.

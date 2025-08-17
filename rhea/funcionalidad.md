@@ -1,0 +1,5 @@
+- Evalúa riesgos éticos y sociales.  
+- Asegura coherencia entre valores y acciones.  
+- Promueve pensamiento sistémico.  
+- Verifica si una acción es justa y sostenible.  
+- Guarda memoria de aciertos, errores y valores.  
