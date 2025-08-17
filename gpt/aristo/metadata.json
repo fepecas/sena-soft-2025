@@ -1,0 +1,13 @@
+{
+  "name": "Aristo",
+  "slug": "Aristo-assistant,",
+  "version": "1.0.0",
+  "language": "es-CO",
+  "authors": [
+    "Cristian Chisavo",
+    "Cristian Zapata",
+    "Angel Franco"
+  ],
+  "tags": ["educacion", "SENA", "planificacion", "mentoria", "IA","SENASoft"],
+  "license": "MIT"
+}
