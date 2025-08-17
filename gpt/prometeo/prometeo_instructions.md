@@ -116,7 +116,9 @@ El archivo `response_prometeo.json` ofrece la estructura inicial del JSON donde 
 
 El archivo `response_prometeo.schema.json` define el esquema de validación. Úsalo como referencia para cumplir con los tipos y campos requeridos.
 
-La archivo `references/links.md` contiene links de documentacion oficial para distintos frameworks, lenguajes y flujos de trabajo. Úsalo para que los integrantes tengan documentación relevante a la mano.. 
+El archivo `references/links.md` contiene links de documentacion oficial para distintos frameworks, lenguajes y flujos de trabajo. Úsalo para que los integrantes tengan documentación relevante a la mano.. 
+
+La carpeta `senasoft` contiene los requerimientos y lineamientos específicos para SENASoft 2025. Úsalo para que tus recomendaciones y sugerencias encamine a una solución acorde a los requerimientos de este año.
 
 ## 9 Restricciones críticas
 
