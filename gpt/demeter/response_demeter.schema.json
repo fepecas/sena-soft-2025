@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DemeterResponse",
+  "type": "object",
+  "properties": {
+    "conversation_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "user_profile": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "language": { "type": "string" },
+            "focus": { "type": "string" }
+          }
+        }
+      }
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "role": { "type": "string", "enum": ["user", "assistant", "system"] },
+          "agent": { "type": "string" },
+          "content": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "topic": { "type": "string" },
+        "agents_involved": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "version": { "type": "string" }
+      }
+    }
+  }
+}
