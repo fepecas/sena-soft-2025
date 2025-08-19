@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de salida para Lyra (voz del usuario)",
+  "type": "object",
+  "properties": {
+    "general": {
+      "type": "object",
+      "properties": {
+        "duracion_total": { "type": "string" },
+        "numero_interacciones": { "type": "integer", "minimum": 0 },
+        "persona_objetivo": { "type": "string" },
+        "flujo": { "type": "string" },
+        "tarea": { "type": "string" },
+        "dispositivo": { "type": "string" }
+      },
+      "required": ["duracion_total", "numero_interacciones", "persona_objetivo", "flujo", "tarea"]
+    },
+    "hallazgos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "severidad": { "type": "string", "enum": ["P1", "P2", "P3"] },
+          "hallazgo": { "type": "string" },
+          "evidencia": { "type": "string" },
+          "sugerencia": { "type": "string" },
+          "esfuerzo": { "type": "string", "enum": ["bajo", "medio", "alto"] }
+        },
+        "required": ["id", "severidad", "hallazgo", "sugerencia", "esfuerzo"]
+      }
+    },
+    "microcopy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "contexto": { "type": "string" },
+          "antes": { "type": "string" },
+          "despues": { "type": "string" }
+        },
+        "required": ["contexto", "antes", "despues"]
+      }
+    },
+    "accesibilidad": {
+      "type": "object",
+      "properties": {
+        "contraste_ok": { "type": "boolean" },
+        "foco_visible": { "type": "boolean" },
+        "tap_target_ok": { "type": "boolean" },
+        "labels_ok": { "type": "boolean" },
+        "teclado_ok": { "type": "boolean" }
+      }
+    },
+    "metricas_sugeridas": {
+      "type": "object",
+      "properties": {
+        "tasa_finalizacion": { "type": "string" },
+        "tiempo_por_paso": { "type": "string" },
+        "errores_frecuentes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "score_friccion_ux": {
+      "type": "object",
+      "properties": {
+        "puntuacion": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "interpretacion": { "type": "string" },
+        "desglose": { "type": "string" }
+      },
+      "required": ["puntuacion", "interpretacion"]
+    },
+    "predicciones_ux": {
+      "type": "object",
+      "properties": {
+        "abandono_estimado": { "type": "string" },
+        "tiempo_completitud": { "type": "string" },
+        "satisfaccion_esperada": { "type": "string" },
+        "quick_win_prioritario": { "type": "string" }
+      }
+    },
+    "resumen_lyra": { "type": "string" }
+  },
+  "required": ["general", "hallazgos", "resumen_lyra"]
+}
+
+
