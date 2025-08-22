@@ -1,0 +1,19 @@
+{"_id":"68a4cffe23b12a01fbf61128","metric":"AIUT","description":"# Aprendices inscritos únicos","value":100}
+{"_id":"68a4cffe23b12a01fbf61129","metric":"AIT","description":"# Aprendices inscritos totales","value":105}
+{"_id":"68a4cffe23b12a01fbf6112a","metric":"ACF","description":"# Aprendices en centro de formación \"Otro\" para identificar","value":14}
+{"_id":"68a4cffe23b12a01fbf6112b","metric":"HTI","description":"% de hombres totales inscritos","value":"70.39%"}
+{"_id":"68a4cffe23b12a01fbf6112c","metric":"MTI","description":"% de mujeres totales inscritos","value":"16.90%"}
+{"_id":"68a4cffe23b12a01fbf6112d","metric":"NGTI","description":"% de personas que prefirieron no responder su género totales inscritos","value":"0.64%"}
+{"_id":"68a4cffe23b12a01fbf6112e","metric":"EMTI","description":"% de personas que dejaron vacío su género totales inscritos","value":"11.94%"}
+{"_id":"68a4cffe23b12a01fbf6112f","metric":"EMAILERR","description":"Correos mal escritos","value":84}
+{"_id":"68a4cffe23b12a01fbf61130","metric":"EMAILADD","description":"Correos adicionados fuera del form","value":2}
+{"_id":"68a4cffe23b12a01fbf61131","metric":"CFUI","description":"Centros de formación únicos inscritos","value":58}
+{"_id":"68a4cffe23b12a01fbf61132","metric":"DCUI","description":"Departamentos de Colombia únicos inscritos","value":3}
+{"_id":"68a4cffe23b12a01fbf61133","metric":"FELIZ","description":"Qué tan felices y proyectados están los aprendices (promedio 1-10)","value":9.13}
+{"_id":"68a4cffe23b12a01fbf61134","metric":"PFFRONT","description":"% de perfiles DEV Frontend en los aprendices inscritos","value":"31.0%"}
+{"_id":"68a4cffe23b12a01fbf61135","metric":"PFMOBILE","description":"% de perfiles DEV Mobile en los aprendices inscritos","value":"4.2%"}
+{"_id":"68a4cffe23b12a01fbf61136","metric":"PFBACK","description":"% de perfiles DEV Backend en los aprendices inscritos","value":"43.5%"}
+{"_id":"68a4cffe23b12a01fbf61137","metric":"PFQC","description":"% de perfiles QC en los aprendices inscritos","value":"3.4%"}
+{"_id":"68a4cffe23b12a01fbf61138","metric":"PFTAE","description":"% de perfiles TAE en los aprendices inscritos","value":"4.3%"}
+{"_id":"68a4cffe23b12a01fbf61139","metric":"PFBA","description":"% de perfiles BA en los aprendices inscritos","value":"6.0%"}
+{"_id":"68a4cffe23b12a01fbf6113a","metric":"PFSM","description":"% de perfiles Scrum Master en los aprendices inscritos","value":"7.2%"}
