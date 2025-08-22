@@ -1,3 +1,8 @@
+# DEPRECATED - This CSV file contains static data that is no longer used
+# The project now uses a backend deployed on AWS with real-time data
+# See: https://github.com/AlexanderIglesias/leonardo-backend
+# Live API: https://3.134.102.125.nip.io/api/v1/metrics/scalar
+
 metric,description,value
 AIUT,# Aprendices inscritos únicos,775
 AIT,# Aprendices inscritos totales,787

@@ -1,3 +1,11 @@
+// DEPRECATED - This file is no longer used
+// The project now uses a backend deployed on AWS
+// See: backend/core/nodejs/openai.action.schema.json for API endpoints
+// Real backend: https://3.134.102.125.nip.io/api/v1
+
+// HISTORICAL FILE - DO NOT DELETE
+// Keep as reference for original implementation
+
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
 });

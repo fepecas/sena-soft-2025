@@ -1,8 +1,77 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "SENASoft Metrics API", "version": "1.0.0" },
+  "info": {
+    "title": "SENASoft Metrics API",
+    "version": "1.0.0",
+    "description": "API for SENASoft competition metrics and statistics"
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code",
+            "example": 500
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Internal server error occurred"
+          },
+          "details": {
+            "type": "string",
+            "description": "Error details",
+            "example": "Database connection failed"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when error occurred",
+            "example": "2025-08-22T11:14:02"
+          },
+          "path": {
+            "type": "string",
+            "description": "Request path that caused the error",
+            "example": "/api/v1/metrics/scalar"
+          },
+          "validationErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "description": "List of validation errors (if any)"
+          }
+        },
+        "required": ["status", "message", "details", "timestamp", "path"]
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Field name with error",
+            "example": "email"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message for the field",
+            "example": "Email is required"
+          },
+          "rejectedValue": {
+            "description": "Rejected value"
+          }
+        },
+        "required": ["field", "message"]
+      }
+    }
+  },
   "servers": [
-    { "url": "https://senasoft-core-dev-h2erabc0hhbcg7ee.eastus2-01.azurewebsites.net" }
+    {
+      "url": "https://3.134.102.125.nip.io/api/v1",
+      "description": "Production server v1"
+    }
   ],
   "paths": {
     "/metrics/scalar": {
@@ -20,18 +89,35 @@
                     "type": "object",
                     "additionalProperties": true,
                     "properties": {
-                      "description": { "type": "string" },
-                      "value": { "type": ["number", "string", "null"] }
+                      "description": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "oneOf": [
+                          {"type": "number"},
+                          {"type": "string"}
+                        ],
+                        "nullable": true
+                      }
                     },
-                    "required": ["description", "value"]
+                    "required": [
+                      "description",
+                      "value"
+                    ]
                   }
                 },
                 "examples": {
                   "ok": {
                     "summary": "Ejemplo mínimo",
                     "value": [
-                      { "description": "# Aprendices inscritos únicos", "value": 775 },
-                      { "description": "% de perfiles DEV Backend", "value": "43.5%" }
+                      {
+                        "description": "# Aprendices inscritos únicos",
+                        "value": 775
+                      },
+                      {
+                        "description": "% de perfiles DEV Backend",
+                        "value": "43.5%"
+                      }
                     ]
                   }
                 }
@@ -39,21 +125,607 @@
               "text/plain": {
                 "schema": {
                   "oneOf": [
-                    { "type": "string", "description": "Texto plano; puede contener JSON serializado." },
+                    {
+                      "type": "string",
+                      "description": "Texto plano; puede contener JSON serializado."
+                    },
                     {
                       "type": "array",
-                      "items": { "type": "object", "additionalProperties": true }
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
                     }
                   ]
                 }
               }
             }
           },
-          "default": {
-            "description": "Error inesperado",
+          "400": {
+            "description": "Bad request - Invalid parameters",
             "content": {
-              "application/json": { "schema": { "type": "object", "additionalProperties": true } },
-              "text/plain": { "schema": { "type": "string" } }
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/by-center": {
+      "get": {
+        "operationId": "getMetricsByCenter",
+        "summary": "Obtener métricas por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas por centro de formación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "totalApprentices": {
+                        "type": "number"
+                      },
+                      "instructorsRecommended": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "githubUsers": {
+                        "type": "number"
+                      },
+                      "englishB1B2": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["centerName", "department", "totalApprentices"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de centro",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "department": "Cundinamarca",
+                        "totalApprentices": 45,
+                        "instructorsRecommended": [
+                          "María García López",
+                          "Carlos Andrés Rodríguez"
+                        ],
+                        "githubUsers": 32,
+                        "englishB1B2": 28
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/by-program": {
+      "get": {
+        "operationId": "getMetricsByProgram",
+        "summary": "Obtener métricas por centro y programa de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas por centro y programa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "programName": {
+                        "type": "string"
+                      },
+                      "apprenticesCount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["centerName", "programName", "apprenticesCount"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de programa",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "programName": "Análisis y Desarrollo de Software",
+                        "apprenticesCount": 35
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/by-department": {
+      "get": {
+        "operationId": "getMetricsByDepartment",
+        "summary": "Obtener métricas por departamento de Colombia",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas por departamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "department": {
+                        "type": "string"
+                      },
+                      "apprenticesCount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["department", "apprenticesCount"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de departamento",
+                    "value": [
+                      {
+                        "department": "Cundinamarca",
+                        "apprenticesCount": 145
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/github-users": {
+      "get": {
+        "operationId": "getGitHubUsersMetrics",
+        "summary": "Obtener métricas de usuarios GitHub por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas de usuarios GitHub por centro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "githubUsers": {
+                        "type": "number"
+                      },
+                      "githubPercentage": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["centerName", "department", "githubUsers", "githubPercentage"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de usuarios GitHub",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "department": "Cundinamarca",
+                        "githubUsers": 32,
+                        "githubPercentage": "71.1%"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/english-level": {
+      "get": {
+        "operationId": "getEnglishLevelMetrics",
+        "summary": "Obtener métricas de nivel de inglés B1/B2 por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas de nivel de inglés B1/B2 por centro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "englishB1B2": {
+                        "type": "number"
+                      },
+                      "englishPercentage": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["centerName", "department", "englishB1B2", "englishPercentage"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de nivel de inglés",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "department": "Cundinamarca",
+                        "englishB1B2": 28,
+                        "englishPercentage": "62.2%"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/apprentice-count": {
+      "get": {
+        "operationId": "getApprenticeCountMetrics",
+        "summary": "Obtener conteo de aprendices por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de conteo de aprendices por centro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "totalApprentices": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["centerName", "department", "totalApprentices"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de conteo de aprendices",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "department": "Cundinamarca",
+                        "totalApprentices": 45
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/recommended-instructors": {
+      "get": {
+        "operationId": "getRecommendedInstructorMetrics",
+        "summary": "Obtener instructores recomendados por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de instructores recomendados por centro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "centerName": {
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "instructorsRecommended": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "instructorsCount": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["centerName", "department", "instructorsRecommended", "instructorsCount"]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo de instructores recomendados",
+                    "value": [
+                      {
+                        "centerName": "SENA - Centro de Biotecnología Industrial",
+                        "department": "Cundinamarca",
+                        "instructorsRecommended": [
+                          "María García López",
+                          "Carlos Andrés Rodríguez"
+                        ],
+                        "instructorsCount": 2
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Data not available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
             }
           }
         }
