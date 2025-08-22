@@ -21,7 +21,7 @@
           {
             "name": "tipo",
             "in": "query",
-            "description": "Tipo de métrica solicitada. Si se omite, se devuelven las métricas estáticas predefinidas.",
+            "description": "Tipo de métrica solicitada. Si se omite, se devuelven las métricas estáticas por defecto.",
             "required": false,
             "schema": {
               "type": "string",
