@@ -1,8 +1,13 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "SENASoft Metrics API", "version": "1.0.0" },
+  "info": { 
+    "title": "SENASoft Metrics API", 
+    "version": "1.0.0" 
+  },
   "servers": [
-    { "url": "https://senasoft-core-dev-h2erabc0hhbcg7ee.eastus2-01.azurewebsites.net" }
+    { 
+      "url": "https://server-one-rosy-15.vercel.app/metrics/scalar" 
+    }
   ],
   "paths": {
     "/metrics/scalar": {
@@ -15,24 +20,65 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "additionalProperties": true,
-                    "properties": {
-                      "description": { "type": "string" },
-                      "value": { "type": ["number", "string", "null"] }
+                  "type": "object",
+                  "properties": {
+                    "cantidadAprendicesPorCentro": {
+                      "type": "object",
+                      "properties": {
+                        "Centro A": { "type": "integer" },
+                        "Centro B": { "type": "integer" },
+                        "Centro C": { "type": "integer" }
+                      }
                     },
-                    "required": ["description", "value"]
+                    "instructoresPorCentro": {
+                      "type": "object",
+                      "properties": {
+                        "Centro A": { "type": "array", "items": { "type": "string" } },
+                        "Centro B": { "type": "array", "items": { "type": "string" } }
+                      }
+                    },
+                    "cantidadAprendicesPorDepartamento": {
+                      "type": "object",
+                      "properties": {
+                        "Córdoba": { "type": "integer" },
+                        "Atlántico": { "type": "integer" },
+                        "Santander": { "type": "integer" }
+                      }
+                    },
+                    "cantidadAprendicesConGitHub": { "type": "integer" },
+                    "cantidadAprendicesNivelIngles": {
+                      "type": "object",
+                      "properties": {
+                        "B1": { "type": "integer" },
+                        "B2": { "type": "integer" }
+                      }
+                    }
                   }
                 },
                 "examples": {
                   "ok": {
-                    "summary": "Ejemplo mínimo",
-                    "value": [
-                      { "description": "# Aprendices inscritos únicos", "value": 775 },
-                      { "description": "% de perfiles DEV Backend", "value": "43.5%" }
-                    ]
+                    "summary": "Ejemplo de métricas procesadas",
+                    "value": {
+                      "cantidadAprendicesPorCentro": {
+                        "Centro A": 4,
+                        "Centro B": 2,
+                        "Centro C": 1
+                      },
+                      "instructoresPorCentro": {
+                        "Centro A": ["Carlos Gómez"],
+                        "Centro B": ["Ana Martínez"]
+                      },
+                      "cantidadAprendicesPorDepartamento": {
+                        "Córdoba": 4,
+                        "Atlántico": 1,
+                        "Santander": 1
+                      },
+                      "cantidadAprendicesConGitHub": 4,
+                      "cantidadAprendicesNivelIngles": {
+                        "B1": 2,
+                        "B2": 4
+                      }
+                    }
                   }
                 }
               },
@@ -41,8 +87,8 @@
                   "oneOf": [
                     { "type": "string", "description": "Texto plano; puede contener JSON serializado." },
                     {
-                      "type": "array",
-                      "items": { "type": "object", "additionalProperties": true }
+                      "type": "object",
+                      "additionalProperties": true
                     }
                   ]
                 }
