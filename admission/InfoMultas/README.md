@@ -37,7 +37,7 @@ Este repositorio concentra la documentación, diseño, prompts, prototipo y la d
   - Reportes ciudadanos registrados en base de datos.  
 - 🎥 Video demo disponible para presentaciones iniciales.  
 
-🔗 **Prototipo en línea:** [InfoMultas Demo](https://v0-photo-ticket-app.vercel.app/fotomultas)  
+🔗 **Prototipo en línea:** [InfoMultas Demo](https://v0-photo-ticket-app.vercel.app/infomultas)  
 🎥 **Video demo (YouTube):** [Ver aquí](https://youtube.com/)  
 
 ---

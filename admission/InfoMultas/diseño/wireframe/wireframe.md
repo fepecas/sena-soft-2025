@@ -1,6 +1,5 @@
 # 🖼️ Wireframes — InfoMultas (MVP)
-
-Documento de referencia visual y funcional de las pantallas base del MVP.  
+ 
 Incluye: **Consulta de fotomultas**, **Mapa de cámaras**, **Asistente de IA**, **Reporte ciudadano** y navegación rápida.  
 
 El objetivo es alinear diseño, desarrollo y stakeholders sobre **qué ve el usuario, qué puede hacer y cómo responde la interfaz**.
@@ -25,7 +24,6 @@ Permitir al usuario personalizar la apariencia de la interfaz para mejorar la ac
 **Ubicación recomendada**  
 - Toggle 🌙☀️ en la **barra superior derecha**.
 - Alternativa: dentro del menú de configuración.
-
 
 
 ## 🔎 Consulta por placa
