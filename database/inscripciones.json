@@ -1,0 +1,152 @@
+[
+  {
+    "aprendiz_id": "A001",
+    "nombre": "Laura Martínez",
+    "centro_formacion": "Centro de Automatización Industrial",
+    "programa_formacion": "ADSO",
+    "departamento": "Antioquia",
+    "instructor_recomendado": "Carlos Gómez",
+    "github_user": "lauramdev",
+    "nivel_ingles": "B1"
+  },
+  {
+    "aprendiz_id": "A002",
+    "nombre": "Diego Rodríguez",
+    "centro_formacion": "Centro de Diseño y Metrología",
+    "programa_formacion": "Multimedia",
+    "departamento": "Cundinamarca",
+    "instructor_recomendado": "Ana Torres",
+    "github_user": "diegodev2024",
+    "nivel_ingles": "B2"
+  },
+  {
+    "aprendiz_id": "A003",
+    "nombre": "María González",
+    "centro_formacion": "Centro de Automatización Industrial",
+    "programa_formacion": "ADSO",
+    "departamento": "Antioquia",
+    "instructor_recomendado": "Carlos Gómez",
+    "github_user": null,
+    "nivel_ingles": "A2"
+  },
+  {
+    "aprendiz_id": "A004",
+    "nombre": "Andrés López",
+    "centro_formacion": "Centro de Tecnologías de la Información",
+    "programa_formacion": "Ciberseguridad",
+    "departamento": "Valle del Cauca",
+    "instructor_recomendado": "Patricia Silva",
+    "github_user": "andreslopez_sec",
+    "nivel_ingles": "B1"
+  },
+  {
+    "aprendiz_id": "A005",
+    "nombre": "Camila Herrera",
+    "centro_formacion": "Centro de Diseño y Metrología",
+    "programa_formacion": "Multimedia",
+    "departamento": "Cundinamarca",
+    "instructor_recomendado": "María Ruiz",
+    "github_user": "camilaherrera_design",
+    "nivel_ingles": "B2"
+  },
+  {
+    "aprendiz_id": "A006",
+    "nombre": "Juan Carlos Pérez",
+    "centro_formacion": "Centro de Automatización Industrial",
+    "programa_formacion": "ADSO",
+    "departamento": "Antioquia",
+    "instructor_recomendado": "Ana Torres",
+    "github_user": null,
+    "nivel_ingles": "A1"
+  },
+  {
+    "aprendiz_id": "A007",
+    "nombre": "Valentina Castro",
+    "centro_formacion": "Centro de Biotecnología Agropecuaria",
+    "programa_formacion": "Animación 3D",
+    "departamento": "Boyacá",
+    "instructor_recomendado": "Roberto Mendoza",
+    "github_user": "valcastro3d",
+    "nivel_ingles": "B1"
+  },
+  {
+    "aprendiz_id": "A008",
+    "nombre": "Santiago Morales",
+    "centro_formacion": "Centro de Tecnologías de la Información",
+    "programa_formacion": "Ciberseguridad",
+    "departamento": "Valle del Cauca",
+    "instructor_recomendado": "Patricia Silva",
+    "github_user": "santimorales_cyber",
+    "nivel_ingles": "B2"
+  },
+  {
+    "aprendiz_id": "A009",
+    "nombre": "Isabella Ramírez",
+    "centro_formacion": "Centro de Diseño y Metrología",
+    "programa_formacion": "Multimedia",
+    "departamento": "Atlántico",
+    "instructor_recomendado": "María Ruiz",
+    "github_user": null,
+    "nivel_ingles": "A2"
+  },
+  {
+    "aprendiz_id": "A010",
+    "nombre": "Sebastián Torres",
+    "centro_formacion": "Centro de Automatización Industrial",
+    "programa_formacion": "ADSO",
+    "departamento": "Antioquia",
+    "instructor_recomendado": "Carlos Gómez",
+    "github_user": "sebtorres_dev",
+    "nivel_ingles": "B1"
+  },
+  {
+    "aprendiz_id": "A011",
+    "nombre": "Sofía Vargas",
+    "centro_formacion": "Centro de Biotecnología Agropecuaria",
+    "programa_formacion": "Animación 3D",
+    "departamento": "Boyacá",
+    "instructor_recomendado": "Roberto Mendoza",
+    "github_user": "sofiavargas3d",
+    "nivel_ingles": "B2"
+  },
+  {
+    "aprendiz_id": "A012",
+    "nombre": "Mateo Jiménez",
+    "centro_formacion": "Centro de Tecnologías de la Información",
+    "programa_formacion": "Ciberseguridad",
+    "departamento": "Santander",
+    "instructor_recomendado": "Luis Fernández",
+    "github_user": null,
+    "nivel_ingles": "A1"
+  },
+  {
+    "aprendiz_id": "A013",
+    "nombre": "Gabriela Sánchez",
+    "centro_formacion": "Centro de Diseño y Metrología",
+    "programa_formacion": "Multimedia",
+    "departamento": "Cundinamarca",
+    "instructor_recomendado": "Ana Torres",
+    "github_user": "gabisanchez_ui",
+    "nivel_ingles": "B1"
+  },
+  {
+    "aprendiz_id": "A014",
+    "nombre": "Nicolás Rojas",
+    "centro_formacion": "Centro de Automatización Industrial",
+    "programa_formacion": "ADSO",
+    "departamento": "Caldas",
+    "instructor_recomendado": "Carlos Gómez",
+    "github_user": "nicorojas_code",
+    "nivel_ingles": "B2"
+  },
+  {
+    "aprendiz_id": "A015",
+    "nombre": "Mariana Ospina",
+    "centro_formacion": "Centro de Biotecnología Agropecuaria",
+    "programa_formacion": "Animación 3D",
+    "departamento": "Risaralda",
+    "instructor_recomendado": "Roberto Mendoza",
+    "github_user": null,
+    "nivel_ingles": "A2"
+  }
+]

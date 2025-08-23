@@ -43,9 +43,23 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("✅ Conectado a MongoDB Atlas"))
 .catch(err => console.error("❌ Error de conexión:", err));
 
-/* ===== Modelo (colección metrics_scalar) ===== */
+/* ===== Modelos ===== */
+// Modelo para metrics_scalar (existente)
 const metricSchema = new mongoose.Schema({}, { strict: false });
 const Metric = mongoose.model('metrics_scalar', metricSchema, 'metrics_scalar');
+
+// Modelo para inscripciones (nuevo)
+const inscripcionSchema = new mongoose.Schema({
+  aprendiz_id: String,
+  nombre: String,
+  centro_formacion: String,
+  programa_formacion: String,
+  departamento: String,
+  instructor_recomendado: String,
+  github_user: { type: String, default: null },
+  nivel_ingles: String
+}, { strict: false });
+const Inscripcion = mongoose.model('inscripciones', inscripcionSchema, 'inscripciones');
 
 /* ===== Endpoints ===== */
 
@@ -62,6 +76,200 @@ app.get('/metrics/scalar', async (req, res) => {
       .type('application/json; charset=utf-8')   // Content-Type explícito
       .set('Cache-Control', 'no-store')          // refuerzo por ruta
       .json(data);                               // o .json(projected)
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 1. GET /metrics/inscritos-por-centro
+app.get('/metrics/inscritos-por-centro', async (req, res) => {
+  try {
+    const data = await Inscripcion.aggregate([
+      {
+        $group: {
+          _id: "$centro_formacion",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          centro_formacion: "$_id",
+          count: 1
+        }
+      },
+      { $sort: { centro_formacion: 1 } }
+    ]);
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 2. GET /metrics/instructores-por-centro
+app.get('/metrics/instructores-por-centro', async (req, res) => {
+  try {
+    const data = await Inscripcion.aggregate([
+      {
+        $group: {
+          _id: "$centro_formacion",
+          instructores: { $addToSet: "$instructor_recomendado" }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          centro_formacion: "$_id",
+          instructores: 1
+        }
+      },
+      { $sort: { centro_formacion: 1 } }
+    ]);
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 3. GET /metrics/inscritos-por-centro-programa
+app.get('/metrics/inscritos-por-centro-programa', async (req, res) => {
+  try {
+    const data = await Inscripcion.aggregate([
+      {
+        $group: {
+          _id: {
+            centro_formacion: "$centro_formacion",
+            programa_formacion: "$programa_formacion"
+          },
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          centro_formacion: "$_id.centro_formacion",
+          programa_formacion: "$_id.programa_formacion",
+          count: 1
+        }
+      },
+      { $sort: { centro_formacion: 1, programa_formacion: 1 } }
+    ]);
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 4. GET /metrics/inscritos-por-departamento
+app.get('/metrics/inscritos-por-departamento', async (req, res) => {
+  try {
+    const data = await Inscripcion.aggregate([
+      {
+        $group: {
+          _id: "$departamento",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          departamento: "$_id",
+          count: 1
+        }
+      },
+      { $sort: { departamento: 1 } }
+    ]);
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 5. GET /metrics/inscritos-con-github
+app.get('/metrics/inscritos-con-github', async (req, res) => {
+  try {
+    const count = await Inscripcion.countDocuments({
+      github_user: { $ne: null, $ne: "" }
+    });
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json({ con_github: count });
+  } catch (err) {
+    res
+      .status(500)
+      .type('application/json; charset=utf-8')
+      .json({ error: err.message });
+  }
+});
+
+// 6. GET /metrics/inscritos-con-ingles
+app.get('/metrics/inscritos-con-ingles', async (req, res) => {
+  try {
+    const data = await Inscripcion.aggregate([
+      {
+        $match: {
+          nivel_ingles: { $in: ["B1", "B2"] }
+        }
+      },
+      {
+        $group: {
+          _id: "$centro_formacion",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          centro_formacion: "$_id",
+          count: 1
+        }
+      },
+      { $sort: { centro_formacion: 1 } }
+    ]);
+
+    res
+      .status(200)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
   } catch (err) {
     res
       .status(500)
