@@ -10,6 +10,20 @@ Materials for the admission process, including forms and informational sections.
 - [`form/`](admission/form/): forms used in the admission process.
 - [`memes/`](admission/memes/): funny images related to the competition.
 
+  #### 📁 [backend/](backend/)
+
+Backend services and APIs to support the platform's functionality.
+
+- [`core/`](backend/core/): core API services and logic.
+- [`nodejs/`](backend/core/nodejs/): Node.js environment with your server, API endpoints, and database models.
+
+#### 📁 [database/](database/)
+
+Database-related assets, including import scripts and data files.
+
+- [`collection/`](database/collection/): data files for populating the database collections.
+- [`scripts/`](database/scripts/): utility scripts for database operations.
+
 #### 📁 [community/](community/)
 
 Resources for the community, shaping the look and feel of virtual spaces.
