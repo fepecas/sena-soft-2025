@@ -1,0 +1,18 @@
+{
+  "name": "senasoft_metrics_api",
+  "description": "Lee métricas SENASoft por centro, programa, departamento, inglés y GitHub.",
+  "schema_version": "v1",
+  "auth": { "type": "none" },
+  "servers": [ { "url": "https://TU_HOST" } ],
+  "endpoints": [
+    { "name": "getCenters", "path": "/metrics/centers", "method": "GET" },
+    { "name": "getInstructorsByCenter", "path": "/metrics/centers/{centerId}/instructors", "method": "GET",
+      "path_params": [ { "name": "centerId", "type": "string", "required": true } ] },
+    { "name": "getCentersPrograms", "path": "/metrics/centers-programs", "method": "GET",
+      "query_params": [ { "name": "programCodes", "type": "string", "required": false, "description": "CSV máx 4 códigos" } ] },
+    { "name": "getByDepartment", "path": "/metrics/departments", "method": "GET" },
+    { "name": "getGithubCount", "path": "/metrics/github", "method": "GET" },
+    { "name": "getEnglishLevels", "path": "/metrics/english", "method": "GET",
+      "query_params": [ { "name": "levels", "type": "string", "required": false, "default": "B1,B2" } ] }
+  ]
+}
