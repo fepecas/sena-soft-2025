@@ -1,10 +1,11 @@
 # 🎬 Presentación del Proyecto: InfoMultas
 
 ## 👥 Equipo
+Hola a todos, bienvenidos a la presentación del proyecto InfoMultas.
 Nuestro grupo está conformado por:  
-- 👩‍💻 Daniel Caicedo  
 - 👨‍💻 Gilber Martinez  
-- 👨‍💻 Fernanda Cortez, quien les habla  
+- 👨‍💻 Fernanda Cortez  
+- 👩‍💻 Daniel Caicedo, quien les habla.  
 
 ---
 
