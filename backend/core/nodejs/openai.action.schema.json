@@ -1,0 +1,166 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SENASoft Metrics API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://senasoft-core-dev-h2erabc0hhbcg7ee.eastus2-01.azurewebsites.net"
+    }
+  ],
+  "paths": {
+    "/metrics/scalar": {
+      "get": {
+        "operationId": "getScalarData",
+        "summary": "Obtener métricas escalares de SENASoft",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": [
+                          "number",
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "value"
+                    ]
+                  }
+                },
+                "examples": {
+                  "ok": {
+                    "summary": "Ejemplo mínimo",
+                    "value": [
+                      {
+                        "description": "# Aprendices inscritos únicos",
+                        "value": 775
+                      },
+                      {
+                        "description": "% de perfiles DEV Backend",
+                        "value": "43.5%"
+                      }
+                    ]
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Texto plano; puede contener JSON serializado."
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error inesperado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics/por-centro": {
+      "get": {
+        "operationId": "getAprendicesPorCentro",
+        "summary": "Obtener el total de aprendices por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista con el total de aprendices por cada centro."
+          }
+        }
+      }
+    },
+    "/metrics/instructores-por-centro": {
+      "get": {
+        "operationId": "getInstructoresPorCentro",
+        "summary": "Obtener instructores recomendados por centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista de instructores por centro."
+          }
+        }
+      }
+    },
+    "/metrics/por-programa-centro": {
+      "get": {
+        "operationId": "getAprendicesPorProgramaCentro",
+        "summary": "Obtener el total de aprendices por programa y centro de formación",
+        "responses": {
+          "200": {
+            "description": "Lista con el total de aprendices por cada programa y centro."
+          }
+        }
+      }
+    },
+    "/metrics/por-departamento": {
+      "get": {
+        "operationId": "getAprendicesPorDepartamento",
+        "summary": "Obtener el total de aprendices por departamento de residencia",
+        "responses": {
+          "200": {
+            "description": "Lista con el total de aprendices por cada departamento."
+          }
+        }
+      }
+    },
+    "/metrics/con-github": {
+      "get": {
+        "operationId": "getAprendicesConGithub",
+        "summary": "Obtener la cantidad total de aprendices con usuario de GitHub",
+        "responses": {
+          "200": {
+            "description": "Cantidad total de aprendices con usuario de GitHub."
+          }
+        }
+      }
+    },
+    "/metrics/nivel-ingles": {
+      "get": {
+        "operationId": "getNivelInglesPorCentro",
+        "summary": "Obtener el total de aprendices con nivel de inglés B1 o B2 por centro",
+        "responses": {
+          "200": {
+            "description": "Lista con el total de aprendices con nivel B1/B2 por cada centro."
+          }
+        }
+      }
+    }
+  }
+}
