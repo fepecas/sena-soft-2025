@@ -404,6 +404,12 @@ Las imágenes que se generaron a partir de la herramienta se encuentran en la ca
 
 ---
 
+### Pesonalización de respuestas de Stitch
+
+https://www.figma.com/design/W6tJvNMdGO0qxjNovpJmmY/Untitled?node-id=0-1&p=f&t=63mYr6w6H6h58Mgr-0
+
+---
+
 ## A partir del prototipo generado por Stitch  
 Usamos la herramienta **V0** dandole las siguientes **instrucciones** con el siguiente prompt:  
 
