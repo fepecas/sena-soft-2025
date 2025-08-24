@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Mi Espacio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="html/css/asidebar.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-all duration-300">
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+    
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full gradient-bg-light dark:gradient-bg-dark text-white shadow-2xl">
+                <!-- Header del Sidebar -->
+                <div class="p-6 border-b border-white border-opacity-20 flex-shrink-0">
+                    <!-- Perfil del Usuario -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative group">
+                            <img id="userAvatar" 
+                                 src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" 
+                                 alt="Sophia" 
+                                 class="w-10 h-10 rounded-full border-2 border-white border-opacity-30 cursor-pointer hover:border-opacity-50 transition-all duration-300">
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white pulse-dot"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-sm">Sophia</h3>
+                            <p class="text-xs text-white text-opacity-70">Mi Espacio</p>
+                        </div>
+                        <!-- Toggle modo oscuro -->
+                        <button id="darkModeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon">
+                            <i id="darkModeIcon" class="fas fa-moon text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navegación Principal -->
+                <nav class="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
+                    <ul class="space-y-2">
+                        <li class="slide-in-left" style="animation-delay: 0.1s">
+                            <a href="home.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-home text-lg bounce-icon group-hover:text-yellow-300 w-5 text-center"></i>
+                                <span class="font-medium">Inicio</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.2s">
+                            <a href="calendario.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group active-link">
+                                <i class="fas fa-calendar-alt text-lg bounce-icon group-hover:text-blue-300 w-5 text-center"></i>
+                                <span class="font-medium">Calendario</span>
+                                <div class="ml-auto">
+                                    <span class="bg-blue-500 text-xs px-2 py-1 rounded-full pulse-dot">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.3s">
+                            <a href="tareas.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-tasks text-lg bounce-icon group-hover:text-green-300 w-5 text-center"></i>
+                                <span class="font-medium">Tareas</span>
+                                <div class="ml-auto flex items-center space-x-2">
+                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full pulse-dot">2</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <i class="fas fa-chevron-right text-sm"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.4s">
+                            <a href="proyectos.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-project-diagram text-lg bounce-icon group-hover:text-purple-300 w-5 text-center"></i>
+                                <span class="font-medium">Proyectos</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.5s">
+                            <a href="progreso.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-cog text-lg bounce-icon group-hover:text-gray-300 w-5 text-center"></i>
+                                <span class="font-medium">Progreso</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Sección de Estadísticas Rápidas -->
+                    <div class="mt-8 p-4 glass-effect dark:glass-effect-dark rounded-lg">
+                        <h4 class="text-sm font-semibold mb-3 text-white text-opacity-90">Resumen Rápido</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Tareas Completadas</span>
+                                <span class="text-sm font-semibold">60%</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Proyectos Activos</span>
+                                <span class="text-sm font-semibold">3</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Próximas Tareas</span>
+                                <span class="text-sm font-semibold">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Footer del Sidebar -->
+                <div class="p-4 border-t border-white border-opacity-20 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                        <button id="toggleSidebar" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Ayuda">
+                            <i class="fas fa-question-circle"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Cerrar sesión">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-h-0 lg:ml-0">
+            <!-- Header Principal -->
+            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-4 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 bounce-icon">
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Calendario</h1>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm sm:text-base">
+                        <i class="fas fa-plus mr-1 sm:mr-2"></i>
+                        <span class="hidden sm:inline">Crear Tarea</span>
+                        <span class="sm:hidden">Crear</span>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Contenido Principal -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 p-4 sm:p-6">
+                <!-- Progress Overview Cards -->
+                <div class="max-w-7xl mx-auto space-y-6">
+                    <!-- Added penguin progress indicator -->
+                    <!-- Progress Penguin -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Tu Compañero de Productividad</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400" id="penguinMessage">¡Excelente trabajo! Sigue así.</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <!-- Penguin Character -->
+                                <div class="relative">
+                                    <div id="penguinContainer" class="w-20 h-20 flex items-center justify-center transition-all duration-500 transform hover:scale-110">
+                                        <!-- Happy Penguin (80%+) -->
+                                        <div id="penguinHappy" class="penguin-state absolute inset-0 flex items-center justify-center">
+                                            <div class="relative">
+                                                <!-- Body -->
+                                                <div class="w-16 h-20 bg-gray-800 dark:bg-gray-700 rounded-full relative">
+                                                    <!-- Belly -->
+                                                    <div class="absolute inset-x-2 top-2 bottom-2 bg-white dark:bg-gray-100 rounded-full"></div>
+                                                    <!-- Head -->
+                                                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-800 dark:bg-gray-700 rounded-full">
+                                                        <!-- Eyes -->
+                                                        <div class="absolute top-3 left-2 w-2 h-2 bg-white rounded-full">
+                                                            <div class="absolute top-0.5 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <div class="absolute top-3 right-2 w-2 h-2 bg-white rounded-full">
+                                                            <div class="absolute top-0.5 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <!-- Happy Beak -->
+                                                        <div class="absolute top-5 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-3 border-transparent border-t-orange-500"></div>
+                                                        <!-- Happy mouth -->
+                                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-4 h-2 border-2 border-gray-600 border-t-0 rounded-b-full"></div>
+                                                    </div>
+                                                    <!-- Wings -->
+                                                    <div class="absolute top-4 -left-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full transform rotate-12"></div>
+                                                    <div class="absolute top-4 -right-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full transform -rotate-12"></div>
+                                                    <!-- Feet -->
+                                                    <div class="absolute -bottom-1 left-2 w-3 h-2 bg-orange-500 rounded-full"></div>
+                                                    <div class="absolute -bottom-1 right-2 w-3 h-2 bg-orange-500 rounded-full"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Neutral Penguin (50-79%) -->
+                                        <div id="penguinNeutral" class="penguin-state absolute inset-0 flex items-center justify-center hidden">
+                                            <div class="relative">
+                                                <!-- Body -->
+                                                <div class="w-16 h-20 bg-gray-800 dark:bg-gray-700 rounded-full relative">
+                                                    <!-- Belly -->
+                                                    <div class="absolute inset-x-2 top-2 bottom-2 bg-white dark:bg-gray-100 rounded-full"></div>
+                                                    <!-- Head -->
+                                                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-800 dark:bg-gray-700 rounded-full">
+                                                        <!-- Eyes -->
+                                                        <div class="absolute top-3 left-2 w-2 h-2 bg-white rounded-full">
+                                                            <div class="absolute top-0.5 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <div class="absolute top-3 right-2 w-2 h-2 bg-white rounded-full">
+                                                            <div class="absolute top-0.5 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <!-- Neutral Beak -->
+                                                        <div class="absolute top-5 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-orange-500"></div>
+                                                        <!-- Neutral mouth -->
+                                                        <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-3 h-0.5 bg-gray-600"></div>
+                                                    </div>
+                                                    <!-- Wings -->
+                                                    <div class="absolute top-6 -left-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full"></div>
+                                                    <div class="absolute top-6 -right-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full"></div>
+                                                    <!-- Feet -->
+                                                    <div class="absolute -bottom-1 left-2 w-3 h-2 bg-orange-500 rounded-full"></div>
+                                                    <div class="absolute -bottom-1 right-2 w-3 h-2 bg-orange-500 rounded-full"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sad Penguin (0-49%) -->
+                                        <div id="penguinSad" class="penguin-state absolute inset-0 flex items-center justify-center hidden">
+                                            <div class="relative">
+                                                <!-- Body -->
+                                                <div class="w-16 h-20 bg-gray-800 dark:bg-gray-700 rounded-full relative">
+                                                    <!-- Belly -->
+                                                    <div class="absolute inset-x-2 top-2 bottom-2 bg-white dark:bg-gray-100 rounded-full"></div>
+                                                    <!-- Head -->
+                                                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-800 dark:bg-gray-700 rounded-full">
+                                                        <!-- Sad Eyes -->
+                                                        <div class="absolute top-4 left-2 w-2 h-1 bg-white rounded-full">
+                                                            <div class="absolute top-0 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <div class="absolute top-4 right-2 w-2 h-1 bg-white rounded-full">
+                                                            <div class="absolute top-0 left-0.5 w-1 h-1 bg-black rounded-full"></div>
+                                                        </div>
+                                                        <!-- Sad Beak -->
+                                                        <div class="absolute top-5 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-1 border-r-1 border-t-2 border-transparent border-t-orange-400"></div>
+                                                        <!-- Sad mouth -->
+                                                        <div class="absolute top-7 left-1/2 transform -translate-x-1/2 w-3 h-1 border-2 border-gray-600 border-b-0 rounded-t-full"></div>
+                                                    </div>
+                                                    <!-- Wings down -->
+                                                    <div class="absolute top-8 -left-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full transform rotate-45"></div>
+                                                    <div class="absolute top-8 -right-1 w-3 h-6 bg-gray-800 dark:bg-gray-700 rounded-full transform -rotate-45"></div>
+                                                    <!-- Feet -->
+                                                    <div class="absolute -bottom-1 left-2 w-3 h-2 bg-orange-400 rounded-full"></div>
+                                                    <div class="absolute -bottom-1 right-2 w-3 h-2 bg-orange-400 rounded-full"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Progress Ring -->
+                                <div class="relative w-16 h-16">
+                                    <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+                                        <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="4" fill="none" class="text-gray-200 dark:text-gray-700"/>
+                                        <circle id="progressRing" cx="32" cy="32" r="28" stroke="currentColor" stroke-width="4" fill="none" 
+                                                class="text-blue-500 transition-all duration-1000" 
+                                                stroke-dasharray="175.93" 
+                                                stroke-dashoffset="31.07"
+                                                stroke-linecap="round"/>
+                                    </svg>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span id="progressPercentage" class="text-sm font-bold text-gray-900 dark:text-white">87%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tareas Completadas -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                            <!-- Tareas Completadas -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Tareas Completadas</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">24</p>
+                                        <p class="text-xs text-green-600 dark:text-green-400 mt-1">
+                                            <i class="fas fa-arrow-up mr-1"></i>+12% esta semana
+                                        </p>
+                                    </div>
+                                    <div class="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
+                                        <i class="fas fa-check-circle text-green-600 dark:text-green-400 text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Proyectos Activos -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Proyectos Activos</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">3</p>
+                                        <p class="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                                            <i class="fas fa-clock mr-1"></i>2 próximos a vencer
+                                        </p>
+                                    </div>
+                                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
+                                        <i class="fas fa-project-diagram text-blue-600 dark:text-blue-400 text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Productividad -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Productividad</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">87%</p>
+                                        <p class="text-xs text-purple-600 dark:text-purple-400 mt-1">
+                                            <i class="fas fa-chart-line mr-1"></i>Excelente rendimiento
+                                        </p>
+                                    </div>
+                                    <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-lg">
+                                        <i class="fas fa-chart-bar text-purple-600 dark:text-purple-400 text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tiempo Ahorrado -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Tiempo Ahorrado</p>
+                                        <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">4.2h</p>
+                                        <p class="text-xs text-orange-600 dark:text-orange-400 mt-1">
+                                            <i class="fas fa-clock mr-1"></i>Esta semana
+                                        </p>
+                                    </div>
+                                    <div class="bg-orange-100 dark:bg-orange-900 p-3 rounded-lg">
+                                        <i class="fas fa-hourglass-half text-orange-600 dark:text-orange-400 text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Charts Section -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Weekly Progress Chart -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Progreso Semanal</h3>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">7D</button>
+                                        <button class="text-sm bg-blue-500 text-white px-3 py-1 rounded-lg">30D</button>
+                                    </div>
+                                </div>
+                                <div class="h-64 flex items-end justify-between space-x-2">
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-500 rounded-t-lg transition-all duration-500 hover:bg-blue-600" style="height: 120px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Lun</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-500 rounded-t-lg transition-all duration-500 hover:bg-blue-600" style="height: 180px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Mar</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-500 rounded-t-lg transition-all duration-500 hover:bg-blue-600" style="height: 90px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Mié</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-500 rounded-t-lg transition-all duration-500 hover:bg-blue-600" style="height: 200px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Jue</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-500 rounded-t-lg transition-all duration-500 hover:bg-blue-600" style="height: 150px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Vie</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-300 rounded-t-lg transition-all duration-500 hover:bg-blue-400" style="height: 80px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Sáb</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="bg-blue-300 rounded-t-lg transition-all duration-500 hover:bg-blue-400" style="height: 60px; width: 32px;"></div>
+                                        <span class="text-xs text-gray-600 dark:text-gray-400">Dom</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Task Categories Progress -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Progreso por Categorías</h3>
+                                <div class="space-y-4">
+                                    <!-- Trabajo -->
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Trabajo</span>
+                                        </div>
+                                        <span class="text-sm font-semibold text-gray-900 dark:text-white">75%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-blue-500 h-2 rounded-full transition-all duration-500" style="width: 75%"></div>
+                                    </div>
+
+                                    <!-- Personal -->
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Personal</span>
+                                        </div>
+                                        <span class="text-sm font-semibold text-gray-900 dark:text-white">92%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full transition-all duration-500" style="width: 92%"></div>
+                                    </div>
+
+                                    <!-- Académico -->
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Académico</span>
+                                        </div>
+                                        <span class="text-sm font-semibold text-gray-900 dark:text-white">68%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-purple-500 h-2 rounded-full transition-all duration-500" style="width: 68%"></div>
+                                    </div>
+
+                                    <!-- Salud -->
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Salud</span>
+                                        </div>
+                                        <span class="text-sm font-semibold text-gray-900 dark:text-white">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Achievements & Goals -->
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <!-- Recent Achievements -->
+                            <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Logros Recientes</h3>
+                                    <button class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">Ver todos</button>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                                        <div class="bg-green-500 p-2 rounded-full">
+                                            <i class="fas fa-trophy text-white text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900 dark:text-white">¡Semana Perfecta!</h4>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">Completaste todas tus tareas esta semana</p>
+                                            <span class="text-xs text-green-600 dark:text-green-400">Hace 2 días</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                        <div class="bg-blue-500 p-2 rounded-full">
+                                            <i class="fas fa-target text-white text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900 dark:text-white">Meta Alcanzada</h4>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">Completaste 100 tareas este mes</p>
+                                            <span class="text-xs text-blue-600 dark:text-blue-400">Hace 5 días</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                                        <div class="bg-purple-500 p-2 rounded-full">
+                                            <i class="fas fa-fire text-white text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h4 class="font-medium text-gray-900 dark:text-white">Racha de 7 días</h4>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">Mantuviste tu productividad por una semana</p>
+                                            <span class="text-xs text-purple-600 dark:text-purple-400">Hace 1 semana</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Goals & Targets -->
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Metas del Mes</h3>
+                                <div class="space-y-6">
+                                    <!-- Goal 1 -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Tareas Completadas</span>
+                                            <span class="text-sm font-semibold text-gray-900 dark:text-white">24/30</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 80%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">6 tareas restantes</p>
+                                    </div>
+
+                                    <!-- Goal 2 -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Proyectos Finalizados</span>
+                                            <span class="text-sm font-semibold text-gray-900 dark:text-white">2/3</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full transition-all duration-500" style="width: 67%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">1 proyecto restante</p>
+                                    </div>
+
+                                    <!-- Goal 3 -->
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Horas Productivas</span>
+                                            <span class="text-sm font-semibold text-gray-900 dark:text-white">45/60h</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all duration-500" style="width: 75%"></div>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">15 horas restantes</p>
+                                    </div>
+
+                                    <!-- Motivational Message -->
+                                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 mt-6">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            <i class="fas fa-lightbulb text-yellow-500"></i>
+                                            <span class="text-sm font-medium text-gray-900 dark:text-white">Consejo del día</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">¡Vas muy bien! Mantén el ritmo para alcanzar todas tus metas este mes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Productivity Insights -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Insights de Productividad</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div class="text-center">
+                                    <div class="bg-blue-100 dark:bg-blue-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-clock text-blue-600 dark:text-blue-400 text-xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Mejor Hora</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">9:00 - 11:00 AM</p>
+                                    <p class="text-xs text-blue-600 dark:text-blue-400 mt-1">85% productividad</p>
+                                </div>
+
+                                <div class="text-center">
+                                    <div class="bg-green-100 dark:bg-green-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-calendar-day text-green-600 dark:text-green-400 text-xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Mejor Día</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Martes</p>
+                                    <p class="text-xs text-green-600 dark:text-green-400 mt-1">92% completadas</p>
+                                </div>
+
+                                <div class="text-center">
+                                    <div class="bg-purple-100 dark:bg-purple-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-tasks text-purple-600 dark:text-purple-400 text-xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Promedio Diario</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">6.2 tareas</p>
+                                    <p class="text-xs text-purple-600 dark:text-purple-400 mt-1">+0.8 vs mes anterior</p>
+                                </div>
+
+                                <div class="text-center">
+                                    <div class="bg-orange-100 dark:bg-orange-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-medal text-orange-600 dark:text-orange-400 text-xl"></i>
+                                    </div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Racha Actual</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">12 días</p>
+                                    <p class="text-xs text-orange-600 dark:text-orange-400 mt-1">¡Récord personal!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+        </div>
+    </div>
+    
+    <!-- Modal para cambiar foto de perfil -->
+    <div id="avatarModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Cambiar foto de perfil</h3>
+                <button id="closeAvatarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Opciones de avatares -->
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 1" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 3" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 4" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300 flex items-center justify-center avatar-option" data-avatar="gradient">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input oculto para subir archivo -->
+    <input type="file" id="avatarFileInput" accept="image/*" class="hidden">
+    
+    <script src="html/javascript/asidebar.js"></script>
+    <script src="html/javascript/progress-animations.js"></script>
+
+    <!-- Added penguin animation script -->
+    <script>
+        // Penguin mood system
+        function updatePenguinMood() {
+            const productivity = 87; // This would come from your actual data
+            const penguinHappy = document.getElementById('penguinHappy');
+            const penguinNeutral = document.getElementById('penguinNeutral');
+            const penguinSad = document.getElementById('penguinSad');
+            const penguinMessage = document.getElementById('penguinMessage');
+            const progressRing = document.getElementById('progressRing');
+            const progressPercentage = document.getElementById('progressPercentage');
+            
+            // Hide all penguin states
+            penguinHappy.classList.add('hidden');
+            penguinNeutral.classList.add('hidden');
+            penguinSad.classList.add('hidden');
+            
+            // Update progress ring
+            const circumference = 175.93;
+            const offset = circumference - (productivity / 100) * circumference;
+            progressRing.style.strokeDashoffset = offset;
+            progressPercentage.textContent = productivity + '%';
+            
+            // Show appropriate penguin and message based on productivity
+            if (productivity >= 80) {
+                penguinHappy.classList.remove('hidden');
+                penguinMessage.textContent = '¡Excelente trabajo! Estás en racha 🎉';
+                progressRing.classList.remove('text-orange-500', 'text-yellow-500');
+                progressRing.classList.add('text-green-500');
+            } else if (productivity >= 50) {
+                penguinNeutral.classList.remove('hidden');
+                penguinMessage.textContent = 'Buen progreso, ¡sigue así! 💪';
+                progressRing.classList.remove('text-green-500', 'text-orange-500');
+                progressRing.classList.add('text-yellow-500');
+            } else {
+                penguinSad.classList.remove('hidden');
+                penguinMessage.textContent = 'No te desanimes, ¡tú puedes! 🌟';
+                progressRing.classList.remove('text-green-500', 'text-yellow-500');
+                progressRing.classList.add('text-orange-500');
+            }
+        }
+        
+        // Penguin animation on hover
+        document.getElementById('penguinContainer').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.2) rotate(5deg)';
+        });
+        
+        document.getElementById('penguinContainer').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+        
+        // Initialize penguin mood on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePenguinMood();
+            
+            // Add some bounce animation every 10 seconds
+            setInterval(function() {
+                const container = document.getElementById('penguinContainer');
+                container.style.animation = 'bounce 0.6s ease-in-out';
+                setTimeout(() => {
+                    container.style.animation = '';
+                }, 600);
+            }, 10000);
+        });
+        
+        // Function to update penguin based on real progress data
+        function updateProgressData(newProductivity) {
+            // This function can be called when progress data changes
+            const productivity = newProductivity || 87;
+            updatePenguinMood();
+        }
+    </script>
+    
+    <!-- Added bounce animation keyframes -->
+    <style>
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0) scale(1);
+            }
+            40%, 43% {
+                transform: translate3d(0,-8px,0) scale(1.1);
+            }
+            70% {
+                transform: translate3d(0,-4px,0) scale(1.05);
+            }
+            90% {
+                transform: translate3d(0,-2px,0) scale(1.02);
+            }
+        }
+        
+        .penguin-state {
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</body>
+</html>
