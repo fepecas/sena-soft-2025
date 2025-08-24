@@ -382,16 +382,18 @@ Las imágenes se encuentran en la carpeta "./images/stitch"
 ---
 
 ## A partir del prototipo generado por Stitch  
-Usamos la herramienta **V0** importando las capturas de pantalla desde **Figma** con el siguiente prompt:  
+Usamos la herramienta **V0** dandole las siguientes **instrucciones** con el siguiente prompt:  
 
-> **“Impor this figma from these img”**  
+> **A continuación el link de conversación con v0** 
 
-LINK
-
+https://v0.app/chat/project-management-ui-ql4rGFjlDeN 
 ---
 
-### Respuesta del asistente  
-(Se documenta aquí la salida de la herramienta con las vistas generadas).  
+## Con este link podrá hacer una prueba completa del producto
+
+https://v0-project-management-ui-ochre.vercel.app/login
+
+ 
 
 
 
