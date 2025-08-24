@@ -423,7 +423,6 @@ https://v0.app/chat/project-management-ui-ql4rGFjlDeN
 https://v0-project-management-ui-ochre.vercel.app/login
 
  
-
 # VII. Etapa de desarrollo del producto
 
 Con base en la información recopilada y los prototipos entregados, decidimos utilizar la herramienta Claude para generar nuestro propio proyecto personalizado, usando HTML con soporte en JavaScript, ya que, si bien consideramos que V0 nos dió un DEMO bastante completo, deseamos mejorar la interfaz para otorgar una mejor experiencia IU/UX de usuario. A partir de este punto, damos paso a la presentación y explicación de nuestro código, mostrando cómo se implementaron las funcionalidades planteadas en los prototipos.
@@ -486,4 +485,99 @@ Usar componentes de Material 3 (Button, Card, Theme, Typography, Avatar, Command
 Seguir archivo de Figma de Planix como guía.
 Usa la Paleta de colores que te acabo de proporcionar,  con soporte tema oscuro/claro.
 Usar nombres de color semánticos para prioridad (alta, media, baja).
+
+A partir del primer producto que Claude entregó se le denominó Contenido principal y a partir de este codigo base que estará en todos
+los demás prompts comenzamos el desarrollo de nuestras vistas, manteniendo el asidebar, y sólo trabajando en la sección determinada a modificar. 
+
+## Prompt - Home
+
+Diseña el Home de un gestor de tareas en el área marcada como contenido principal, manteniendo intacto el asidebar.
+
+Contexto del problema:
+Las personas sufren fragmentación y falta de cohesión al gestionar sus tareas en múltiples plataformas (calendarios, notas, libretas, recordatorios sueltos). Esto genera pérdida de tiempo, incumplimientos, estrés y baja productividad. El aplicativo busca centralizar todas las responsabilidades en un solo lugar para ofrecer una gestión más eficiente.
+
+Requerimientos del diseño (solo el Home):
+
+Usa TailwindCSS para estilos y JavaScript para interactividad.
+
+Estilo moderno y profesional, con tarjetas, iconos y tipografía clara.
+
+Secciones sugeridas:
+
+Bienvenida personalizada con el nombre del usuario e ícono.
+
+Panel de Tareas del Día (lista breve con checkbox para marcar completadas).
+
+Vista rápida de Calendario/Agenda (mini calendario con próximos eventos).
+
+Estadísticas rápidas (ejemplo: % de tareas completadas, productividad semanal).
+
+Acceso rápido a crear nueva tarea o evento (botón flotante con ícono “+”).
+
+Integra iconos (Lucide o Heroicons) para darle dinamismo (ej: 📅, ✅, 📊, ➕).
+
+Incluye animaciones sutiles con transition y hover en botones y tarjetas.
+
+No modificar nada del asidebar, trabajar únicamente en el contenedor de contenido principal.
+
+## Prompt - Proyectos 
+
+Diseña la sección Proyectos dentro del gestor de tareas, trabajando únicamente en el área de contenido principal (sin modificar el asidebar).
+
+Contexto del problema:
+Actualmente los usuarios llevan sus proyectos dispersos en diferentes plataformas (calendarios, documentos, libretas). Esto genera desorganización, incumplimiento de plazos y baja productividad. El aplicativo debe centralizar y ofrecer una vista clara de todos los proyectos activos, su progreso y metas.
+
+Requerimientos del diseño (solo la vista Proyectos):
+
+Usa TailwindCSS para el diseño y JavaScript para las funcionalidades dinámicas.
+
+Mantén un estilo moderno, limpio y profesional, similar al dashboard de progreso.
+
+Componentes sugeridos:
+
+Encabezado con resumen general: número de proyectos activos, proyectos finalizados, próximos vencimientos.
+
+Tablero de proyectos activos:
+
+Tarjetas con información clave: nombre del proyecto, fecha límite, % de avance, estado (En progreso, Completado, Atrasado).
+
+Iconos que representen cada estado (ej: ⏳ en progreso, ✅ completado, ⚠️ atrasado).
+
+Barra de progreso para visualizar el estado de cada proyecto.
+
+Calendario o línea de tiempo para próximos hitos del mes.
+
+Gráfico de distribución de proyectos por categoría (Trabajo, Personal, Académico, Salud).
+
+Metas de proyectos: cuántos deben completarse este mes y cuántos ya fueron finalizados.
+
+Sección de logros recientes de proyectos (ej: “Proyecto X finalizado antes del plazo”).
+
+Botón flotante (+) para crear un nuevo proyecto rápidamente.
+
+Integra iconos de Heroicons o Lucide para enriquecer la experiencia visual.
+
+Usa animaciones sutiles (hover, transición) en tarjetas y botones.
+
+El diseño debe ser responsivo y adaptable a pantallas pequeñas.
+
+# Prompt Calendario
+
+Imagen insertada del diseño prototipado por Stitch y posteriormente modificado.
+
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Planix - Mi Espacio</title> <script src="https://cdn.tailwindcss.com"></script> <link rel="stylesheet" href="https://cdnjs.cloudflar
+
+
+En el contenido principal agrega el código que te envié, agrega las funcionalidades propuestas en la imagen insertada y
+ademas genera un Script aparte, donde puedas integrar todas las funcionalidades necesarias para que funcione. Mejora además el 
+diseño, haciendolo mas profesional y siguiendo la paleta de colores establecida. 
+
+# Prompt Tareas
+
+Se le inserta el codigo base.
+
+Con este codigo en la linea donde dice contenido principal vamos a trabajar en el apartado "tareas" de este gestor de tareas, El problema real que buscamos solucionar es la fragmentación y la falta de cohesión en la vida diaria, profesional y académica de las personas. Actualmente, los usuarios gestionan sus tareas de forma dispersa a través de múltiples plataformas (calendarios, notas en el celular, libretas, recordatorios sueltos), lo que conduce a pérdida de tiempo, incumplimientos, estrés y baja productividad. Nuestro aplicativo pretende centralizar todas las responsabilidades del usuario en un solo lugar, permitiendole una major gestion de las mismas.  Bajo este contexto vamos a diseñar solo el apartado TAREAS en la parte que te especifique,  utilza tailwindcss y javascript para sus funcionalidades, las cuales deben ser si o sí ver el listado de tareas, pendientes, realizadas, vencidas, debe poder crear, editar y eliminar tareas, filtrarlas y buscarlas, y personalizarlas mediante un pequeño formulario. agrega iconos, modales y procura que sea un diseño profesional, no cambies nada de asidebar. Y crea el java script aparte, para que todo tenga funcionalidad. Haz un diseño esteticamente muy agradable e intuitivo. 
+
+
+# Prompt Progreso
 
