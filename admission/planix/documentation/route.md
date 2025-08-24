@@ -425,7 +425,7 @@ https://v0-project-management-ui-ochre.vercel.app/login
  
 # VII. Etapa de desarrollo del producto
 
-Con base en la información recopilada y los prototipos entregados, decidimos utilizar la herramienta Claude para generar nuestro propio proyecto personalizado, usando HTML con soporte en JavaScript, ya que, si bien consideramos que V0 nos dió un DEMO bastante completo, deseamos mejorar la interfaz para otorgar una mejor experiencia IU/UX de usuario. A partir de este punto, damos paso a la presentación y explicación de nuestro código, mostrando cómo se implementaron las funcionalidades planteadas en los prototipos.
+Con base en la información recopilada y los prototipos entregados, decidimos utilizar la herramienta Claude para generar nuestro propio proyecto personalizado, usando HTML con soporte en JavaScript, ya que, si bien consideramos que V0 nos dió un DEMO bastante completo, deseamos mejorar la interfaz para otorgar una mejor experiencia IU/UX de usuario. A partir de este punto, damos paso a la presentación y explicación de nuestro código que se ubica en la carpeta "./custom prototype", mostrando cómo se implementaron las funcionalidades planteadas en los prototipos.
 
 **Inicios** Empezamos con el uso de la herramienta Claude, a la cual le entregamos el siguiente prompt: 
 
