@@ -79,8 +79,6 @@ Contraseña: 123
 
 ### Instalación
 ```bash
-# Clonar el repositorio
-git clone [URL_DEL_REPOSITORIO]
 
 # Navegar al directorio
 cd admission/condu-plus
