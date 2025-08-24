@@ -356,7 +356,7 @@ A partir de la respuesta de Gemini, tomamos las funcionalidades que consideramos
 
 ---
 
-# 6. Figma y prototipos  
+# VI. Figma y prototipos  
 
 ## Con las anteriores funcionalidades definidas, usamos la herramienta **Stitch**.  
 
@@ -418,6 +418,66 @@ https://v0-project-management-ui-ochre.vercel.app/login
 
  
 
+# VII. Etapa de desarrollo del producto
 
+Con base en la información recopilada y los prototipos entregados, decidimos utilizar la herramienta Claude para generar nuestro propio proyecto personalizado, usando HTML con soporte en JavaScript, ya que, si bien consideramos que V0 nos dió un DEMO bastante completo, deseamos mejorar la interfaz para otorgar una mejor experiencia IU/UX de usuario. A partir de este punto, damos paso a la presentación y explicación de nuestro código, mostrando cómo se implementaron las funcionalidades planteadas en los prototipos.
 
+**Inicios** Empezamos con el uso de la herramienta Claude, a la cual le entregamos el siguiente prompt: 
+
+## Prompt
+
+Planix — Organiza tu mundo
+Estamos construyendo Planix, una app de gestión de tareas, calendario y proyectos para personas con poco tiempo (estudiantes, emprendedores y desarrolladores) que necesitan centralizar su organización personal y profesional.
+Funcionalidades Principales
+Pantalla principal (Hoy / Tareas): lista de tarjetas de tareas.
+Cada tarjeta debe mostrar:
+Título de la tarea
+Proyecto o espacio (badge)
+Fecha y hora de vencimiento
+Icono de prioridad (alta/media/baja con color)
+Progreso de subtareas (porcentaje o barra)
+Acciones rápidas: completar (checkbox), posponer (snooze), comentar
+Calendario integrado con vista mensual/semanal, drag & drop de tareas y opción de asignar recordatorios.
+Vista de Proyectos: lista filtrada de tareas, progreso del proyecto, botón para compartir/asignar colaboradores.
+Onboarding rápido: seleccionar rol (Estudiante / Empresario / Profesional), conectar calendario (Google/ICS) opcional, crear primer proyecto y tareas ejemplo.
+Crear tarea (modal): título, proyecto, fecha/hora, prioridad, subtareas, adjuntar archivo, asignar colaborador, recordatorio.
+Notificaciones y recordatorios: configuración personalizable, sugerencias inteligentes (“Sugerir bloque de 90 min para estudiar”).
+Filtros y etiquetas: accesibles desde drawer o modal lateral.
+Persistencia local y sincronización: todas las tareas, proyectos y configuraciones se guardan localmente (JSON) con opción futura de sincronización en la nube.
+Requisitos Técnicos
+Diseño responsive (móvil + escritorio).
+Selector de tema oscuro/claro.
+Flujo de Usuario
+Ver Tareas (Hoy)
+El usuario abre la app y ve inmediatamente la lista de tareas de hoy.
+Cada tarea muestra: título, proyecto, fecha, prioridad y acciones rápidas.
+Seleccionar una Tarea
+Al tocar la tarjeta, se abre un modal desde abajo con los detalles: subtareas, comentarios, archivos.
+Añadir Tarea al Proyecto
+Dentro del modal, el usuario selecciona el proyecto y la app añade la tarea automáticamente a ese proyecto.
+Gestión de Calendario
+Desde el modal, el usuario puede asignar la tarea a una fecha/hora específica.
+La tarea aparece en el calendario semanal/mensual.
+Completar una Tarea
+El usuario marca la tarea como completada (checkbox).
+Aparece una animación de confirmación y un toast con opción de “Deshacer”.
+Filtrar y Buscar
+El usuario abre el drawer lateral para filtrar por proyectos, etiquetas o prioridad, o realizar búsqueda rápida.
+Notificaciones y Recordatorios
+Configuración accesible en el modal de notificaciones.
+Recordatorios push según fecha, prioridad o sugerencias inteligentes.
+Estructura
+El diseño debe tener componentes separados como:
+Navbar superior: Hoy, Calendario, Proyectos, botón + (crear).
+Bottom nav (mobile): Hoy, Tareas, Calendario, Notificaciones, Perfil.
+Sidebar (web): proyectos, etiquetas y filtros.
+Cards de tarea: información principal con prioridad, progreso y acciones rápidas.
+Calendar component: vista mensual/semanal con drag & drop.
+Modal de creación/edición de tarea.
+Diseño
+Usa Html, Tailwind CSS libreria de iconos y javascript solo para cambio de secciones o animaciones. 
+Usar componentes de Material 3 (Button, Card, Theme, Typography, Avatar, Command, Sheet, etc.).
+Seguir archivo de Figma de Planix como guía.
+Usa la Paleta de colores que te acabo de proporcionar,  con soporte tema oscuro/claro.
+Usar nombres de color semánticos para prioridad (alta, media, baja).
 
