@@ -1,13 +1,23 @@
-require('dotenv').config({
+/* require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
-});
+}); */
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
+const controllers = require('./controller_routeruser');
+const app = express(); 
+app.use(cors()); 
+app.use(express.json()); 
+app.get('/api/aprendices-por-centro', controllers.getAprendicesPorCentro);
+app.get('/api/instructores-recomendados', controllers.getInstructoresRecomendadosPorCentro);
+app.get('/api/aprendices-por-centro-programa', controllers.getAprendicesPorCentroYPrograma);
+app.get('/api/aprendices-por-departamento', controllers.getAprendicesPorDepartamento);
+app.get('/api/aprendices-con-github', controllers.getAprendicesConGithub);
+app.get('/api/aprendices-nivel-ingles-b1b2', controllers.getAprendicesNivelInglesB1B2);
+app.post('/api/aprendiz', controllers.createAprendiz);
 
-const app = express();
-
-/* ===== Hardening y headers ===== */
+/* ===== Hardening y headers ===== */ 
 // 1) Desactiva ETag para que NUNCA devuelva 304
 app.set('etag', false);
 
