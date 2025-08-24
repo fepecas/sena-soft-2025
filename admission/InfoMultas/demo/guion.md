@@ -22,8 +22,6 @@ Para resolver esto desarrollamos **InfoMultas**, una aplicación web y chatbot q
 - Resolver dudas con ayuda de un asistente de inteligencia artificial.  
 - Enviar reportes ciudadanos para mantener la información actualizada.  
 
-👉 Ejemplo en el prototipo: al ingresar la placa de un vehículo, el sistema muestra si tiene fotomultas activas.  
-
 ---
 
 ## 🛠️ Cómo lo construimos
