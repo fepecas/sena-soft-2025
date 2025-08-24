@@ -581,3 +581,64 @@ Con este codigo en la linea donde dice contenido principal vamos a trabajar en e
 
 # Prompt Progreso
 
+Diseña la sección Mi Progreso dentro del gestor de tareas, trabajando únicamente en el área de contenido principal (sin modificar el asidebar).
+
+Contexto del problema:
+
+Actualmente los usuarios no tienen una forma clara y centralizada de visualizar cómo avanza su productividad. Esto genera falta de motivación, poca claridad en logros y dificultad para medir el progreso real. El aplicativo debe ofrecer una vista clara, motivadora y organizada del avance semanal y mensual del usuario.
+
+Requerimientos del diseño (solo la vista Mi Progreso):
+
+Estilo: Mantén un diseño moderno, limpio y profesional, similar al dashboard ya implementado.
+
+Frameworks: Usa TailwindCSS para el diseño y JavaScript para las funcionalidades dinámicas.
+
+Componentes sugeridos:
+
+Encabezado con resumen general:
+
+Tareas completadas, proyectos activos, productividad (índice), y tiempo ahorrado.
+
+Acompañar con un avatar o ilustración motivadora.
+
+Progreso semanal y mensual:
+
+Gráfico de barras para el avance diario/semanal.
+
+Opción de cambiar entre 7 días y 30 días.
+
+Progreso por categorías:
+
+Barras horizontales con porcentaje en categorías clave: Trabajo, Personal, Académico y Salud.
+
+Logros recientes:
+
+Tarjetas con hitos logrados (ejemplo: Semana Perfecta, Meta alcanzada).
+
+Metas del mes:
+
+Estado de tareas, proyectos y horas productivas.
+
+Consejo motivador dinámico (ej: “¡Sigue así, estás a punto de cumplir todas tus metas!”).
+
+Insights de productividad:
+
+Mejor hora, mejor día, promedio diario de tareas, racha actual.
+
+Botón flotante (+):
+
+Para crear una nueva tarea rápidamente.
+
+Extras visuales:
+
+Usa iconos de Heroicons o Lucide para enriquecer cada tarjeta.
+
+Barra circular de porcentaje para la productividad global.
+
+Animaciones sutiles (hover, transición) en tarjetas y botones.
+
+Diseño responsivo y adaptable a pantallas pequeñas
+
+
+Con los prompt anteriores finalmente desarrollamos un producto final apto para generar una experiencia completa e intuitiva a nuestros
+usuarios, abarcando las funcionalidades mas importantes.  
