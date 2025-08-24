@@ -1,29 +1,35 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`
 });
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const {
+  loadCSV,
+  getAprendicesPorCentro,
+  getInstructoresPorCentro,
+  getAprendicesPorCentroPrograma,
+  getAprendicesPorDepartamento,
+  getAprendicesConGithub,
+  getNivelInglesPorCentro,
+} = require("../database/metrics_scalar");
 
 const app = express();
 
 /* ===== Hardening y headers ===== */
-// 1) Desactiva ETag para que NUNCA devuelva 304
 app.set('etag', false);
-
-// 2) Desactiva X-Powered-By (higiene)
 app.disable('x-powered-by');
-
-// 3) Fuerza no-cache a nivel global (puedes afinar por ruta si prefieres)
 app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store');     // sin cache
+  res.set('Cache-Control', 'no-store');
   next();
 });
 
 /* ===== Middlewares ===== */
 app.use(express.json());
 
-// CORS desde ALLOWED_ORIGINS (mantengo tu lógica)
+// CORS desde ALLOWED_ORIGINS
 const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['*'];
 app.use(cors({
   origin: function (origin, callback) {
@@ -43,44 +49,60 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("✅ Conectado a MongoDB Atlas"))
 .catch(err => console.error("❌ Error de conexión:", err));
 
-/* ===== Modelo (colección metrics_scalar) ===== */
+/* ===== Modelo metrics_scalar (solo para CSV) ===== */
 const metricSchema = new mongoose.Schema({}, { strict: false });
 const Metric = mongoose.model('metrics_scalar', metricSchema, 'metrics_scalar');
 
-/* ===== Endpoints ===== */
-
-// GET /metrics/scalar  → JSON siempre, sin 304 y sin cache
+/* ===== Endpoints globales ===== */
 app.get('/metrics/scalar', async (req, res) => {
   try {
     const data = await Metric.find({}).lean();
-
-    // Si quieres devolver SOLO los campos que usa el GPT:
-    // const projected = data.map(({ description, value }) => ({ description, value }));
-
-    res
-      .status(200)
-      .type('application/json; charset=utf-8')   // Content-Type explícito
-      .set('Cache-Control', 'no-store')          // refuerzo por ruta
-      .json(data);                               // o .json(projected)
+    res.status(200).type('application/json; charset=utf-8').set('Cache-Control', 'no-store').json(data);
   } catch (err) {
-    res
-      .status(500)
-      .type('application/json; charset=utf-8')
-      .json({ error: err.message });
+    res.status(500).type('application/json; charset=utf-8').json({ error: err.message });
   }
 });
 
-/* (Opcional) Healthcheck rápido */
 app.get('/health', (_req, res) => {
-  res
-    .status(200)
-    .type('application/json; charset=utf-8')
-    .set('Cache-Control', 'no-store')
-    .json({ ok: true });
+  res.status(200).type('application/json; charset=utf-8').set('Cache-Control', 'no-store').json({ ok: true });
+});
+
+/* ===== Endpoints dinámicos para Leonardo ===== */
+app.get("/api/aprendices/centro", (req, res) => {
+  const cantidad = getAprendicesPorCentro();
+  res.json({ cantidad });
+});
+
+app.get("/api/instructores/centro", (req, res) => {
+  const instructores = getInstructoresPorCentro();
+  res.json(instructores);
+});
+
+app.get("/api/aprendices/centro-programa", (req, res) => {
+  const data = getAprendicesPorCentroPrograma();
+  res.json(data);
+});
+
+app.get("/api/aprendices/departamento", (req, res) => {
+  const cantidad = getAprendicesPorDepartamento();
+  res.json({ cantidad });
+});
+
+app.get("/api/aprendices/github", (req, res) => {
+  const cantidad = getAprendicesConGithub();
+  res.json({ cantidad });
+});
+
+app.get("/api/aprendices/ingles", (req, res) => {
+  const niveles = getNivelInglesPorCentro();
+  res.json(niveles);
 });
 
 /* ===== Iniciar servidor ===== */
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+const PORT = process.env.PORT || 3000;
+
+loadCSV().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  });
 });
