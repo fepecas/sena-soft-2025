@@ -1,4 +1,4 @@
-## Planix
+##Planix
 
 Estamos en proceso de desarrollo de un aplicativo multiplataforma diseñado para abordar uno de los problemas más comunes en la vida moderna: la fragmentación y falta de cohesión en la organización personal, profesional y académica.
 Actualmente, muchas personas administran sus tareas, recordatorios, proyectos y compromisos en diferentes espacios (papel, aplicaciones aisladas, notas sueltas, calendarios separados, entre otros). Esta dispersión genera desorden, duplicidad de esfuerzos, pérdida de tiempo y una disminución considerable en la productividad.
