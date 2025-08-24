@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Tareas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="html/css/asidebar.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-all duration-300">
+    <!-- Simplified loading overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400">Cargando tareas...</p>
+        </div>
+    </div>
+
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+    
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full gradient-bg-light dark:gradient-bg-dark text-white shadow-2xl">
+                <!-- Header del Sidebar -->
+                <div class="p-6 border-b border-white border-opacity-20 flex-shrink-0">
+                    <!-- Perfil del Usuario -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative group">
+                            <img id="userAvatar" 
+                                 src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" 
+                                 alt="Sophia" 
+                                 class="w-10 h-10 rounded-full border-2 border-white border-opacity-30 cursor-pointer hover:border-opacity-50 transition-all duration-300">
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white pulse-dot"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-sm text-white">Sophia</h3>
+                            <p class="text-xs text-white text-opacity-70">Mi Espacio</p>
+                        </div>
+                        <!-- Toggle modo oscuro -->
+                        <button id="darkModeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon">
+                            <i id="darkModeIcon" class="fas fa-moon text-sm text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navegación Principal -->
+                <nav class="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
+                    <ul class="space-y-2">
+                        <li class="slide-in-left" style="animation-delay: 0.1s">
+                            <a href="home.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-home text-lg bounce-icon group-hover:text-yellow-300 w-5 text-center text-white"></i>
+                                <span class="font-medium text-white">Inicio</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm text-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.2s">
+                            <a href="calendario.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-calendar-alt text-lg bounce-icon group-hover:text-blue-300 w-5 text-center text-white"></i>
+                                <span class="font-medium text-white">Calendario</span>
+                                <div class="ml-auto">
+                                    <span class="bg-blue-500 text-xs px-2 py-1 rounded-full text-white">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.3s">
+                            <a href="tareas.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group active-link">
+                                <i class="fas fa-tasks text-lg bounce-icon group-hover:text-green-300 w-5 text-center text-white"></i>
+                                <span class="font-medium text-white">Tareas</span>
+                                <div class="ml-auto flex items-center space-x-2">
+                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full pulse-dot text-white">2</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <i class="fas fa-chevron-right text-sm text-white"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.4s">
+                            <a href="proyectos.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-project-diagram text-lg bounce-icon group-hover:text-purple-300 w-5 text-center text-white"></i>
+                                <span class="font-medium text-white">Proyectos</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm text-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.5s">
+                            <a href="progreso.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-cog text-lg bounce-icon group-hover:text-gray-300 w-5 text-center text-white"></i>
+                                <span class="font-medium text-white">Progreso</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm text-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Sección de Estadísticas Rápidas -->
+                    <div class="mt-8 p-4 glass-effect dark:glass-effect-dark rounded-lg">
+                        <h4 class="text-sm font-semibold mb-3 text-white text-opacity-90">Resumen Rápido</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Tareas Completadas</span>
+                                <span class="text-sm font-semibold text-white">60%</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Proyectos Activos</span>
+                                <span class="text-sm font-semibold text-white">3</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Próximas Tareas</span>
+                                <span class="text-sm font-semibold text-white">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Footer del Sidebar -->
+                <div class="p-4 border-t border-white border-opacity-20 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                        <button id="toggleSidebar" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden">
+                            <i class="fas fa-times text-white"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Ayuda">
+                            <i class="fas fa-question-circle text-white"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Cerrar sesión">
+                            <i class="fas fa-sign-out-alt text-white"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-h-0 lg:ml-0">
+            <!-- Header Principal -->
+            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-4 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 bounce-icon">
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Tareas</h1>
+                    </div>
+                    <button id="createTaskBtn" class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm sm:text-base">
+                        <i class="fas fa-plus mr-1 sm:mr-2"></i>
+                        <span class="hidden sm:inline">Nueva Tarea</span>
+                        <span class="sm:hidden">Nueva</span>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Contenido Principal - Tareas -->
+            <main class="flex-1 overflow-y-auto p-4 sm:p-6">
+                <!-- Welcome banner with animations -->
+                <div class="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black bg-opacity-10"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="text-2xl font-bold mb-2 text-white">¡Bienvenido de vuelta, Sophia! 👋</h2>
+                                <p class="text-white">Tienes <span id="pendingTasksCount" class="font-semibold text-white">5</span> tareas pendientes hoy</p>
+                            </div>
+                            <div class="hidden sm:block">
+                                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-rocket text-2xl text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <div class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
+                                <i class="fas fa-fire mr-1 text-white"></i>
+                                <span id="streakCount" class="text-white">7</span> <span class="text-white">días consecutivos</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
+                                <i class="fas fa-trophy mr-1 text-white"></i>
+                                <span id="completedToday" class="text-white">3</span> <span class="text-white">completadas hoy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtros y Vista -->
+                <div class="mb-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <!-- Filtros -->
+                        <div class="flex flex-wrap gap-2">
+                            <button class="filter-btn active bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" data-filter="all">
+                                Todas <span class="ml-1 bg-white bg-opacity-30 text-white px-2 py-0.5 rounded-full text-xs">8</span>
+                            </button>
+                            <button class="filter-btn bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" data-filter="pending">
+                                Pendientes <span class="ml-1 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-2 py-0.5 rounded-full text-xs">5</span>
+                            </button>
+                            <button class="filter-btn bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" data-filter="completed">
+                                Completadas <span class="ml-1 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-2 py-0.5 rounded-full text-xs">3</span>
+                            </button>
+                            <button class="filter-btn bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" data-filter="overdue">
+                                Vencidas <span class="ml-1 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 px-2 py-0.5 rounded-full text-xs">2</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Vista y Ordenar -->
+                        <div class="flex items-center gap-2">
+                            <select id="sortSelect" class="px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white">
+                                <option value="dueDate">Fecha límite</option>
+                                <option value="priority">Prioridad</option>
+                                <option value="created">Fecha creación</option>
+                                <option value="alphabetical">Alfabético</option>
+                            </select>
+                            <div class="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+                                <button id="gridViewBtn" class="view-btn active bg-white dark:bg-gray-600 text-gray-900 dark:text-white p-2 rounded-md transition-all duration-200">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                                <button id="listViewBtn" class="view-btn text-gray-600 dark:text-gray-400 p-2 rounded-md transition-all duration-200">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lista de Tareas -->
+                <div id="tasksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Las tareas se cargarán dinámicamente aquí -->
+                </div>
+                
+                <!-- Enhanced empty state with better visuals -->
+                <div id="emptyState" class="hidden text-center py-16">
+                    <div class="mx-auto w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tasks text-4xl text-blue-500 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">¡Todo despejado! 🎉</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-6 max-w-md mx-auto">
+                        No tienes tareas en esta vista. Es un buen momento para planificar algo nuevo o simplemente relajarte.
+                    </p>
+                    <button id="emptyStateCreateBtn" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-plus mr-2"></i>
+                        Crear primera tarea
+                    </button>
+                </div>
+
+                <!-- Added productivity tips section -->
+                <div id="productivityTips" class="mt-8 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Consejo del día</h3>
+                    </div>
+                    <p id="dailyTip" class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Divide las tareas grandes en subtareas más pequeñas. Esto te ayudará a mantener el momentum y sentir progreso constante.
+                    </p>
+                    <button id="nextTipBtn" class="mt-3 text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-sync-alt mr-1"></i>
+                        Siguiente consejo
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Enhanced modal with better animations -->
+    <div id="taskModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <!-- Header del Modal -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Nueva tarea</h2>
+                <button id="closeTaskModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200 transform hover:scale-110">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Contenido del Modal -->
+            <form id="taskForm" class="p-6 space-y-6">
+                <!-- Título -->
+                <div>
+                    <label for="taskTitle" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Título</label>
+                    <input type="text" id="taskTitle" name="title" placeholder="Nombre de la tarea" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                </div>
+                
+                <!-- Descripción -->
+                <div>
+                    <label for="taskDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descripción</label>
+                    <textarea id="taskDescription" name="description" rows="3" placeholder="Describe tu tarea..."
+                              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"></textarea>
+                </div>
+                
+                <!-- Fecha límite y Recordatorio -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="taskDueDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Fecha límite</label>
+                        <div class="relative">
+                            <input type="date" id="taskDueDate" name="dueDate"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <i class="fas fa-calendar-alt absolute right-3 top-3 text-gray-400 pointer-events-none"></i>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="taskReminder" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Recordatorio</label>
+                        <div class="relative">
+                            <input type="time" id="taskReminder" name="reminder"
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                            <i class="fas fa-bell absolute right-3 top-3 text-gray-400 pointer-events-none"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prioridad -->
+                <div>
+                    <label for="taskPriority" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Prioridad</label>
+                    <select id="taskPriority" name="priority"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                        <option value="">Seleccionar prioridad</option>
+                        <option value="low">🟢 Baja</option>
+                        <option value="medium">🟡 Media</option>
+                        <option value="high">🟠 Alta</option>
+                        <option value="urgent">🔴 Urgente</option>
+                    </select>
+                </div>
+                
+                <!-- Personalización por colores -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Personalización</label>
+                    <div class="flex gap-3">
+                        <div class="color-option w-8 h-8 rounded-full bg-indigo-500 cursor-pointer ring-2 ring-offset-2 ring-indigo-500 ring-offset-white dark:ring-offset-gray-800 transition-all duration-200" data-color="indigo"></div>
+                        <div class="color-option w-8 h-8 rounded-full bg-purple-500 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-purple-500 hover:ring-offset-white dark:hover:ring-offset-gray-800 transition-all duration-200" data-color="purple"></div>
+                        <div class="color-option w-8 h-8 rounded-full bg-blue-500 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-blue-500 hover:ring-offset-white dark:hover:ring-offset-gray-800 transition-all duration-200" data-color="blue"></div>
+                        <div class="color-option w-8 h-8 rounded-full bg-pink-500 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-pink-500 hover:ring-offset-white dark:hover:ring-offset-gray-800 transition-all duration-200" data-color="pink"></div>
+                        <div class="color-option w-8 h-8 rounded-full bg-yellow-500 cursor-pointer hover:ring-2 hover:ring-offset-2 hover:ring-yellow-500 hover:ring-offset-white dark:hover:ring-offset-gray-800 transition-all duration-200" data-color="yellow"></div>
+                    </div>
+                </div>
+                
+                <!-- Categorías -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Categorías</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="category-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200" data-category="trabajo">
+                            <i class="fas fa-briefcase mr-2"></i>Trabajo
+                        </button>
+                        <button type="button" class="category-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200" data-category="personal">
+                            <i class="fas fa-user mr-2"></i>Personal
+                        </button>
+                        <button type="button" class="category-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200" data-category="estudio">
+                            <i class="fas fa-graduation-cap mr-2"></i>Estudio
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Proyecto -->
+                <div>
+                    <label for="taskProject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Proyecto (opcional)</label>
+                    <select id="taskProject" name="project"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                        <option value="">Sin proyecto</option>
+                        <option value="proyecto1">Rediseño de sitio web</option>
+                        <option value="proyecto2">Aplicación móvil</option>
+                        <option value="proyecto3">Campaña de marketing</option>
+                    </select>
+                </div>
+                
+                <!-- Botones -->
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button type="button" id="cancelTaskBtn" class="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200">
+                        Descartar
+                    </button>
+                    <button type="submit" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors duration-200 font-medium">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>  
+    </div>
+    
+        
+    <!-- Modal para cambiar foto de perfil -->
+    <div id="avatarModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Cambiar foto de perfil</h3>
+                <button id="closeAvatarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Opciones de avatares -->
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 1" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 3" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 4" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300 flex items-center justify-center avatar-option" data-avatar="gradient">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Crear/Editar Proyecto -->
+    <div id="modalProyecto" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="modalTitle" class="text-lg font-semibold text-gray-800 dark:text-white">Crear Nuevo Proyecto</h3>
+                <button id="cerrarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="formProyecto">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre del Proyecto</label>
+                        <input type="text" id="nombreProyecto" required
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Descripción</label>
+                        <textarea id="descripcionProyecto" rows="3"
+                                  class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Color del Proyecto</label>
+                        <div class="flex space-x-2">
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-blue-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="blue"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-purple-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="purple"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-green-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="green"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-red-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="red"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-yellow-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="yellow"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-pink-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="pink"></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-3 mt-6">
+                    <button type="submit" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-save mr-2"></i>Guardar
+                    </button>
+                    <button type="button" id="cancelarModal" class="flex-1 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg transition-colors duration-200">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Input oculto para subir archivo -->
+    <input type="file" id="avatarFileInput" accept="image/*" class="hidden">
+    <script src="html/javascript/asidebar.js"></script>
+    <script src="html/javascript/tareas.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Mi Espacio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="html/css/asidebar.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-all duration-300">
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+    
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full gradient-bg-light dark:gradient-bg-dark text-white shadow-2xl">
+                <!-- Header del Sidebar -->
+                <div class="p-6 border-b border-white border-opacity-20 flex-shrink-0">
+                    <!-- Perfil del Usuario -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative group">
+                            <img id="userAvatar" 
+                                 src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" 
+                                 alt="Sophia" 
+                                 class="w-10 h-10 rounded-full border-2 border-white border-opacity-30 cursor-pointer hover:border-opacity-50 transition-all duration-300">
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white pulse-dot"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-sm">Sophia</h3>
+                            <p class="text-xs text-white text-opacity-70">Mi Espacio</p>
+                        </div>
+                        <!-- Toggle modo oscuro -->
+                        <button id="darkModeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon">
+                            <i id="darkModeIcon" class="fas fa-moon text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navegación Principal -->
+                <nav class="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
+                    <ul class="space-y-2">
+                        <li class="slide-in-left" style="animation-delay: 0.1s">
+                            <a href="home.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-home text-lg bounce-icon group-hover:text-yellow-300 w-5 text-center"></i>
+                                <span class="font-medium">Inicio</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.2s">
+                            <a href="calendario.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group active-link">
+                                <i class="fas fa-calendar-alt text-lg bounce-icon group-hover:text-blue-300 w-5 text-center"></i>
+                                <span class="font-medium">Calendario</span>
+                                <div class="ml-auto">
+                                    <span class="bg-blue-500 text-xs px-2 py-1 rounded-full">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.3s">
+                            <a href="tareas.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-tasks text-lg bounce-icon group-hover:text-green-300 w-5 text-center"></i>
+                                <span class="font-medium">Tareas</span>
+                                <div class="ml-auto flex items-center space-x-2">
+                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full pulse-dot">2</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <i class="fas fa-chevron-right text-sm"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.4s">
+                            <a href="proyectos.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-project-diagram text-lg bounce-icon group-hover:text-purple-300 w-5 text-center"></i>
+                                <span class="font-medium">Proyectos</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.5s">
+                            <a href="progreso.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-cog text-lg bounce-icon group-hover:text-gray-300 w-5 text-center"></i>
+                                <span class="font-medium">Progreso</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Sección de Estadísticas Rápidas -->
+                    <div class="mt-8 p-4 glass-effect dark:glass-effect-dark rounded-lg">
+                        <h4 class="text-sm font-semibold mb-3 text-white text-opacity-90">Resumen Rápido</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Tareas Completadas</span>
+                                <span class="text-sm font-semibold">60%</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Proyectos Activos</span>
+                                <span class="text-sm font-semibold">3</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Próximas Tareas</span>
+                                <span class="text-sm font-semibold">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Footer del Sidebar -->
+                <div class="p-4 border-t border-white border-opacity-20 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                        <button id="toggleSidebar" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Ayuda">
+                            <i class="fas fa-question-circle"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Cerrar sesión">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-h-0 lg:ml-0">
+            <!-- Header Principal -->
+            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-4 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 bounce-icon">
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Calendario</h1>
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm sm:text-base">
+                        <i class="fas fa-plus mr-1 sm:mr-2"></i>
+                        <span class="hidden sm:inline">Crear Tarea</span>
+                        <span class="sm:hidden">Crear</span>
+                    </button>
+                </div>
+            </header>
+            
+    
+             <!-- Contenido Principal -->
+            <main class="flex-1 overflow-y-auto p-4 sm:p-6">
+                <!-- Header del Calendario -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <div class="flex items-center space-x-4">
+                        <button id="prevMonth" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-chevron-left text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <h2 id="currentMonth" class="text-xl font-semibold text-gray-800 dark:text-white">Mayo 2024</h2>
+                        <button id="nextMonth" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-chevron-right text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button id="nuevaTarea" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm">
+                            <i class="fas fa-plus mr-2"></i>Nueva Tarea
+                        </button>
+                        <button id="nuevoEvento" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm">
+                            <i class="fas fa-calendar-plus mr-2"></i>Nuevo Evento
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vista de Calendario -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Calendarios -->
+                    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+                        <!-- Tabs -->
+                        <div class="flex border-b border-gray-200 dark:border-gray-700">
+                            <button id="tabMes" class="tab-button active px-4 py-3 text-sm font-medium border-b-2 border-blue-500 text-blue-600 dark:text-blue-400">
+                                Mes
+                            </button>
+                            <button id="tabSemana" class="tab-button px-4 py-3 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                                Semana
+                            </button>
+                        </div>
+
+                        <!-- Calendario Mensual -->
+                        <div id="calendarioMensual" class="p-4">
+                            <!-- Headers de días -->
+                            <div class="grid grid-cols-7 gap-1 mb-2">
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Dom</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Lun</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Mar</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Mié</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Jue</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Vie</div>
+                                <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">Sáb</div>
+                            </div>
+                            <!-- Grid de días -->
+                            <div id="calendarGrid" class="grid grid-cols-7 gap-1">
+                                <!-- Los días se generarán con JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Calendario Semanal (oculto por defecto) -->
+                        <div id="calendarioSemanal" class="p-4 hidden">
+                            <div class="text-center text-gray-500 dark:text-gray-400 py-8">
+                                Vista semanal en desarrollo
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar de Tareas y Eventos -->
+                    <div class="space-y-6">
+                        <!-- Tareas -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Tareas</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                    <input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-gray-300 dark:border-gray-600">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Comprar regalos para la fiesta de cumpleaños de Ana</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Personal</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                    <input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-gray-300 dark:border-gray-600">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Revisar el informe de marketing</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Trabajo</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                    <input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-gray-300 dark:border-gray-600">
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Estudiar para el examen de química</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Académico</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Eventos -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Eventos</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border-l-4 border-blue-500">
+                                    <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Fiesta de cumpleaños de Ana</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Personal</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg border-l-4 border-green-500">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-gray-800 dark:text-white">Reunión de equipo</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Trabajo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modal para cambiar foto de perfil -->
+    <div id="avatarModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Cambiar foto de perfil</h3>
+                <button id="closeAvatarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Opciones de avatares -->
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 1" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 3" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 4" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300 flex items-center justify-center avatar-option" data-avatar="gradient">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input oculto para subir archivo -->
+    <input type="file" id="avatarFileInput" accept="image/*" class="hidden">
+    
+    <script src="html/javascript/asidebar.js"></script>
+    <script src="html/javascript/calendario.js"></script>
+</body>
+</html>

@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Mi Espacio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gradientes */
+        .gradient-bg-light {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .dark .gradient-bg-dark, .gradient-bg-dark {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+
+        /* Efectos de cristal */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-effect-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animaciones */
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0, 0, 0); }
+            40%, 43% { transform: translate3d(0, -8px, 0); }
+            70% { transform: translate3d(0, -4px, 0); }
+            90% { transform: translate3d(0, -2px, 0); }
+        }
+        .bounce-icon:hover {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        /* Enlaces activos */
+        .active-link {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-left: 4px solid #60a5fa;
+            transform: translateX(2px);
+        }
+        .active-link i {
+            color: #60a5fa;
+        }
+
+        /* Scrollbar personalizada */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Transiciones */
+        .sidebar-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .sidebar-link:hover i {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Avatar hover */
+        .avatar-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animaciones de entrada */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Mejorados los estilos para modo oscuro */
+        /* Corrección de colores en modo oscuro para tareas */
+        .dark .border-red-400 {
+            border-color: #f87171 !important;
+        }
+        .dark .border-orange-400 {
+            border-color: #fb923c !important;
+        }
+        .dark .border-green-400 {
+            border-color: #4ade80 !important;
+        }
+        .dark .hover\:bg-red-400:hover {
+            background-color: #f87171 !important;
+        }
+        .dark .hover\:bg-orange-400:hover {
+            background-color: #fb923c !important;
+        }
+        .dark .hover\:bg-green-400:hover {
+            background-color: #4ade80 !important;
+        }
+
+        /* Badges de prioridad mejorados en modo oscuro */
+        .dark .bg-red-100 {
+            background-color: rgba(239, 68, 68, 0.2) !important;
+        }
+        .dark .text-red-800 {
+            color: #fca5a5 !important;
+        }
+        .dark .bg-orange-100 {
+            background-color: rgba(245, 158, 11, 0.2) !important;
+        }
+        .dark .text-orange-800 {
+            color: #fed7aa !important;
+        }
+        .dark .bg-green-100 {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+        }
+        .dark .text-green-800 {
+            color: #86efac !important;
+        }
+
+        /* Mejoras adicionales para modo oscuro */
+        .dark .bg-gray-750 {
+            background-color: #374151;
+        }
+
+        /* Hover states mejorados para modo oscuro */
+        .dark .hover\:bg-gray-50:hover {
+            background-color: #374151 !important;
+        }
+
+        /* Progress bars en modo oscuro */
+        .progress-bar {
+            transition: width 1s ease-out;
+        }
+
+        /* Cards hover en modo oscuro */
+        .dark .hover\:shadow-md:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botones de prioridad en modo oscuro */
+        .dark .task-priority-alta {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .dark .task-priority-media {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: #fed7aa;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .dark .task-priority-baja {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #86efac;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Texto de estadísticas en modo oscuro */
+        .dark .text-gray-500 {
+            color: #9ca3af !important;
+        }
+        .dark .text-gray-600 {
+            color: #6b7280 !important;
+        }
+
+        /* Bordes en modo oscuro */
+        .dark .border-gray-100 {
+            border-color: #374151 !important;
+        }
+        .dark .border-gray-200 {
+            border-color: #4b5563 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-all duration-300">
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full gradient-bg-light dark:gradient-bg-dark text-white shadow-2xl">
+                <!-- Header del Sidebar -->
+                <div class="p-6 border-b border-white border-opacity-20 flex-shrink-0">
+                    <!-- Estado no autenticado -->
+                    <div id="unauthenticatedHeader" class="text-center">
+                        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-4">¡Bienvenido!</h3>
+                        <div class="space-y-2">
+                            <button id="showLogin" class="w-full bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all duration-300">
+                                <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                            </button>
+                            <button id="showRegister" class="w-full border border-white border-opacity-30 hover:bg-white hover:bg-opacity-10 text-white py-2 px-4 rounded-lg transition-all duration-300">
+                                <i class="fas fa-user-plus mr-2"></i>Registrarse
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Estado autenticado -->
+                    <div id="authenticatedHeader" class="hidden">
+                        <!-- Perfil del Usuario -->
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="relative group">
+                                <img id="userAvatar" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Usuario" class="w-10 h-10 rounded-full border-2 border-white border-opacity-30 cursor-pointer hover:border-opacity-50 transition-all duration-300">
+                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white pulse-dot"></div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 id="userName" class="font-semibold text-sm">Usuario</h3>
+                                <p class="text-xs text-white text-opacity-70">Mi Espacio</p>
+                            </div>
+                            <!-- Toggle modo oscuro -->
+                            <button id="darkModeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon">
+                                <i id="darkModeIcon" class="fas fa-moon text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navegación Principal (solo visible cuando está autenticado) -->
+                <nav id="mainNavigation" class="hidden flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
+                    <ul class="space-y-2">
+                        <li class="slide-in-left" style="animation-delay: 0.1s">
+                            <a href="home.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group active-link">
+                                <i class="fas fa-home text-lg bounce-icon group-hover:text-yellow-300 w-5 text-center"></i>
+                                <span class="font-medium">Inicio</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="slide-in-left" style="animation-delay: 0.2s">
+                            <a href="calendario.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-calendar-alt text-lg bounce-icon group-hover:text-blue-300 w-5 text-center"></i>
+                                <span class="font-medium">Calendario</span>
+                                <div class="ml-auto">
+                                    <span class="bg-blue-500 text-xs px-2 py-1 rounded-full">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="slide-in-left" style="animation-delay: 0.3s">
+                            <a href="tareas.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-tasks text-lg bounce-icon group-hover:text-green-300 w-5 text-center"></i>
+                                <span class="font-medium">Tareas</span>
+                                <div class="ml-auto flex items-center space-x-2">
+                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full pulse-dot">2</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <i class="fas fa-chevron-right text-sm"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="slide-in-left" style="animation-delay: 0.4s">
+                            <a href="proyectos.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-project-diagram text-lg bounce-icon group-hover:text-purple-300 w-5 text-center"></i>
+                                <span class="font-medium">Proyectos</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="slide-in-left" style="animation-delay: 0.5s">
+                            <a href="progreso.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-chart-line text-lg bounce-icon group-hover:text-gray-300 w-5 text-center"></i>
+                                <span class="font-medium">Progreso</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Sección de Estadísticas Rápidas -->
+                    <div class="mt-8 p-4 glass-effect dark:glass-effect-dark rounded-lg">
+                        <h4 class="text-sm font-semibold mb-3 text-white text-opacity-90">Resumen Rápido</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Tareas Completadas</span>
+                                <span class="text-sm font-semibold">60%</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Proyectos Activos</span>
+                                <span class="text-sm font-semibold">3</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Próximas Tareas</span>
+                                <span class="text-sm font-semibold">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mensaje para usuarios no autenticados -->
+                <div id="unauthenticatedContent" class="flex-1 flex items-center justify-center p-6">
+                    <div class="text-center text-white text-opacity-70">
+                        <i class="fas fa-lock text-4xl mb-4"></i>
+                        <p class="text-sm">Inicia sesión para acceder a todas las funcionalidades</p>
+                    </div>
+                </div>
+
+                <!-- Footer del Sidebar -->
+                <div class="p-4 border-t border-white border-opacity-20 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                        <button id="toggleSidebar" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Ayuda">
+                            <i class="fas fa-question-circle"></i>
+                        </button>
+                        <button id="darkModeToggleFooter" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden" title="Modo oscuro">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-h-0 lg:ml-0">
+            <!-- Header Principal -->
+            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-4 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 bounce-icon">
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <div>
+                            <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">¡Bienvenida, Sophia!</h1>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hoy es <span id="currentDate"></span></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button id="quickAddTask" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm sm:text-base">
+                            <i class="fas fa-plus mr-1 sm:mr-2"></i>
+                            <span class="hidden sm:inline">Crear Tarea</span>
+                            <span class="sm:hidden">Nueva</span>
+                        </button>
+                        <button id="notificationsBtn" class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-bell text-gray-600 dark:text-gray-400"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">3</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido Principal - Dashboard Home -->
+            <main class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+                <!-- Resumen de Productividad -->
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Card: Tareas Pendientes -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300 group">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium">Tareas Pendientes</p>
+                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-2">12</p>
+                                <p class="text-xs text-red-500 dark:text-red-400 mt-1">
+                                    <i class="fas fa-arrow-up mr-1"></i>2 nuevas hoy
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-800 dark:to-red-900 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-tasks text-red-600 dark:text-red-400 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: Completadas Hoy -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300 group">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium">Completadas Hoy</p>
+                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-2">8</p>
+                                <p class="text-xs text-green-500 dark:text-green-400 mt-1">
+                                    <i class="fas fa-check mr-1"></i>¡Excelente progreso!
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-100 to-green-200 dark:from-green-800 dark:to-green-900 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-check-circle text-green-600 dark:text-green-400 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: Proyectos Activos -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300 group">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium">Proyectos Activos</p>
+                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-2">5</p>
+                                <p class="text-xs text-blue-500 dark:text-blue-400 mt-1">
+                                    <i class="fas fa-rocket mr-1"></i>3 en progreso
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-800 dark:to-blue-900 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-project-diagram text-blue-600 dark:text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: Tiempo Productivo -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-all duration-300 group">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 font-medium">Tiempo Productivo</p>
+                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-2">6.5h</p>
+                                <p class="text-xs text-purple-500 dark:text-purple-400 mt-1">
+                                    <i class="fas fa-clock mr-1"></i>Meta: 8h diarias
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-800 dark:to-purple-900 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-clock text-purple-600 dark:text-purple-400 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Grid Principal: Tareas Próximas y Agenda del Día -->
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Próximas Tareas Prioritarias -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center">
+                                    <i class="fas fa-fire text-orange-500 mr-2"></i>
+                                    Tareas Prioritarias
+                                </h2>
+                                <button class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium">
+                                    Ver todas <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto">
+                            <!-- Tarea 1 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200 group">
+                                <div class="flex items-start space-x-3">
+                                    <button class="mt-1 w-5 h-5 border-2 border-red-400 rounded-md hover:bg-red-400 transition-colors duration-200 flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-xs opacity-0 group-hover:opacity-100"></i>
+                                    </button>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-medium text-gray-800 dark:text-white truncate">
+                                            Completar presentación proyecto Q4
+                                        </h3>
+                                        <div class="flex items-center mt-1 space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-clock mr-1"></i>
+                                                Vence hoy 18:00
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-tag mr-1"></i>
+                                                Trabajo
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium task-priority-alta">
+                                        Alta
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Tarea 2 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200 group">
+                                <div class="flex items-start space-x-3">
+                                    <button class="mt-1 w-5 h-5 border-2 border-orange-400 rounded-md hover:bg-orange-400 transition-colors duration-200 flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-xs opacity-0 group-hover:opacity-100"></i>
+                                    </button>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-medium text-gray-800 dark:text-white truncate">
+                                            Revisar propuesta de cliente
+                                        </h3>
+                                        <div class="flex items-center mt-1 space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-clock mr-1"></i>
+                                                Mañana 10:00
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-tag mr-1"></i>
+                                                Reuniones
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium task-priority-media">
+                                        Media
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Tarea 3 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200 group">
+                                <div class="flex items-start space-x-3">
+                                    <button class="mt-1 w-5 h-5 border-2 border-green-400 rounded-md hover:bg-green-400 transition-colors duration-200 flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-xs opacity-0 group-hover:opacity-100"></i>
+                                    </button>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="text-sm font-medium text-gray-800 dark:text-white truncate">
+                                            Estudiar capítulo 5 - Marketing Digital
+                                        </h3>
+                                        <div class="flex items-center mt-1 space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-clock mr-1"></i>
+                                                Pasado mañana
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-tag mr-1"></i>
+                                                Estudios
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium task-priority-baja">
+                                        Baja
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agenda del Día -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center">
+                                    <i class="fas fa-calendar-day text-blue-500 mr-2"></i>
+                                    Agenda de Hoy
+                                </h2>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">
+                                    5 eventos
+                                </span>
+                            </div>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto">
+                            <!-- Evento 1 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                        <div class="w-px h-6 bg-gray-200 dark:bg-gray-600 mt-2"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-gray-800 dark:text-white">
+                                                Reunión de equipo
+                                            </h3>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">9:00 AM</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                            <i class="fas fa-video mr-1"></i>Sala de conferencias virtual
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Evento 2 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <div class="w-px h-6 bg-gray-200 dark:bg-gray-600 mt-2"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-gray-800 dark:text-white">
+                                                Sesión de gimnasio
+                                            </h3>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">12:00 PM</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                            <i class="fas fa-dumbbell mr-1"></i>Rutina de cardio y fuerza
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Evento 3 -->
+                            <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                        <div class="w-px h-6 bg-gray-200 dark:bg-gray-600 mt-2"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-gray-800 dark:text-white">
+                                                Presentación cliente
+                                            </h3>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">3:00 PM</span>
+                                        </div>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                            <i class="fas fa-presentation-screen mr-1"></i>Propuesta proyecto web
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Grid Secundario: Progreso y Recordatorios -->
+                <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Progreso Semanal -->
+                    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-white flex items-center">
+                                <i class="fas fa-chart-line text-green-500 mr-2"></i>
+                                Progreso Semanal
+                            </h2>
+                            <div class="flex space-x-2">
+                                <button class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">7d</button>
+                                <button class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full">30d</button>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico de barras simplificado -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400 font-medium">Productividad</span>
+                                <span class="text-gray-800 dark:text-white font-semibold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-1000 ease-out progress-bar" style="width: 0%"></div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400 font-medium">Tareas Completadas</span>
+                                <span class="text-gray-800 dark:text-white font-semibold">72%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-blue-400 to-cyan-500 h-3 rounded-full transition-all duration-1000 ease-out progress-bar" style="width: 0%"></div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600 dark:text-gray-400 font-medium">Proyectos en Tiempo</span>
+                                <span class="text-gray-800 dark:text-white font-semibold">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                                <div class="bg-gradient-to-r from-purple-400 to-pink-500 h-3 rounded-full transition-all duration-1000 ease-out progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas de la semana -->
+                        <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-green-600 dark:text-green-400">127</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Tareas Completadas</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">32.5h</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Tiempo Productivo</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">98%</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Eficiencia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recordatorios y Notas Rápidas -->
+                    <div class="space-y-6">
+                        <!-- Recordatorios Importantes -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+                            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-md font-semibold text-gray-800 dark:text-white flex items-center">
+                                    <i class="fas fa-bell text-yellow-500 mr-2"></i>
+                                    Recordatorios
+                                </h3>
+                            </div>
+                            <div class="p-4 space-y-3">
+                                <div class="flex items-center space-x-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                    <i class="fas fa-exclamation-circle text-yellow-600 dark:text-yellow-400"></i>
+                                    <div class="flex-1 text-sm">
+                                        <p class="text-gray-800 dark:text-white font-medium">Cita médica</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs">Mañana 10:30 AM</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                    <i class="fas fa-birthday-cake text-blue-600 dark:text-blue-400"></i>
+                                    <div class="flex-1 text-sm">
+                                        <p class="text-gray-800 dark:text-white font-medium">Cumpleaños Ana</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs">En 3 días</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                                    <i class="fas fa-file-invoice text-green-600 dark:text-green-400"></i>
+                                    <div class="flex-1 text-sm">
+                                        <p class="text-gray-800 dark:text-white font-medium">Pago servicios</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs">Vence el viernes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Acceso Rápido -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+                            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-md font-semibold text-gray-800 dark:text-white flex items-center">
+                                    <i class="fas fa-rocket text-purple-500 mr-2"></i>
+                                    Acceso Rápido
+                                </h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button class="flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg hover:shadow-md transition-all duration-300 border border-blue-200 dark:border-blue-800 group">
+                                        <i class="fas fa-plus-circle text-blue-600 dark:text-blue-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-medium text-blue-800 dark:text-blue-300">Nueva Tarea</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg hover:shadow-md transition-all duration-300 border border-green-200 dark:border-green-800 group">
+                                        <i class="fas fa-folder-plus text-green-600 dark:text-green-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-medium text-green-800 dark:text-green-300">Nuevo Proyecto</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg hover:shadow-md transition-all duration-300 border border-purple-200 dark:border-purple-800 group">
+                                        <i class="fas fa-calendar-plus text-purple-600 dark:text-purple-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-medium text-purple-800 dark:text-purple-300">Nuevo Evento</span>
+                                    </button>
+                                    <button class="flex flex-col items-center justify-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg hover:shadow-md transition-all duration-300 border border-orange-200 dark:border-orange-800 group">
+                                        <i class="fas fa-sticky-note text-orange-600 dark:text-orange-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-medium text-orange-800 dark:text-orange-300">Nota Rápida</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Motivación y Consejos del Día -->
+                <section class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl shadow-lg p-6 text-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black bg-opacity-10 rounded-xl"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="text-xl font-bold mb-2 flex items-center">
+                                    <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
+                                    Consejo del Día
+                                </h2>
+                                <p class="text-white/90 text-sm mb-4 max-w-2xl">
+                                    "La productividad no se trata de hacer más cosas, sino de hacer las cosas correctas de manera eficiente. Enfócate en tus prioridades y celebra cada pequeño logro."
+                                </p>
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-sm">
+                                        <i class="fas fa-fire text-orange-300 mr-2"></i>
+                                        <span>Racha de 12 días</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fas fa-trophy text-yellow-300 mr-2"></i>
+                                        <span>Nivel: Productivo Pro</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block">
+                                <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                    <i class="fas fa-chart-line text-4xl text-white/80"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Iniciar Sesión</h3>
+                <button id="closeLogin" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-2">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-envelope mr-2 text-blue-500"></i>Email
+                    </label>
+                    <input type="email" id="loginEmail" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" placeholder="tu@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-lock mr-2 text-blue-500"></i>Contraseña
+                    </label>
+                    <input type="password" id="loginPassword" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                </button>
+            </form>
+            <div class="text-center mt-4">
+                <span class="text-sm text-gray-600 dark:text-gray-400">¿No tienes una cuenta?</span>
+                <button id="switchToRegister" class="ml-1 text-sm text-blue-600 hover:text-blue-500 font-medium">
+                    Regístrate aquí
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Crear Cuenta</h3>
+                <button id="closeRegister" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-2">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="registerForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-user mr-2 text-green-500"></i>Nombre
+                    </label>
+                    <input type="text" id="registerName" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white" placeholder="Tu nombre">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-envelope mr-2 text-green-500"></i>Email
+                    </label>
+                    <input type="email" id="registerEmail" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white" placeholder="tu@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="fas fa-lock mr-2 text-green-500"></i>Contraseña
+                    </label>
+                    <input type="password" id="registerPassword" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300">
+                    <i class="fas fa-user-plus mr-2"></i>Crear Cuenta
+                </button>
+            </form>
+            <div class="text-center mt-4">
+                <span class="text-sm text-gray-600 dark:text-gray-400">¿Ya tienes una cuenta?</span>
+                <button id="switchToLogin" class="ml-1 text-sm text-blue-600 hover:text-blue-500 font-medium">
+                    Inicia sesión aquí
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar foto de perfil -->
+    <div id="avatarModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Cambiar foto de perfil</h3>
+                <button id="closeAvatarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <!-- Opciones de avatares -->
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 1" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 3" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 4" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300 flex items-center justify-center avatar-option" data-avatar="gradient">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                </div>
+            </div>
+            <!-- Botón para subir archivo personalizado -->
+            <button id="uploadCustomAvatar" class="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center">
+                <i class="fas fa-upload mr-2"></i>
+                Subir imagen personalizada
+            </button>
+            <!-- Botón de cerrar sesión -->
+            <button id="logoutBtn" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Cerrar Sesión
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal para Crear Tarea Rápida - Mejorado -->
+    <div id="quickTaskModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 w-full max-w-lg mx-4 transform scale-95 transition-all duration-300 shadow-2xl">
+            <!-- Header del Modal -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-plus text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Nueva Tarea</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Crea una tarea rápidamente</p>
+                    </div>
+                </div>
+                <button id="closeQuickTaskModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors duration-200 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Formulario Mejorado -->
+            <form id="quickTaskForm" class="space-y-6">
+                <!-- Título de la tarea -->
+                <div>
+                    <label for="taskTitle" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        ¿Qué necesitas hacer?
+                    </label>
+                    <input type="text" id="taskTitle" placeholder="Ej: Revisar documentos del proyecto..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200" required>
+                </div>
+
+                <!-- Configuración de prioridad y categoría -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="taskPriority" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Prioridad
+                        </label>
+                        <select id="taskPriority" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-200">
+                            <option value="baja">🟢 Baja</option>
+                            <option value="media" selected>🟡 Media</option>
+                            <option value="alta">🔴 Alta</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="taskCategory" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Categoría
+                        </label>
+                        <select id="taskCategory" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-200">
+                            <option value="personal">👤 Personal</option>
+                            <option value="trabajo">💼 Trabajo</option>
+                            <option value="estudios">📚 Estudios</option>
+                            <option value="salud">❤️ Salud</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Fecha límite opcional -->
+                <div>
+                    <label for="taskDueDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Fecha límite (opcional)
+                    </label>
+                    <input type="datetime-local" id="taskDueDate" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-200">
+                </div>
+
+                <!-- Descripción opcional -->
+                <div>
+                    <label for="taskDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Descripción (opcional)
+                    </label>
+                    <textarea id="taskDescription" rows="3" placeholder="Añade más detalles sobre esta tarea..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none transition-all duration-200"></textarea>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex space-x-3 pt-4">
+                    <button type="button" id="cancelQuickTask" class="flex-1 px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-200 font-medium">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-medium flex items-center justify-center space-x-2">
+                        <i class="fas fa-plus text-sm"></i>
+                        <span>Crear Tarea</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Notificaciones -->
+    <div id="notificationsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-md mx-4 transform scale-95 transition-all duration-300 shadow-2xl max-h-[90vh] flex flex-col">
+            <!-- Header del Modal -->
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-bell text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Notificaciones</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">3 nuevas notificaciones</p>
+                        </div>
+                    </div>
+                    <button id="closeNotificationsModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors duration-200 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lista de Notificaciones -->
+            <div class="flex-1 overflow-y-auto">
+                <!-- Notificación 1 -->
+                <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-sm font-medium text-gray-800 dark:text-white truncate">Nueva tarea asignada</h4>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Hace 5 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Se te ha asignado "Revisar documentos de marketing" con prioridad alta.</p>
+                            <div class="flex space-x-2">
+                                <button class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors">
+                                    Ver tarea
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificación 2 -->
+                <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-sm font-medium text-gray-800 dark:text-white truncate">Tarea completada</h4>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Hace 1 hora</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Has completado "Preparar presentación Q4". ¡Excelente trabajo!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificación 3 -->
+                <div class="p-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-sm font-medium text-gray-800 dark:text-white truncate">Recordatorio próximo</h4>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Hace 2 horas</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Tu cita médica es mañana a las 10:30 AM. No olvides confirmar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
+                <div class="flex space-x-3">
+                    <button class="flex-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                        Marcar todas como leídas
+                    </button>
+                    <button class="flex-1 text-sm bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-200">
+                        Ver todas
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input oculto para subir archivo -->
+    <input type="file" id="avatarFileInput" accept="image/*" class="hidden">
+
+    <script src="html/javascript/asidebar.js"></script>
+    <script src="html/javascript/home.js"></script>
+</body>
+</html>

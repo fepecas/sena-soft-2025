@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Mi Espacio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="html/css/asidebar.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-all duration-300">
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+    
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full gradient-bg-light dark:gradient-bg-dark text-white shadow-2xl">
+                <!-- Header del Sidebar -->
+                <div class="p-6 border-b border-white border-opacity-20 flex-shrink-0">
+                    <!-- Perfil del Usuario -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative group">
+                            <img id="userAvatar" 
+                                 src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" 
+                                 alt="Sophia" 
+                                 class="w-10 h-10 rounded-full border-2 border-white border-opacity-30 cursor-pointer hover:border-opacity-50 transition-all duration-300">
+                            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white pulse-dot"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-sm">Sophia</h3>
+                            <p class="text-xs text-white text-opacity-70">Mi Espacio</p>
+                        </div>
+                        <!-- Toggle modo oscuro -->
+                        <button id="darkModeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon">
+                            <i id="darkModeIcon" class="fas fa-moon text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navegación Principal -->
+                <nav class="flex-1 px-4 py-6 overflow-y-auto custom-scrollbar">
+                    <ul class="space-y-2">
+                        <li class="slide-in-left" style="animation-delay: 0.1s">
+                            <a href="home.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-home text-lg bounce-icon group-hover:text-yellow-300 w-5 text-center"></i>
+                                <span class="font-medium">Inicio</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.2s">
+                            <a href="calendario.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-calendar-alt text-lg bounce-icon group-hover:text-blue-300 w-5 text-center"></i>
+                                <span class="font-medium">Calendario</span>
+                                <div class="ml-auto">
+                                    <span class="bg-blue-500 text-xs px-2 py-1 rounded-full">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.3s">
+                            <a href="tareas.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-tasks text-lg bounce-icon group-hover:text-green-300 w-5 text-center"></i>
+                                <span class="font-medium">Tareas</span>
+                                <div class="ml-auto flex items-center space-x-2">
+                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full pulse-dot">2</span>
+                                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <i class="fas fa-chevron-right text-sm"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.4s">
+                            <a href="proyectos.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group active-link">
+                                <i class="fas fa-project-diagram text-lg bounce-icon group-hover:text-purple-300 w-5 text-center"></i>
+                                <span class="font-medium">Proyectos</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
+                        <li class="slide-in-left" style="animation-delay: 0.5s">
+                            <a href="progreso.html" class="sidebar-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 group">
+                                <i class="fas fa-cog text-lg bounce-icon group-hover:text-gray-300 w-5 text-center"></i>
+                                <span class="font-medium">Progreso</span>
+                                <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-chevron-right text-sm"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Sección de Estadísticas Rápidas -->
+                    <div class="mt-8 p-4 glass-effect dark:glass-effect-dark rounded-lg">
+                        <h4 class="text-sm font-semibold mb-3 text-white text-opacity-90">Resumen Rápido</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Tareas Completadas</span>
+                                <span class="text-sm font-semibold">60%</span>
+                            </div>
+                            <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Proyectos Activos</span>
+                                <span class="text-sm font-semibold">3</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-white text-opacity-70">Próximas Tareas</span>
+                                <span class="text-sm font-semibold">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Footer del Sidebar -->
+                <div class="p-4 border-t border-white border-opacity-20 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                        <button id="toggleSidebar" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon lg:hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Ayuda">
+                            <i class="fas fa-question-circle"></i>
+                        </button>
+                        <button class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all duration-300 bounce-icon" title="Cerrar sesión">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-h-0 lg:ml-0">
+            <!-- Header Principal -->
+            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 py-4 flex-shrink-0">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 bounce-icon">
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                        </button>
+                        <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Mis Proyectos</h1>
+                    </div>
+                    <button id="crearProyecto" class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md text-sm sm:text-base">
+                        <i class="fas fa-plus mr-1 sm:mr-2"></i>
+                        <span class="hidden sm:inline">Crear Proyecto</span>
+                        <span class="sm:hidden">Crear</span>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Contenido Principal -->
+            <main class="flex-1 overflow-y-auto p-4 sm:p-6">
+                <!-- Barra de búsqueda -->
+                <div class="mb-6">
+                    <div class="relative max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <input type="text" id="buscarProyecto" placeholder="Buscar proyectos" 
+                               class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <!-- Header de sección -->
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Proyectos</h2>
+                    <div class="flex items-center space-x-2">
+                        <button id="vistaGrid" class="p-2 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors duration-200">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button id="vistaLista" class="p-2 rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid de Proyectos -->
+                <div id="proyectosGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Los proyectos se generarán dinámicamente -->
+                </div>
+
+                <!-- Vista Lista (oculta por defecto) -->
+                <div id="proyectosLista" class="hidden space-y-4">
+                    <!-- Los proyectos en lista se generarán dinámicamente -->
+                </div>
+
+                <!-- Estado vacío -->
+                <div id="estadoVacio" class="hidden text-center py-12">
+                    <div class="mx-auto w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-project-diagram text-3xl text-gray-400 dark:text-gray-600"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No tienes proyectos aún</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-6">Crea tu primer proyecto para comenzar a organizar tu trabajo.</p>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-plus mr-2"></i>Crear Primer Proyecto
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modal para cambiar foto de perfil -->
+    <div id="avatarModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Cambiar foto de perfil</h3>
+                <button id="closeAvatarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <!-- Opciones de avatares -->
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Avatar 1" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Avatar 2" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Avatar 3" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar 4" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=80&h=80&fit=crop&crop=face" alt="Avatar 5" class="avatar-option w-20 h-20 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full cursor-pointer hover:ring-4 hover:ring-blue-500 transition-all duration-300 flex items-center justify-center avatar-option" data-avatar="gradient">
+                    <i class="fas fa-user text-white text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Crear/Editar Proyecto -->
+    <div id="modalProyecto" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="modalTitle" class="text-lg font-semibold text-gray-800 dark:text-white">Crear Nuevo Proyecto</h3>
+                <button id="cerrarModal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="formProyecto">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre del Proyecto</label>
+                        <input type="text" id="nombreProyecto" required
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Descripción</label>
+                        <textarea id="descripcionProyecto" rows="3"
+                                  class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Color del Proyecto</label>
+                        <div class="flex space-x-2">
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-blue-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="blue"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-purple-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="purple"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-green-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="green"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-red-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="red"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-yellow-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="yellow"></button>
+                            <button type="button" class="color-option w-8 h-8 rounded-full bg-pink-500 border-2 border-transparent hover:border-gray-400 transition-all duration-200" data-color="pink"></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-3 mt-6">
+                    <button type="submit" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors duration-200">
+                        <i class="fas fa-save mr-2"></i>Guardar
+                    </button>
+                    <button type="button" id="cancelarModal" class="flex-1 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg transition-colors duration-200">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Input oculto para subir archivo -->
+    <input type="file" id="avatarFileInput" accept="image/*" class="hidden">
+    
+    <script src="html/javascript/asidebar.js"></script>
+    <script src="html/javascript/proyectos.js"></script>
+</body>
+</html>
