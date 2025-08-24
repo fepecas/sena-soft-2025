@@ -38,7 +38,7 @@ Este repositorio concentra la documentación, diseño, prompts, prototipo y la d
 - 🎥 Video demo disponible para presentaciones iniciales.  
 
 🔗 **Prototipo en línea:** [InfoMultas Demo](https://v0-photo-ticket-app.vercel.app/infomultas)  
-🎥 **Video demo (YouTube):** [Ver aquí](https://youtube.com/)  
+🎥 **Video demo (YouTube):** [Ver aquí](https://youtu.be/o0nA_SnbJ0w)  
 
 ---
 
