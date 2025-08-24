@@ -1,8 +1,8 @@
 # 🌟 LUMINA – MVP (Prototipo Funcional)
 
-Bienvenido/a al repositorio de LUMINA, un tutor personal con Inteligencia Artificial diseñado para reducir la brecha educativa en jóvenes de zonas rurales y barrios urbanos de bajos ingresos.
+Bienvenido/a, aqui te presentamos a LUMINA, un tutor personal con Inteligencia Artificial diseñado para reducir la brecha educativa en jóvenes de zonas rurales y barrios urbanos de bajos ingresos.
 
-Este repositorio contiene el prototipo funcional, la documentación completa, los prompts utilizados y un video explicativo de la solución desarrollada en un periodo de 48 horas
+Aquí encontrarás el prototipo funcional, la documentación completa, los prompts utilizados y un video explicativo de la solución desarrollada en un periodo de 48 horas
 
 ---------------------------------------------------------------------------------
 
@@ -27,19 +27,19 @@ Este repositorio contiene el prototipo funcional, la documentación completa, lo
 
 - Prototipo Funcional
 
-    📂 [Ver Producto]()
+    📂 [Ver Producto](./producto/link_prototipo.txt)
 
     🌐 [Enlace Prototipo Interactivo](https://lumina-dnz.vercel.app/)
 
 - Video Explicativo
 
-    🎥 [Demo LUMINA]()
+    🎥 [Demo LUMINA](./video/link_videos.txt)
 
-    📜 [Guion del Video]()
+    📜 [Guion del Video](./video/guion_video.md)
 
 - Prompts Utilizados
 
-    📝 [Listado Completo]()
+    📝 [Listado Completo](./prompts/)
 
 ---------------------------------------------------------------------------------
 🛣️ Recorrido Recomendado
@@ -64,9 +64,9 @@ Este repositorio contiene el prototipo funcional, la documentación completa, lo
 
 👥 Equipo
 
-- Zharick Londoño Sánchez / Product Manager y Arquitecta de Prompts
-- Dan Justin Muñoz Navarro / Prompt Engineer y Technical leader
-- Nicolás Tamayo Jímenez / UX/UI Designer y Arquitecto de Prompts
+- Zharick Londoño Sánchez / Product Manager y Arquitecta de Prompts - PO/DESIGNER
+- Dan Justin Muñoz Navarro / Prompt Engineer y Technical leader DEV/QA
+- Nicolás Tamayo Jímenez / UX/UI Designer y Arquitecto de Prompts DEV/DESIGNER
 
 Rol: Desarrollo y conceptualización del MVP en 72h.
 Metodología: Prototipado rápido, diseño centrado en el usuario, validación de funcionalidades críticas.
