@@ -1,0 +1,12 @@
+# Entorno de ejecución (development, qa, production)
+NODE_ENV=development
+
+# Conexión a MongoDB Atlas
+# Reemplaza {user}, {password}, {hostname}, {db_name} con tus valores reales
+MONGO_URI=mongodb+srv://{user}:{password}@{hostname}.mongodb.net/{db_name}
+
+# Puerto en el que se levantará el servidor Express
+PORT={port}
+
+# Configuración opcional de CORS (puedes cambiarlo si quieres limitar orígenes)
+ALLOWED_ORIGINS=*
