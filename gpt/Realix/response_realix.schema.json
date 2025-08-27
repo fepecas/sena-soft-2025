@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de respuesta para Realix",
+  "type": "object",
+  "properties": {
+    "Identidad": {
+      "type": "object",
+      "properties": {
+        "nombre_aprendiz": { "type": "string" },
+        "perfil_inicial": { "type": "string", "description": "Breve descripción del nivel y contexto del aprendiz" },
+        "fecha_inicio": { "type": "string", "format": "date" },
+        "duracion_estimada": { "type": "string" }
+      },
+      "required": ["nombre_aprendiz", "perfil_inicial", "fecha_inicio"]
+    },
+    "PlanInicial": {
+      "type": "object",
+      "properties": {
+        "objetivo_general": { "type": "string" },
+        "habilidades_a_reforzar": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "estrategia_inicial": { "type": "string" }
+      },
+      "required": ["objetivo_general", "habilidades_a_reforzar"]
+    },
+    "Progreso": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "semana": { "type": "integer" },
+          "objetivo_semana": { "type": "string" },
+          "tareas_realizadas": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "habilidades_practicadas": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "dificultades": { "type": "string" },
+          "estado": { "type": "string", "enum": ["completado", "pendiente", "en_progreso"] }
+        },
+        "required": ["semana", "objetivo_semana", "tareas_realizadas", "estado"]
+      }
+    },
+    "ResultadoFinal": {
+      "type": "object",
+      "properties": {
+        "culminado": { "type": "boolean" },
+        "habilidades_adquiridas": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "debilidades_reforzadas": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "proyecto_realizado": { "type": "string", "description": "Descripción breve del entregable o práctica final" },
+        "comentarios_realix": { "type": "string" }
+      },
+      "required": ["culminado", "habilidades_adquiridas"]
+    },
+    "ReflexionAprendiz": {
+      "type": "object",
+      "properties": {
+        "auto_evaluacion": { "type": "string" },
+        "que_aprendio": { "type": "string" },
+        "proximos_pasos": { "type": "string" }
+      },
+      "required": ["auto_evaluacion", "que_aprendio"]
+    }
+  },
+  "required": ["Identidad", "PlanInicial", "Progreso", "ResultadoFinal"]
+}
