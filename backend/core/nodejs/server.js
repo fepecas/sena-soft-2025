@@ -4,6 +4,7 @@ require('dotenv').config({
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const metricsRouter = require('./routes/metrics');
 
 const app = express();
 
@@ -36,10 +37,7 @@ app.use(cors({
 }));
 
 /* ===== Conexión a MongoDB ===== */
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI, {})
 .then(() => console.log("✅ Conectado a MongoDB Atlas"))
 .catch(err => console.error("❌ Error de conexión:", err));
 
@@ -48,6 +46,9 @@ const metricSchema = new mongoose.Schema({}, { strict: false });
 const Metric = mongoose.model('metrics_scalar', metricSchema, 'metrics_scalar');
 
 /* ===== Endpoints ===== */
+
+// Router para /metrics (nuevos endpoints añadidos en routes/metrics.js)
+app.use('/metrics', metricsRouter);
 
 // GET /metrics/scalar  → JSON siempre, sin 304 y sin cache
 app.get('/metrics/scalar', async (req, res) => {
@@ -84,3 +85,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
