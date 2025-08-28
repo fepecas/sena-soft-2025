@@ -1,0 +1,70 @@
+[
+  {
+    "_id": "65a1b2c3d4e5f6a7b8c9d0e1",
+    "name": "María García",
+    "email": "maria.garcia@example.com",
+    "formation_center": "Centro de Automatización Industrial",
+    "formation_program": "Desarrollo de Software",
+    "department": "Bogotá D.C.",
+    "has_github": true,
+    "github_username": "mariagarcia-dev",
+    "english_level": "B1",
+    "recommended_instructors": ["Carlos Ruiz", "Ana Mendoza"],
+    "survey_completed": true,
+    "createdAt": "2023-08-15T10:30:00.000Z"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6a7b8c9d0e2",
+    "name": "Juan Pérez",
+    "email": "juan.perez@example.com",
+    "formation_center": "Centro de Formación Tecnológica de Antioquia",
+    "formation_program": "Mecánica Industrial",
+    "department": "Antioquia",
+    "has_github": false,
+    "english_level": "A2",
+    "recommended_instructors": ["Laura Díaz"],
+    "survey_completed": true,
+    "createdAt": "2023-08-16T14:45:00.000Z"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6a7b8c9d0e3",
+    "name": "Ana Rodríguez",
+    "email": "ana.rodriguez@example.com",
+    "formation_center": "Centro de Automatización Industrial",
+    "formation_program": "Desarrollo de Software",
+    "department": "Cundinamarca",
+    "has_github": true,
+    "github_username": "anarod-dev",
+    "english_level": "B2",
+    "recommended_instructors": ["Carlos Ruiz"],
+    "survey_completed": true,
+    "createdAt": "2023-08-17T09:15:00.000Z"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6a7b8c9d0e4",
+    "name": "Carlos López",
+    "email": "carlos.lopez@example.com",
+    "formation_center": "Centro Regional de Palmira",
+    "formation_program": "Electrónica",
+    "department": "Valle del Cauca",
+    "has_github": true,
+    "github_username": "carlos-electron",
+    "english_level": "B1",
+    "recommended_instructors": ["Marta Rojas"],
+    "survey_completed": false,
+    "createdAt": "2023-08-18T16:20:00.000Z"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6a7b8c9d0e5",
+    "name": "Laura Martínez",
+    "email": "laura.martinez@example.com",
+    "formation_center": "Centro de Formación Tecnológica de Antioquia",
+    "formation_program": "Diseño Gráfico",
+    "department": "Antioquia",
+    "has_github": false,
+    "english_level": null,
+    "recommended_instructors": ["Pedro Sánchez", "Laura Díaz"],
+    "survey_completed": true,
+    "createdAt": "2023-08-19T11:30:00.000Z"
+  }
+]

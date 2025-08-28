@@ -5,6 +5,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// ===== IMPORTAR NUEVAS RUTAS =====
+const learnersMetricsRoutes = require('./routes/learners-metrics');
+
 const app = express();
 
 /* ===== Hardening y headers ===== */
@@ -34,6 +37,9 @@ app.use(cors({
     }
   }
 }));
+
+// ===== REGISTRAR NUEVAS RUTAS =====
+app.use('/api/learners-metrics', learnersMetricsRoutes);
 
 /* ===== Conexión a MongoDB ===== */
 mongoose.connect(process.env.MONGO_URI, {
@@ -77,6 +83,25 @@ app.get('/health', (_req, res) => {
     .type('application/json; charset=utf-8')
     .set('Cache-Control', 'no-store')
     .json({ ok: true });
+});
+
+// ===== MANEJO DE ERRORES GLOBAL =====
+app.use((err, req, res, next) => {
+  console.error('Error no manejado:', err);
+  res.status(500).json({
+    success: false,
+    error: 'Error interno del servidor',
+    code: 'UNHANDLED_ERROR'
+  });
+});
+
+// ===== MANEJAR RUTAS NO ENCONTRADAS =====
+app.use('*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    error: 'Endpoint no encontrado',
+    code: 'ENDPOINT_NOT_FOUND'
+  });
 });
 
 /* ===== Iniciar servidor ===== */
