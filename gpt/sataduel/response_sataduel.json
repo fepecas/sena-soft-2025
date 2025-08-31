@@ -1,0 +1,19 @@
+{
+  "general": {
+    "nombre_usuario": "",
+    "nombre_personaje": "",
+    "resumen_personaje": "",
+    "nivel": 0
+  },
+  "caracteristicas": {
+    "arma_principal": 0,
+    "arma_secundaria": 0,
+    "habilidades": [],
+    "cabeza": 0,
+    "especie": 0,
+    "color_fisico": 0,
+    "vestimenta": 0,
+    "color_vestido": 0,
+    "personalidad": 0
+  }
+}
