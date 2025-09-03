@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guía rápida · 3 chats en ChatGPT (estilo oscuro)</title>
+<style>
+  :root {
+    --bg:#343541;
+    --panel:#202123;
+    --card:#2a2b32;
+    --muted:#a9a9b3;
+    --text:#e9e9ef;
+    --accent:#10a37f;
+    --accent-2:#1a7f64;
+    --border:#3a3b42;
+    --code:#1f2128;
+    --shadow: 0 6px 24px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.2);
+    --radius:16px;
+  }
+  html, body {
+    height: 100%;
+    background: radial-gradient(1200px 500px at 20% -10%, #3d3e49 10%, transparent 60%),
+                radial-gradient(1000px 400px at 120% -20%, #2f3140 10%, transparent 60%),
+                #2f3038;
+    margin: 0;
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", Cantarell, "Segoe UI Emoji";
+  }
+  .wrap {
+    max-width: 980px;
+    margin: 24px auto 96px;
+    padding: 0 18px;
+  }
+  header {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px;
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+  }
+  h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    letter-spacing: .2px;
+  }
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* responsive chips */
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .chip {
+    background: linear-gradient(180deg, #23242a, #1f2126);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 12px;
+    color: var(--muted);
+    font-size: 13px;
+    display: flex; align-items: center; gap: 8px;
+    min-height: 36px;
+  }
+  .chip b { color: var(--text); font-weight: 600; }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(16,163,127,.15); }
+  .tip {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .kicker {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .15em;
+    font-weight: 700;
+  }
+  h2 {
+    margin: 6px 0 8px;
+    font-size: 20px;
+  }
+  .lead {
+    color: var(--muted);
+    margin: 2px 0 14px;
+    font-size: 14px;
+  }
+
+  /* Vertical CTA buttons */
+  .cta-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 8px 0 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .btn {
+    appearance: none;
+    border: 1px solid var(--accent);
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+    color: #0b1412;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .06s ease, filter .15s ease;
+    text-align: center;
+  }
+  .btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--border);
+  }
+  .btn:active { transform: translateY(1px); }
+
+  .codewrap {
+    position: relative;
+    margin-top: 8px;
+  }
+  pre {
+    background: var(--code);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 380px; /* prevents card overflow */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  .steps {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 0;
+  }
+  .step {
+    display: grid; grid-template-columns: 36px 1fr; gap: 10px;
+    align-items: start;
+  }
+  .badge {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: grid; place-items: center; font-weight: 800;
+    background: linear-gradient(180deg, rgba(16,163,127,.18), rgba(16,163,127,.08));
+    border: 1px solid var(--border); color: var(--accent);
+  }
+  .step p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+
+  .sticky-footer{
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    width: min(980px, calc(100% - 24px));
+    display: grid; grid-template-columns: 1fr auto auto; gap: 8px;
+    background: rgba(32,33,35,.75); backdrop-filter: blur(8px);
+    border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px;
+    box-shadow: var(--shadow);
+  }
+  .sticky-footer .hint{ color: var(--muted); font-size: 13px; }
+  .btn.linkish{ background: transparent; border-color: var(--border); color: var(--text); }
+  a:any-link{ color: var(--accent); text-decoration: none; }
+  a:any-link:hover{ text-decoration: underline; }
+
+  @media (max-width: 760px){
+    .flow{ grid-template-columns: 1fr; }
+    .sticky-footer{ grid-template-columns: 1fr; row-gap: 10px; }
+    pre{ max-height: 300px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Tu guía de 3 chats en ChatGPT</h1>
+      <p class="subtitle">Copia y pega cada prompt en un chat nuevo. Trabaja en este orden: propuesta → stack → costos.</p>
+      <div class="flow">
+        <div class="chip"><span class="dot"></span><b>1. Propuesta (≈ 1 h)</b> — define alcance y preguntas para el cliente</div>
+        <div class="chip"><span class="dot"></span><b>2. Stack (≈ 1 h)</b> — decisiones técnicas simples y viables</div>
+        <div class="chip"><span class="dot"></span><b>3. Costos (≈ 45–60 min)</b> — fórmula + tabla pequeña</div>
+      </div>
+      <p class="tip">Sugerencia: abre <a href="https://chat.openai.com/" target="_blank" rel="noopener">ChatGPT</a> en 3 pestañas diferentes, una por cada prompt.</p>
+    </header>
+
+    <main class="grid">
+      <!-- Card 1: Propuesta -->
+      <section class="card" id="card1">
+        <div class="kicker">Prompt #1</div>
+        <h2>Plan por etapas → propuesta en 2 páginas</h2>
+        <p class="lead">Rol: <strong>consultor de proyectos</strong> para pequeñas empresas. Conversación encadenada con resúmenes parciales y cierre listo para propuestas.</p>
+
+        <div class="codewrap">
+          <button class="btn copy" data-copy="p1">Copiar</button>
+<pre id="p1">Actúa como un consultor de proyectos de software para pequeñas empresas.
+Quiero que guíes una conversación encadenada para construir un plan por etapas que luego pueda resumir en una propuesta de máximo 2 páginas para un cliente de bajo presupuesto.
+
+Dinámica de la conversación:
+1) Propón un esqueleto de fases (levantamiento de requerimientos, diseño básico, desarrollo, pruebas, entrega).
+2) En cada fase, hazme 2–4 preguntas clave para precisar alcance, riesgos y criterios de “hecho”.
+3) Tras cada ronda, entrega un resumen parcial de la fase (3–5 viñetas) con supuestos y límites.
+4) Cuando confirmemos todas las fases, genera un borrador listo para propuesta (máx. 2 páginas) con:
+   • Objetivo y problema a resolver (breve)
+   • Alcance por fases (bullets claros)
+   • Entregables y criterios de aceptación
+   • Supuestos y exclusiones (lo que NO incluye)
+   • Cronograma de alto nivel
+   • Próximos pasos y preguntas pendientes para el cliente
+
+Tono y formato: claro, sin jerga innecesaria, orientado a negocio; usa bullets y subtítulos para que quepa en 2 páginas.</pre>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="badge">1</div>
+            <div><strong>Primero trabaja este chat (~1 h).</strong> Te da el alcance, lista de preguntas y el texto base de la propuesta.</div>
+          </div>
+          <div class="step">
+            <div class="badge">2</div>
+            <p>Con el borrador, tendrás claridad para hablar con el cliente y validar supuestos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Stack -->
+      <section class="card" id="card2">
+        <div class="kicker">Prompt #2</div>
+        <h2>Elección de stack sencillo → tabla con pros y contras</h2>
+        <p class="lead">Rol: <strong>arquitecto pragmático</strong>. Soluciones fáciles de aprender, rápidas de implementar y baratas de mantener.</p>
+
+        <div class="codewrap">
+          <button class="btn copy" data-copy="p2">Copiar</button>
+<pre id="p2">Actúa como un arquitecto de software pragmático que prioriza simplicidad y bajo costo.
+Quiero una conversación encadenada para elegir un stack tecnológico muy sencillo para una app web de una empresa pequeña con poco presupuesto.
+
+Dinámica de la conversación:
+1) Propón 2–3 stacks básicos (lenguaje + framework + base de datos + hosting), pensando en aprendizaje rápido y despliegue barato.
+2) Para cada opción, pregunta lo mínimo (tipo de CRUD, usuarios simultáneos, necesidad de auth, reportes, integraciones).
+3) Ve descartando con mis respuestas y afina la opción ganadora (experiencia de desarrollo, hosting, backups, costo mensual estimado).
+4) Al final, genera una tabla comparativa con columnas: Stack, Pros, Contras, Costo aproximado, Dificultad de aprendizaje, Facilidad de despliegue.
+5) Cierra con una recomendación final (1–2 párrafos) explicando por qué esa opción es la mejor para este caso.
+
+Criterios:
+• Evita soluciones enterprise; prioriza “que funcione bien y rápido”.
+• Considera opciones gratuitas o free tier (DB/hosting) y documentación abundante.
+• Usa lenguaje directo y bullets.</pre>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="badge">1</div>
+            <div><strong>Haz este chat en segundo lugar (~1 h).</strong> Toma decisiones técnicas informadas y realistas.</div>
+          </div>
+          <div class="step">
+            <div class="badge">2</div>
+            <p>Guarda la tabla final: la usarás como anexo para el cliente.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: Costos -->
+      <section class="card" id="card3">
+        <div class="kicker">Prompt #3</div>
+        <h2>Fórmula simple de costos → tabla pequeña</h2>
+        <p class="lead">Rol: <strong>asesor financiero</strong> para proyectos pequeños, usando el alcance y el stack como contexto.</p>
+
+        <div class="codewrap">
+          <button class="btn copy" data-copy="p3">Copiar</button>
+<pre id="p3">Actúa como un asesor financiero de proyectos de software pequeños.
+Usaremos como contexto el alcance (del Chat #1) y el stack elegido (del Chat #2). Dirige una conversación encadenada para construir una estimación simple.
+
+Dinámica de la conversación:
+1) Pregunta si estimo por horas-hombre o por semanas de proyecto, y ayúdame a elegir el método.
+2) Define los parámetros: tarifa por hora o costo semanal, buffers (riesgo 10–20%), y supuestos (disponibilidad del cliente, iteraciones).
+3) Calcula el total y genera una tabla pequeña con columnas: Etapa, Tiempo estimado, Subtotal, Notas.
+4) Proporciona la fórmula final (legible) y un resumen corto (3–5 bullets) para anexar a la propuesta.
+
+Condición:
+• Mantén todo muy simple y listo para copy/paste en una propuesta de 2 páginas con anexos.
+• Si te comparto datos del cliente, ajusta la estimación y recalcula.</pre>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="badge">1</div>
+            <div><strong>Haz este chat al final (~45–60 min).</strong> Usa el alcance y el stack como insumos para los números.</div>
+          </div>
+          <div class="step">
+            <div class="badge">2</div>
+            <p>Exporta la tabla y la fórmula como anexo. Revisa que sea coherente con el alcance.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips -->
+      <section class="card">
+        <div class="kicker">Consejos rápidos</div>
+        <h2>Cómo sacar el máximo en 3 sesiones</h2>
+        <ul class="lead">
+          <li>Trabaja cada chat ~1 hora y confirma supuestos antes de avanzar.</li>
+          <li>Guarda el “borrador de propuesta”, la “tabla de stack” y la “tabla de costos” como anexos.</li>
+          <li>Si el cliente cambia alcance, vuelve al Chat #1, ajusta y repite el flujo.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+<script>
+  function copyById(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      flash('¡Copiado!');
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); ta.remove();
+      flash('¡Copiado!');
+    });
+  }
+  function flash(msg){
+    const b = document.createElement('div');
+    b.textContent = msg || 'Copiado';
+    b.style.position = 'fixed';
+    b.style.bottom = '24px';
+    b.style.left = '50%';
+    b.style.transform = 'translateX(-50%)';
+    b.style.background = 'rgba(16,163,127,.95)';
+    b.style.color = '#0b1412';
+    b.style.padding = '10px 14px';
+    b.style.borderRadius = '10px';
+    b.style.fontWeight = '800';
+    b.style.boxShadow = '0 6px 24px rgba(0,0,0,.25)';
+    b.style.zIndex = '9999';
+    document.body.appendChild(b);
+    setTimeout(()=>{ b.remove(); }, 1200);
+  }
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', e => copyById(e.currentTarget.getAttribute('data-copy')));
+  });
+</script>
+</body>
+</html>
