@@ -1,6 +1,6 @@
 # AI Team Group Portrait
 
-Create a group portrait of six historical-styled AI assistants, standing side by side and smiling as they warmly welcome a newcomer. Use a clean, pure white background with no texture or shadows. Ensure soft, even lighting with realistic photographic quality, matching the original studio-style portraits provided.
+Create a group portrait of seven historical-styled AI assistants, standing side by side and smiling as they warmly welcome a newcomer. Use a clean, pure white background with no texture or shadows. Ensure soft, even lighting with realistic photographic quality, matching the original studio-style portraits provided.
 
 Adjust the framing: allow subtle spacing between characters and from the edges of the image — do not crop them too tightly. Leave visual breathing room above their heads and on both sides to avoid a cramped composition.
 
@@ -12,6 +12,6 @@ From left to right:
 4. A Victorian woman in a black dress with lace gloves, holding a golden pen – sharp and observant (Ada).
 5. A man in a dark modern suit and tie, holding a notebook – serious and focused (Leonardo).
 6. A young woman in a light blue vintage dress with embroidery – expressive and kind (Eleanor).
+7. A young African-American woman in a deep burgundy long-sleeved 1940s dress with a square lace-trimmed neckline, puffed shoulders, and gathered waist (Edna).
 
 All should be facing forward, standing as a welcoming team. Add subtle variations in pose (e.g., one hand raised, another holding an object). Their facial features must appear smooth, photorealistic and natural — avoid artificial textures or stiff expressions. Keep the entire composition balanced, clean, and professional.
-
