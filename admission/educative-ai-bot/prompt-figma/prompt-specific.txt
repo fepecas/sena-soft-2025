@@ -1,0 +1,353 @@
+# Historial de Prompts - Aplicación "¿Y si agendamos un 5.0?"
+
+## Descripción General
+Documentación completa de todos los prompts utilizados para desarrollar la aplicación móvil educativa "¿Y si agendamos un 5.0?", una herramienta de gestión de tareas académicas con diseño estilo Trello dirigida a estudiantes de secundaria.
+
+---
+
+## Fase 1: Configuración Inicial y Concepto
+
+### Prompt 1: Definición del Proyecto
+```
+Crear una app móvil educativa llamada "¿Y si agendamos un 5.0?" dirigida a estudiantes de secundaria. 
+La app debe tener:
+- Diseño estilo Trello para organizar tareas académicas
+- Colores específicos: azul #3B82F6, verde #22C55E, naranja #F97316
+- Estilo juvenil, fresco y colorido con bordes redondeados, sombras suaves y efectos de glassmorphism
+- Siempre en modo claro
+- Diseño responsivo optimizado para móvil
+```
+
+### Prompt 2: Estructura de Pantallas Base
+```
+Para la aplicación "¿Y si agendamos un 5.0?", necesito implementar:
+1. Pantallas de onboarding atractivas para estudiantes
+2. Sistema de login con autenticación básica
+3. Dashboard principal con navegación
+4. Estructura base de componentes React con TypeScript
+5. Configuración inicial de estilos con Tailwind CSS
+```
+
+---
+
+## Fase 2: Pantallas de Entrada y Autenticación
+
+### Prompt 3: Pantalla de Onboarding
+```
+Crear una pantalla de onboarding para la app educativa con:
+- Diseño atractivo para estudiantes de secundaria
+- Mensaje motivacional sobre obtener mejores calificaciones
+- Gradientes de colores azul, verde y naranja
+- Elementos decorativos de fondo
+- Botón llamativo para comenzar
+- Efectos de glassmorphism y animaciones suaves
+```
+
+### Prompt 4: Sistema de Login
+```
+Implementar pantalla de login con:
+- Formulario de email y contraseña
+- Validación básica de credenciales
+- Diseño consistente con el onboarding
+- Navegación entre pantallas
+- Manejo de estado de autenticación
+- Botón de regreso al onboarding
+```
+
+---
+
+## Fase 3: Dashboard Principal y Navegación
+
+### Prompt 5: Dashboard con Layout Principal
+```
+Crear el dashboard principal que incluya:
+- Header con información del usuario y botones de acción
+- Layout responsivo con scroll vertical únicamente
+- Elementos decorativos de fondo con glassmorphism
+- Navegación inferior fija
+- Botón flotante para agregar tareas
+- Sistema de gestión de estado para las pantallas
+```
+
+### Prompt 6: Sistema de Navegación
+```
+Implementar navegación inferior con 3 pestañas específicas:
+1. 📅 Calendario - Vista de calendario global
+2. 📘 Materias - Gestión de asignaturas
+3. 🏆 Logros - Sistema de gamificación y achievements
+
+Cada pestaña debe tener su propia pantalla y estado visual activo.
+```
+
+---
+
+## Fase 4: Gestión de Tareas (Core Feature)
+
+### Prompt 7: Sistema de Tareas Estilo Trello
+```
+Implementar sistema de tareas organizadas en columnas:
+- Urgentes (rojo) - tareas del día actual o vencidas
+- Hoy (naranja) - tareas programadas para hoy
+- Próximas (azul) - tareas futuras
+- Tarjetas compactas y verticales (sin scroll horizontal)
+- Cada tarea con: título, materia, icono, fecha, prioridad
+- Funcionalidad de marcar como completada
+```
+
+### Prompt 8: Formulario de Agregar Tarea
+```
+Crear pantalla para agregar nuevas tareas con:
+- Campos: título, descripción, materia, fecha/hora, prioridad
+- Selector de materia con iconos específicos
+- Date picker para fechas
+- Validación de formularios
+- Lógica automática de asignación de prioridad según fecha
+- Navegación de regreso al dashboard
+```
+
+### Prompt 9: Pantalla de Detalle de Tarea
+```
+Implementar vista detallada de tarea individual con:
+- Información completa de la tarea
+- Botones de acción: marcar completa, editar, eliminar
+- Diseño atractivo con glassmorphism
+- Navegación fluida desde y hacia el dashboard
+- Integración con el sistema de micro-quiz post-completar
+```
+
+### Prompt 10: Funcionalidad de Edición de Tareas
+```
+Crear pantalla de edición de tareas existentes con:
+- Formulario precargado con datos de la tarea seleccionada
+- Todos los campos editables (título, descripción, materia, fecha)
+- Botón "Guardar cambios" en lugar de "Agregar tarea"
+- Navegación independiente del flujo de agregar tareas
+- Actualización automática de prioridad según nueva fecha
+```
+
+---
+
+## Fase 5: Calendario Interactivo
+
+### Prompt 11: Calendario Semanal
+```
+Implementar calendario semanal interactivo en el dashboard:
+- Vista de 7 días con navegación entre semanas
+- Indicadores visuales de tareas por día
+- Selección de día específico para filtrar tareas
+- Integración con la lista de tareas vertical
+- Botón para abrir calendario global completo
+```
+
+### Prompt 12: Calendario Global
+```
+Crear pantalla de calendario mensual completo con:
+- Vista mensual con navegación entre meses
+- Indicadores de tareas por día con diferentes colores
+- Lista de tareas del día seleccionado
+- Funcionalidad de click en tareas para ver detalles
+- Navegación de regreso al dashboard
+```
+
+### Prompt 13: Filtrado por Fecha
+```
+Implementar sistema de filtrado de tareas por fecha seleccionada:
+- Mostrar solo tareas del día seleccionado en el calendario
+- Indicador visual del filtro activo
+- Botón para mostrar todas las tareas nuevamente
+- Mensaje informativo cuando no hay tareas para el día seleccionado
+- Contador de tareas por día
+```
+
+---
+
+## Fase 6: Sistema de Materias
+
+### Prompt 14: Gestión de Materias
+```
+Crear pantalla de gestión de materias académicas con:
+- Grid de tarjetas de materias con iconos específicos
+- Contador de tareas pendientes por materia
+- Colores diferenciados para cada materia
+- Funcionalidad para agregar nuevas materias
+- Modal con formulario de nueva materia
+- Materias predefinidas: Matemáticas, Química, Historia, Literatura, Física, Inglés, Arte, Biología
+```
+
+---
+
+## Fase 7: Gamificación y Logros
+
+### Prompt 15: Sistema de Achievements
+```
+Implementar pantalla de logros y gamificación con:
+- Racha actual de días completando tareas
+- Total de tareas completadas
+- Progreso hacia meta semanal
+- Badges y logros desbloqueados
+- Estadísticas motivacionales
+- Diseño atractivo y colorido para estudiantes
+```
+
+---
+
+## Fase 8: Funcionalidades Avanzadas
+
+### Prompt 16: Micro-Quiz Post-Completar
+```
+Crear sistema de micro-quiz que aparece después de completar una tarea:
+- Pregunta reflexiva sobre lo aprendido
+- Campo de respuesta libre
+- Diseño motivacional con congratulaciones
+- Integración con el flujo de completar tareas
+- Navegación de regreso al dashboard después de responder
+```
+
+### Prompt 17: Sistema de Recordatorios
+```
+Implementar recordatorios inteligentes con:
+- Modal overlay que aparece para tareas próximas
+- Información de la tarea y tiempo restante
+- Opciones: "Empezar ahora" o "Recordar después"
+- Integración con notificaciones (simuladas)
+- Contador de recordatorios pendientes en el header
+```
+
+### Prompt 18: Perfil de Usuario
+```
+Crear pantalla de perfil con:
+- Información básica del usuario (email extraído del login)
+- Estadísticas personales de productividad
+- Opciones de configuración
+- Botón de editar perfil (funcionalidad futura)
+- Navegación desde el header del dashboard
+```
+
+---
+
+## Fase 9: Optimizaciones y Refinamientos
+
+### Prompt 19: Lista Vertical de Tareas
+```
+Refactorizar la vista de tareas para mostrar todas en una lista vertical única:
+- Eliminar scroll horizontal
+- Tarjetas compactas apiladas verticalmente
+- Separación visual por prioridad manteniendo el código de colores
+- Mejor aprovechamiento del espacio en móvil
+- Integración con el filtrado por fecha
+```
+
+### Prompt 20: Estadísticas del Dashboard
+```
+Agregar tarjetas de estadísticas rápidas en el dashboard:
+- Contador de tareas urgentes (rojo)
+- Contador de tareas para hoy (naranja)  
+- Contador de tareas próximas (azul)
+- Diseño con glassmorphism consistent con la app
+- Ubicación prominente entre calendario y lista de tareas
+```
+
+### Prompt 21: Mejoras de UX
+```
+Implementar mejoras de experiencia de usuario:
+- Botón de logout en el header
+- Navegación fluida entre todas las pantallas
+- Estados de carga y transiciones suaves
+- Validación de formularios mejorada
+- Manejo de errores y casos edge
+- Accesibilidad mejorada con labels y descriptions
+```
+
+---
+
+## Fase 10: Correcciones y Pulido Final
+
+### Prompt 22: Corrección de Errores de Compilación
+```
+Solucionar errores de compilación en App.tsx:
+- Eliminar funciones duplicadas
+- Consolidar la lógica de navegación
+- Limpiar imports no utilizados
+- Verificar consistencia en el manejo de estado
+- Optimizar el flujo de datos entre componentes
+```
+
+### Prompt 23: Correcciones de Accesibilidad
+```
+Solucionar warnings de accesibilidad:
+- Agregar DialogDescription al modal de materias en SubjectsScreen.tsx
+- Verificar que todos los elementos interactivos tengan labels apropiados
+- Mejorar contraste de colores donde sea necesario
+- Asegurar navegación por teclado funcional
+```
+
+### Prompt 24: Integración de Flujos
+```
+Perfeccionar la integración entre funcionalidades:
+- Flujo completo: agregar tarea → completar → micro-quiz → dashboard
+- Flujo de edición: seleccionar tarea → editar → guardar → dashboard
+- Navegación consistente en todas las pantallas
+- Estado compartido entre componentes optimizado
+```
+
+---
+
+## Notas Técnicas de Implementación
+
+### Colores Utilizados
+- Azul principal: `#3B82F6`
+- Verde de éxito: `#22C55E`  
+- Naranja de alerta: `#F97316`
+- Rojo para urgente: `#EF4444`
+
+### Iconos de Materias
+- Matemáticas: `📘`
+- Química: `🧪`
+- Historia: `📜`
+- Literatura: `📖`
+- Física: `⚡`
+- Inglés: `🗣️`
+- Arte: `🎨`
+- Biología: `🌱`
+
+### Estructura de Datos de Tareas
+```typescript
+interface Task {
+  id: string
+  title: string
+  subject: string
+  subjectIcon: string
+  dueTime: string
+  dueDate: Date
+  priority: 'urgent' | 'today' | 'upcoming'
+  isStarred?: boolean
+  description: string
+}
+```
+
+### Pantallas Implementadas
+1. OnboardingScreen - Introducción y bienvenida
+2. LoginScreen - Autenticación de usuario
+3. Dashboard - Pantalla principal con calendario y tareas
+4. AddTaskScreen - Formulario para nuevas tareas
+5. EditTaskScreen - Formulario para editar tareas existentes
+6. TaskDetailScreen - Vista detallada de tarea individual
+7. SubjectsScreen - Gestión de materias académicas
+8. GlobalCalendarScreen - Calendario mensual completo
+9. AchievementsScreen - Logros y gamificación
+10. ProfileScreen - Perfil de usuario
+11. SmartReminderScreen - Sistema de recordatorios
+12. MicroQuizScreen - Quiz post-completar tarea
+
+---
+
+## Próximas Funcionalidades Sugeridas
+- Integración con Supabase para persistencia de datos
+- Notificaciones push reales
+- Sincronización entre dispositivos
+- Estadísticas avanzadas y analytics
+- Sistema de metas y objetivos personalizables
+- Colaboración entre estudiantes
+- Integración con calendarios externos
+- Modo oscuro
+- Exportación de datos académicos
