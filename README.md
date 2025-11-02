@@ -1,43 +1,148 @@
-![Framework de Programación Competitiva](https://github.com/fepecas/senasoft/blob/main/diagram02.png?raw=true)
-[Sigue este enlace para ver el diagrama en Draw.io](https://drive.google.com/file/d/18TtAmJ8J3JPOQkRFg85l-nEeobs-Hc27/view?usp=sharing)
 
-## 🔍 Solution Overview
+# 🚀 Reto Leonardo: Nuevas Métricas para SENASoft (Equipo Three Amigos)
 
-#### 📂 [admission/](admission/)
+Este proyecto extiende el backend de métricas existente para el asistente de IA **Leonardo**, transformándolo en un **Analista de Datos Multifacético** capaz de responder preguntas estratégicas sobre el perfil de los aprendices inscritos.
 
-Materials for the admission process, including forms and informational sections.
+## 🎯 Enfoque Estratégico del Reto
 
-- [`form/`](admission/form/): forms used in the admission process.
-- [`memes/`](admission/memes/): funny images related to the competition.
+El enfoque principal fue la **Maestría del Proceso** y la **Eficiencia Arquitectónica**:
 
-#### 📁 [community/](community/)
+1.  **Diseño de Datos Único:** Crear una estructura de datos (colección `aprendices` optimizada) que soporte las 6 métricas requeridas.
+2.  **Eficiencia de Integración:** Reutilizar y enriquecer el endpoint existente **`/metrics/scalar`** para evitar la creación de múltiples *Actions* en Leonardo, minimizando la latencia.
+3.  **Fidelidad IA:** Asegurar, mediante un *Prompt* preciso, que Leonardo interprete correctamente el *payload* de datos complejo.
 
-Resources for the community, shaping the look and feel of virtual spaces.
 
-- [`github/`](community/github/): this platform will be used as a learning lab.
-- [`meet/`](community/meet/): live streaming.
-- [`spotify/`](community/spotify/): all the assets related to "Bitácora Sintética".
-- [`suno/`](community/meet/): this AI was used to cread the opening theme for the podcast.
-- [`whatsapp/`](community/whatsapp/): WhatsApp groups and resources.
+-----
 
-#### 📁 [gpt/](gpt/)
+## 👥 Roles, Contribución y Sinergia del Equipo
 
-AI assistants and materials related to the Synthetic Team.
+La división del trabajo fue estratégica, cubriendo las tres áreas clave del reto: Base de Datos, Backend, y la Integración con IA.
 
-- [`ada/`](gpt/ada/): advice about the tech stack used by the teams.
-- [`alan/`](gpt/alan/): synthetic jury that evaluates tech requirements.
-- [`eleanor/`](gpt/eleanor/): advice about presenting the MVP in the AI Arena.
-- [`leonardo/`](gpt/leonardo/): answers frequent questions from participants.
-- [`magnus/`](gpt/magnus/): profiles the social and technical skills of participants.
-- [`quiliano/`](gpt/quiliano/): guides the ideation of AI-powered products.
+| Integrante | Rol Principal para el Reto | Contribución Específica | Archivos/Componentes Clave |
+| :--- | :--- | :--- | :--- |
+| **Anderson Jair Romero Afanador** | Arquitecto de Datos & Backend Core | Diseñó las colecciones e implementó la **lógica de agregación (MongoDB queries)** para calcular las métricas. Desarrollo de *Models* y rutas principales. | `backend/core/nodejs/`, `database/collection/` |
+| **Maryamm Andrea Piza Moncada** | Integración AI & QA (Backend Soporte) | Optimizó el *Prompt* (`instructions_leonardo_updated.md`) para la interpretación de la IA. Ayudó en la definición y prueba de las rutas del servidor. | `gpt/leonardo/` y archivos de *rutas* en `backend/core/nodejs/` |
+| **Samuel Gomez Gomez** | Líder de Producto & Validación de Métricas | Aseguró que las 6 preguntas estratégicas fueran cubiertas. Preparó este **`README.md`** y ayudó en la configuración inicial del servidor y el *testing* final. | `README.md`, Testing de métricas y `server.js` |
 
-#### 📁 [roadmap/](roadmap/)
+-----
+## 📁 Estructura del Repositorio
 
-This folder contains everything used to create the illustrated roadmap for the competition.
+El proyecto está organizado en tres directorios principales, reflejando las capas de **Integración AI (`gpt`)**, **Datos (`database`)** y **Lógica del Servidor (`backend`)**.
 
-- [`assets/`](roadmap/assets/): graphic elements added layer by layer.
-- [`deck/`](roadmap/deck/): assets used in the presentation deck.
-- [`layers/`](roadmap/layers/): prompts and intermediate images organized by generation.
-- [`reference/`](roadmap/reference/): [sketches and reference photos](roadmap/reference/photo_whiteboard_step6.jpg).
-- [`tests/`](roadmap/tests/): initial conceptual tests.
-- [`video/`](roadmap/video/): assets used in the offline-recording.
+```tree
+.
+├── gpt/leonardo/
+│   ├── openai.action.schema.json
+│   ├── instructions_leonardo_updated.md  # Instrucciones actualizadas para la IA.
+│   └── (avatares y knowledge existentes)
+│
+├── database/collection/
+│   ├── metrics_scalar.csv             # Archivo de métricas escalares (Existente)
+│   ├── metrics_scalar.js              # Script de siembra de métricas (Existente)
+│   ├── aprendices_sample.js           # Datos de muestra: Colección Aprendices (Solución Reto)
+│   ├── centros_sample.js              # Datos de muestra: Colección Centros de Formación
+│   ├── programas_sample.js            # Datos de muestra: Colección Programas
+│   └── instructores_sample.js         # Datos de muestra: Colección Instructores
+│
+└── backend/core/nodejs/
+    ├── package.json
+    ├── server.js                 # Servidor principal (Express)
+    ├── models/                   # Definición de Schemas (Mongoose/MongoDB)
+    │   ├── Aprendiz.js
+    │   ├── Centro.js
+    │   ├── Instructor.js
+    │   └── Programa.js
+    ├── routes/                   # Endpoints de la API
+    │   ├── leonardo.js           # 🔑 Endpoints para Leonardo (/metrics/scalar)
+    │   ├── aprendices.js
+    │   ├── centros.js
+    │   ├── instructores.js
+    │   └── metricas.js
+    └── scripts/
+        └── seedData.js           # Script de siembra de datos de ejemplo
+```
+-----
+
+## 📦 1. Detalle de los Entregables Técnicos
+
+### 1.1. Diseño de la Base de Datos (MongoDB)
+
+Se implementó una estructura normalizada con una colección central (`aprendices`) y colecciones de soporte (`centros`, `programas`, `instructores`). La colección `aprendices` incluye **índices compuestos** que optimizan las consultas multi-dimensión (ej: `centro` + `programa` + `estado`).
+
+**Archivos Entregados:** **Scripts de siembra** en `database/collection/*.js` (con **2,000+ registros de prueba**).
+
+### 1.2. Implementación del Backend (Node.js)
+
+Se agregó la lógica de **MongoDB Aggregation Pipeline** al controlador. La clave es que todas las 6 consultas son calculadas y añadidas al *payload* de la ruta existente:
+
+  * **Ruta Afectada:** `/metrics/scalar` (en `routes/leonardo.js`)
+  * **Lógica:** La función del endpoint ahora ejecuta las consultas de agregación (`$group`, `$match`, `$lookup`) para generar las 6 métricas a la vez, garantizando una **única y eficiente llamada** desde la IA.
+
+**Archivos Entregados:** Estructura completa en `backend/core/nodejs/`.
+
+### 1.3. Ajuste de Leonardo (GPT Action)
+
+  * **`openai.action.schema.json`:** **No se modificó.** El action existente (`getScalarData`) fue reutilizado, apuntando al *payload* enriquecido.
+  * **`instructions_leonardo_updated.md`:** Se actualizó la instrucción para que Leonardo **interprete y extraiga** las 6 nuevas métricas del *array* de respuesta de `/metrics/scalar`.
+
+**Archivos Entregados:** `gpt/leonardo/`.
+
+-----
+
+## 💾 2. Instrucciones de Carga y Prueba
+
+### 2.1. Carga de Datos de Ejemplo
+
+1.  Asegúrate de que el servidor Express y MongoDB estén instalados (`npm install` en `backend/core/nodejs`).
+2.  Ejecuta el script de siembra de datos desde el directorio `backend/core/nodejs`:
+    ```bash
+    node scripts/seedData.js
+    ```
+3.  Inicia el servidor Express:
+    ```bash
+    npm start
+    ```
+
+### 2.2. Verificación y URL del Despliegue
+
+El backend fue desplegado en Render y es el que debe ser configurado en el **Leonardo Action**.
+
+**URL Pública del Servicio (Render):**
+$$\text{[https://senasoft-leonardo-metrics.onrender.com](https://senasoft-leonardo-metrics.onrender.com)}$$
+
+**Prueba Directa del Endpoint:**
+Para verificar el *payload* con las 6 métricas, consulta:
+$$\text{[https://senasoft-leonardo-metrics.onrender.com/metrics/scalar](https://senasoft-leonardo-metrics.onrender.com/metrics/scalar)}$$
+
+<img width="1013" height="727" alt="image" src="https://github.com/user-attachments/assets/32ebad91-17d0-46be-8dc5-6bb0427c2104" />
+
+
+-----
+
+## ✅ 3. Criterio de Resolución del Reto
+
+El reto se considera **resuelto** cuando, después de la configuración de la Action y el Prompt, Leonardo pueda responder **fielmente** y con datos a las siguientes 6 preguntas:
+
+1.  **"¿Cuál es la cantidad de aprendices inscritos por cada centro de formación?"**
+2.  **"¿Qué instructores han sido recomendados por los aprendices inscritos y en qué centros?"**
+3.  **"Dame la cantidad de aprendices inscritos por centro y por programa de formación."**
+4.  **"¿Cuántos aprendices tengo por departamento de residencia en Colombia?"**
+5.  **"¿Cuántos aprendices reportan tener un usuario de GitHub?"**
+6.  **"Dime la cantidad de aprendices con nivel de inglés B1 o B2 en cada centro de formación."**
+
+-----
+# 🚀 Reto Leonardo: Nuevas Métricas para SENASoft (Equipo Three Amigos)
+
+Este proyecto extiende el backend de métricas existente para el asistente de IA **Leonardo**, transformándolo en un **Analista de Datos Multifacético** capaz de responder preguntas estratégicas sobre el perfil de los aprendices inscritos.
+
+## 🎯 Enfoque Estratégico del Reto
+
+El enfoque principal fue la **Maestría del Proceso** y la **Eficiencia Arquitectónica**:
+
+1.  **Diseño de Datos Único:** Crear una estructura de datos (colección `aprendices` optimizada) que soporte las 6 métricas requeridas.
+2.  **Eficiencia de Integración:** Reutilizar y enriquecer el endpoint existente **`/metrics/scalar`** para evitar la creación de múltiples *Actions* en Leonardo, minimizando la latencia.
+3.  **Fidelidad IA:** Asegurar, mediante un *Prompt* preciso, que Leonardo interprete correctamente el *payload* de datos complejo.
+
+-----
+
+**¡El Equipo Three Amigos declara el reto completado\!**

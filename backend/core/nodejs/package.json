@@ -1,26 +1,26 @@
 {
-  "name": "nodejs",
-  "version": "1.0.0",
+  "name": "reto_err_leonrd",
+  "version": "2.0.0",
   "main": "server.js",
-  "keywords": [],
-  "author": "",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node scripts/seedData.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SENASOFT Team",
   "license": "ISC",
-  "description": "",
+  "description": "Backend para el reto SENASOFT - Sistema de métricas educativas para Leonardo GPT",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "mongoose": "^8.17.2"
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0"
   },
   "devDependencies": {
-    "cross-env": "^10.0.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.0.2"
   },
-  "scripts": {
-  "start": "node server.js",
-  "dev": "cross-env NODE_ENV=development nodemon server.js",
-  "qa": "cross-env NODE_ENV=qa nodemon server.js",
-  "prod": "cross-env NODE_ENV=production node server.js",
-  "test": "echo \"Error: no test specified\" && exit 0"
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

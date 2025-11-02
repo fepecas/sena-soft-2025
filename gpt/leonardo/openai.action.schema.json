@@ -1,0 +1,102 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SENASoft Metrics API v2.0",
+    "version": "2.0.0",
+    "description": "API de métricas SENASoft 2025 para Leonardo GPT - Responde las 6 preguntas del reto"
+  },
+  "servers": [
+    {
+      "url": "https://senasoft-leonardo-metrics.onrender.com",
+      "description": "Servidor de producción - Three Amigos Team"
+    }
+  ],
+  "paths": {
+    "/metrics/scalar": {
+      "get": {
+        "operationId": "getScalarData",
+        "summary": "Obtener métricas escalares completas de SENASoft",
+        "description": "Retorna métricas que responden las 6 preguntas del reto: aprendices por centro, instructores recomendados, centro+programa, departamentos, GitHub, inglés B1/B2",
+        "responses": {
+          "200": {
+            "description": "Lista de métricas escalares",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "Descripción de la métrica"
+                      },
+                      "value": {
+                        "oneOf": [
+                          {"type": "number"},
+                          {"type": "string"}
+                        ],
+                        "description": "Valor numérico o porcentual"
+                      }
+                    },
+                    "required": ["description", "value"],
+                    "additionalProperties": true
+                  }
+                },
+                "examples": {
+                  "metricas_completas": {
+                    "summary": "Ejemplo completo de métricas",
+                    "value": [
+                      {"description": "# Aprendices inscritos únicos", "value": 1900},
+                      {"description": "# Aprendices Centro Medellín", "value": 190},
+                      {"description": "# Instructor recomendado: Carlos Rodríguez", "value": 5},
+                      {"description": "# Desarrollo Software en Medellín", "value": 45},
+                      {"description": "# Aprendices Antioquia", "value": 280},
+                      {"description": "# Aprendices con GitHub", "value": 760},
+                      {"description": "# Inglés B1/B2 Centro Medellín", "value": 28}
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error del servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "healthCheck",
+        "summary": "Verificar estado del servidor",
+        "responses": {
+          "200": {
+            "description": "Servidor funcionando",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {"type": "boolean"},
+                    "timestamp": {"type": "string"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
