@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "BudgetsActionsPermissionSet",
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachUserPolicy",
+        "iam:DetachUserPolicy",
+        "iam:ListAttachedUserPolicies",
+        "iam:GetUser",
+        "iam:ListUsers"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
