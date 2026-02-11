@@ -1,0 +1,391 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "main_idea": {
+          "type": "string"
+        },
+        "project_time":{
+          "type": "string",
+          "format": "date-time"
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "current_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "current_blocks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "skills": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "skills",
+              "role"
+            ]
+          }
+        },
+        "product_backlog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product_backlog_id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "acceptance_criteria": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "acceptance_criteria_id": {
+                      "type": "string"
+                    },
+                    "acceptance_criteria_description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "integer",
+                    "string"
+                  ]
+                }
+              },
+              "estimate_points": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "todo",
+                  "in_progress",
+                  "done",
+                  "blocked"
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "assignee": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "product_backlog_id",
+              "title",
+              "description",
+              "value",
+              "acceptance_criteria",
+              "estimate_points",
+              "status"
+            ]
+          }
+        },
+        "sprints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sprint_id": {
+                "type": "integer"
+              },
+              "goal": {
+                "type": "string"
+              },
+              "sprint_backlog": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sprint_backlog_id": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "dependencies": {
+                      "product_backlog_id": {
+                        "type": "integer"
+                      }
+                    },
+                    "tasks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "estimate_hours": {
+                            "type": "number",
+                            "description": "Estimación en horas (número)"
+                          },
+                          "assignee": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "todo",
+                              "in_progress",
+                              "done",
+                              "blocked"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "desc",
+                          "estimate_hours",
+                          "status"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "time_needed": {
+                "type": "string",
+                "pattern": "^[0-9]+(s|m|h|d)$"
+              },
+              "actions": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sprint_id",
+              "priority",
+              "time_needed",
+              "actions",
+              "sprint_backlog"
+            ]
+          }
+        },
+        "sprint_length": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Cantidad en la unidad seleccionada (por ejemplo 3)"
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "hours",
+                "days"
+              ],
+              "description": "Unidad para 'value' (hours o days)"
+            }
+          },
+          "description": "Duración estándar del sprint expresada en horas o días",
+          "default": {
+            "value": 3,
+            "unit": "days"
+          }
+        },
+        "meetings": {
+          "type": "object",
+          "properties": {
+            "daily_minutes": {
+              "type": "integer",
+              "description": "Duración típica del Daily en minutos"
+            },
+            "planning_minutes": {
+              "type": "integer",
+              "description": "Duración estimada del Sprint Planning en minutos"
+            },
+            "review_minutes": {
+              "type": "integer",
+              "description": "Duración estimada del Sprint Review en minutos"
+            },
+            "retro_minutes": {
+              "type": "integer",
+              "description": "Duración estimada de la Retrospective en minutos"
+            }
+          }
+        },
+        "refinement": {
+          "type": "object",
+          "properties": {
+            "percent_of_sprint": {
+              "type": "number",
+              "description": "Porcentaje del sprint para refinement, ej. 3-7"
+            },
+            "sessions_per_sprint": {
+              "type": "integer",
+              "description": "Número de sesiones de refinement por sprint"
+            }
+          }
+        },
+        "retrospective_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action_id": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "string"
+              },
+              "due_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "todo",
+                  "in_progress",
+                  "done",
+                  "blocked"
+                ]
+              }
+            }
+          },
+          "description": "Acciones acordadas en las retrospectivas para seguimiento"
+        },
+        "past_sprints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sprint_id": {
+                "type": "integer"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "committed_points": {
+                "type": "integer"
+              },
+              "completed_points": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "impediments_log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "impediment_id": {
+                "type": "string"
+              },
+              "date_reported": {
+                "type": "string",
+                "format": "date"
+              },
+              "description": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "critical"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "investigating",
+                  "resolved"
+                ]
+              },
+              "resolved_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "main_idea",
+        "status",
+        "objectives",
+        "participants",
+        "sprints"
+      ]
+    }
+  },
+  "required": [
+    "project"
+  ]
+}
