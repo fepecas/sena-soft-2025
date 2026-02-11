@@ -1,3 +1,11 @@
+// DEPRECATED - This file is no longer used
+// The project now uses a backend deployed on AWS
+// See: backend/core/nodejs/ for current implementation
+// See: backend/core/nodejs/openai.action.schema.json for endpoints
+
+// HISTORICAL FILE - DO NOT DELETE
+// Keep as reference for original data format
+
 // Seleccionar (o crear) la base
 use("senasoft");
 

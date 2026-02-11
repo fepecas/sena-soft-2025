@@ -31,6 +31,17 @@ AI assistants and materials related to the Synthetic Team.
 - [`magnus/`](gpt/magnus/): profiles the social and technical skills of participants.
 - [`quiliano/`](gpt/quiliano/): guides the ideation of AI-powered products.
 
+## 🤖 AI Assistants & Metrics
+
+### Leonardo - SENASoft Assistant
+- Enhanced with comprehensive metrics capabilities
+- 8 specialized endpoints for apprentice data
+- Challenge #67 implementation complete
+
+**Quick Links:**
+- [Leonardo Metrics Changelog](CHANGELOG_LEONARDO_METRICS.md)
+- [Backend Repository](https://github.com/AlexanderIglesias/leonardo-backend)
+
 #### 📁 [roadmap/](roadmap/)
 
 This folder contains everything used to create the illustrated roadmap for the competition.
