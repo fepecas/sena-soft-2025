@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>SENA Soft 2025 – Evaluación Fase 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #0f766e; /* teal-700 */
+      --accent: #22c55e;  /* green-500 */
+      --text: #0f172a;    /* slate-900 */
+      --muted: #475569;   /* slate-600 */
+      --border: #e2e8f0;  /* slate-200 */
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      margin: 0; padding: 0;
+      background: #fff;
+    }
+    /* Header fijo con logo */
+    header {
+      position: running(pageHeader);
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 16px; border-bottom: 1px solid var(--border);
+      background: #ffffff;
+    }
+    header img { height: 28px; width: auto; }
+    header .title { font-weight: 700; color: var(--primary); }
+
+    .container { max-width: 940px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 28px; margin: 16px 0 6px; color: var(--primary); }
+    h2 { font-size: 22px; margin: 20px 0 8px; }
+    h3 { font-size: 18px; margin: 16px 0 6px; }
+    p { line-height: 1.6; color: var(--muted); }
+    .card { border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 12px 0; }
+    .grid { display: grid; gap: 12px; }
+    .grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .muted { color: var(--muted); }
+    .badge { background: #ecfeff; color: #155e75; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid #cffafe; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 4px; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; font-size: 14px; text-align: left; }
+    th { background: #f8fafc; }
+    tfoot td { font-weight: 700; }
+    ul { margin: 6px 0 10px 18px; }
+    .footer { font-size: 12px; color: #64748b; margin-top: 24px; }
+
+    /* Portada */
+    .cover {
+      display: grid; place-items: center; min-height: 86vh; padding: 48px 24px; text-align: center;
+      background: radial-gradient(1200px 500px at 50% -100px, #ecfeff, #ffffff 60%);
+    }
+    .cover h1 { font-size: 36px; margin-bottom: 8px; }
+    .cover .meta { color: var(--muted); }
+
+    /* Chart wrapper */
+    .chart-card { padding: 16px; border: 1px solid var(--border); border-radius: 12px; }
+    .chart { width: 100%; height: 280px; }
+    .legend { display: flex; gap: 16px; font-size: 13px; margin-top: 8px; color: var(--muted); }
+    .legend .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 6px; }
+
+    /* Print styles */
+    @page {
+      size: A4; margin: 18mm 14mm 18mm 14mm;
+      @top-center { content: element(pageHeader); }
+      @bottom-right { content: counter(page) " / " counter(pages); font-size: 11px; color: #64748b; }
+    }
+    @media print {
+      header { position: fixed; top: 0; left: 0; right: 0; }
+      .cover { page-break-after: always; min-height: 100vh; }
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Logo SENA (SVG embebido para portabilidad) -->
+    <img alt="Logo SENA" src="data:image/svg+xml;utf8,<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg xmlns='http://www.w3.org/2000/svg' width='160' height='40' viewBox='0 0 160 40'><rect width='160' height='40' fill='%23ffffff'/><circle cx='20' cy='20' r='16' fill='%230f766e'/><text x='44' y='26' font-family='Inter, Arial' font-size='18' fill='%230f766e' font-weight='700'>SENA • Soft 2025</text></svg>" />
+    <div class="title">SENA Soft 2025 – Evaluación Fase 1</div>
+  </header>
+
+  <section class="cover">
+    <div>
+      <h1>SENA Soft 2025 – Evaluación Fase 1</h1>
+      <p class="meta">Evaluador: <strong>Alan (GPT-5 Evaluador Académico)</strong></p>
+      <p class="meta">Fecha: <strong>21 de octubre de 2025</strong></p>
+      <p class="meta">Resumen comparativo de 4 repositorios: Pixel-Plaza, ai-travel-agent, OptiGuide, MirrorGPT.</p>
+      <div style="margin-top:18px"><span class="badge">Informe detallado con evidencias técnicas</span></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <h2>1. Resumen ejecutivo</h2>
+    <div class="card">
+      <p>La siguiente tabla resume los puntajes por criterio (escala 100) y el total:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Repositorio</th>
+              <th>Técnica (30)</th>
+              <th>Calidad (25)</th>
+              <th>Arquitectura (30)</th>
+              <th>Colaboración (15)</th>
+              <th>Total (100)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>QuitoTactico / Pixel-Plaza</td><td>12</td><td>17</td><td>15</td><td>11</td><td><strong>55</strong></td></tr>
+            <tr><td>2</td><td>nirbar1985 / ai-travel-agent</td><td>22</td><td>18</td><td>22</td><td>16</td><td><strong>78</strong></td></tr>
+            <tr><td>3</td><td>microsoft / OptiGuide</td><td>24</td><td>20</td><td>24</td><td>18</td><td><strong>86</strong></td></tr>
+            <tr><td>4</td><td>crosleythomas / MirrorGPT</td><td>19</td><td>17</td><td>20</td><td>16</td><td><strong>72</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card chart-card">
+      <h3>Gráfica comparativa de puntaje total</h3>
+      <svg id="barChart" class="chart" role="img" aria-label="Gráfica de barras de puntajes totales"></svg>
+      <div class="legend"><span><span class="swatch" style="background: var(--primary)"></span>Puntaje total (0–100)</span></div>
+    </div>
+
+    <h2>2. Evaluaciones detalladas</h2>
+
+    <section class="card">
+      <h3>2.1 QuitoTactico / Pixel-Plaza — <span class="muted">Total: 55/100</span></h3>
+      <p><strong>Fortalezas:</strong></p>
+      <ul>
+        <li>Estructura Laravel clara (MVC) con carpetas estándar y scripts de instalación.</li>
+        <li>Documentación de despliegue y endpoints en el README.</li>
+        <li>Manejo de configuración por variables de entorno (ejemplo de <code>.env.example</code>).</li>
+      </ul>
+      <p><strong>Mejoras prioritarias:</strong></p>
+      <ul>
+        <li>Agregar pruebas automatizadas (Pest/PHPUnit) y cobertura.</li>
+        <li>Configurar CI (GitHub Actions) para lint, tests y análisis estático.</li>
+        <li>Documentar (o implementar) integraciones de IA y agentes si son parte del alcance.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>2.2 nirbar1985 / ai-travel-agent — <span class="muted">Total: 78/100</span></h3>
+      <p><strong>Fortalezas:</strong></p>
+      <ul>
+        <li>Caso de uso claro: agente de viajes con LangGraph / LangChain y flujo HITL.</li>
+        <li>Integraciones externas (OpenAI, SerpAPI, SendGrid) y variables de tracing documentadas.</li>
+        <li>Arquitectura por agentes y herramientas; guía de ejecución con Streamlit.</li>
+      </ul>
+      <p><strong>Mejoras prioritarias:</strong></p>
+      <ul>
+        <li>Añadir suite de pruebas (pytest) para tools y transiciones del grafo.</li>
+        <li>Incorporar CI (ruff + mypy + pytest) y badges de estado en README.</li>
+        <li>Especificar la máquina de estados (diagrama) y política de PII/seguridad.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>2.3 microsoft / OptiGuide — <span class="muted">Total: 86/100</span></h3>
+      <p><strong>Fortalezas:</strong></p>
+      <ul>
+        <li>Repositorio de investigación sólido (what-if, MILP-Evolve) con licenciamiento MIT.</li>
+        <li>Gobernanza y políticas (CODE_OF_CONDUCT, SECURITY) y pre-commit configurado.</li>
+        <li>Evidencias de aplicación en cadena de suministro; organización por subproyecto.</li>
+      </ul>
+      <p><strong>Mejoras prioritarias:</strong></p>
+      <ul>
+        <li>Hacer visibles tests y workflows con badges; añadir quickstarts por carpeta.</li>
+        <li>Reforzar reproducibilidad (requirements/pyproject por subproyecto + Makefile).</li>
+        <li>Checklist de Responsible AI operativo (sesgos, inyección de prompts, PII).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>2.4 crosleythomas / MirrorGPT — <span class="muted">Total: 72/100</span></h3>
+      <p><strong>Fortalezas:</strong></p>
+      <ul>
+        <li>Objetivo atractivo: agentes personalizados que reflejan estilo y voz del usuario.</li>
+        <li>Organización base de datos/datos y documentación inicial.</li>
+        <li>Enfoque alineado con tendencias actuales de LLMs y agentes.</li>
+      </ul>
+      <p><strong>Mejoras prioritarias:</strong></p>
+      <ul>
+        <li>Agregar tests y CI; incluir linters/formatters y verificar compatibilidad de dependencias.</li>
+        <li>Ampliar guía de instalación/uso con ejemplo mínimo reproducible.</li>
+        <li>Incluir diagrama de arquitectura y flujo de datos (texto → voz, estilo, memoria).</li>
+      </ul>
+    </section>
+
+    <h2>3. Conclusiones finales de la cohorte</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Fortalezas comunes:</strong> propósito claro, modularidad básica y uso de buenas prácticas de configuración (<code>.env</code> y documentación mínima).</li>
+        <li><strong>Debilidades transversales:</strong> escasez de pruebas automatizadas, ausencia de CI visible y baja cobertura; documentación técnica incompleta en dos proyectos.</li>
+        <li><strong>Recomendaciones generales:</strong> estandarizar linters y hooks (<code>pre-commit</code>), incorporar CI en PRs, definir guías de contribución y crear pruebas de humo para demos/notebooks.</li>
+      </ul>
+      <p class="muted">Siguiente paso sugerido: preparar una “Plantilla de Calidad” común (pytest/ruff/mypy o Pest/PHPUnit, Actions, Codecov) y emitir PRs a cada repo con configuración mínima reproducible.</p>
+    </div>
+
+    <div class="footer">© 2025 – SENA Soft. Informe generado por Alan (GPT-5 Evaluador Académico).</div>
+  </main>
+
+  <script>
+    // Datos del gráfico (puntajes totales)
+    const labels = [
+      'Pixel-Plaza',
+      'ai-travel-agent',
+      'OptiGuide',
+      'MirrorGPT'
+    ];
+    const values = [55, 78, 86, 72];
+
+    // Render simple de barras verticales en SVG sin librerías externas
+    (function renderBarChart() {
+      const svg = document.getElementById('barChart');
+      const width = svg.clientWidth || 800;
+      const height = svg.clientHeight || 280;
+      const padding = { top: 10, right: 10, bottom: 40, left: 40 };
+      const chartW = width - padding.left - padding.right;
+      const chartH = height - padding.top - padding.bottom;
+
+      // Escalas
+      const maxVal = 100; // fijo 0-100
+      const barW = chartW / values.length * 0.6;
+      const gap = chartW / values.length * 0.4;
+
+      // Limpiar y set viewBox
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.innerHTML = '';
+
+      // Ejes
+      const axis = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      axis.setAttribute('stroke', '#94a3b8');
+      axis.setAttribute('stroke-width', '1');
+      // Eje Y
+      const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      yAxis.setAttribute('x1', padding.left);
+      yAxis.setAttribute('y1', padding.top);
+      yAxis.setAttribute('x2', padding.left);
+      yAxis.setAttribute('y2', height - padding.bottom);
+      axis.appendChild(yAxis);
+      // Eje X
+      const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      xAxis.setAttribute('x1', padding.left);
+      xAxis.setAttribute('y1', height - padding.bottom);
+      xAxis.setAttribute('x2', width - padding.right);
+      xAxis.setAttribute('y2', height - padding.bottom);
+      axis.appendChild(xAxis);
+      svg.appendChild(axis);
+
+      // Ticks Y (cada 20)
+      for (let t = 0; t <= 100; t += 20) {
+        const y = padding.top + chartH * (1 - t / maxVal);
+        const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tick.setAttribute('x1', padding.left - 4);
+        tick.setAttribute('x2', width - padding.right);
+        tick.setAttribute('y1', y);
+        tick.setAttribute('y2', y);
+        tick.setAttribute('stroke', '#e2e8f0');
+        svg.appendChild(tick);
+
+        const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        lbl.setAttribute('x', padding.left - 8);
+        lbl.setAttribute('y', y + 4);
+        lbl.setAttribute('text-anchor', 'end');
+        lbl.setAttribute('font-size', '11');
+        lbl.setAttribute('fill', '#475569');
+        lbl.textContent = t.toString();
+        svg.appendChild(lbl);
+      }
+
+      // Barras
+      let x = padding.left + gap / 2;
+      values.forEach((v, i) => {
+        const h = chartH * (v / maxVal);
+        const y = padding.top + (chartH - h);
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', barW);
+        rect.setAttribute('height', h);
+        rect.setAttribute('rx', 4);
+        rect.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--primary').trim());
+        svg.appendChild(rect);
+
+        // Etiqueta valor
+        const val = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        val.setAttribute('x', x + barW / 2);
+        val.setAttribute('y', y - 6);
+        val.setAttribute('text-anchor', 'middle');
+        val.setAttribute('font-size', '12');
+        val.setAttribute('fill', '#0f172a');
+        val.textContent = v.toString();
+        svg.appendChild(val);
+
+        // Etiqueta X
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x + barW / 2);
+        label.setAttribute('y', height - padding.bottom + 16);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '12');
+        label.setAttribute('fill', '#334155');
+        label.textContent = labels[i];
+        svg.appendChild(label);
+
+        x += barW + gap;
+      });
+    })();
+  </script>
+</body>
+</html>
