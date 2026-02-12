@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de evaluación para Pinillos - Arena de la IA",
+  "type": "object",
+  "properties": {
+    "General": {
+      "type": "object",
+      "properties": {
+        "nombre_equipo": { "type": "string" },
+        "nombre_aprendiz_representante": { "type": "string" },
+        "duracion_simulacion": { "type": "string" },
+        "numero_preguntas_jurado": { "type": "integer" },
+        "nivel_confianza_equipo": {
+          "type": "string",
+          "enum": ["muy bajo", "bajo", "medio", "alto", "muy alto"]
+        },
+        "estrategia_defensa": {
+          "type": "string",
+          "enum": ["pobre", "mejorable", "clara", "muy sólida"]
+        },
+        "observaciones_generales": { "type": "string" }
+      }
+    },
+    "Evaluacion": {
+      "type": "object",
+      "properties": {
+        "Solucion_Optima": {
+          "type": "object",
+          "properties": {
+            "desempeno": {
+              "type": "string",
+              "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"]
+            },
+            "criterios": {
+              "type": "string",
+              "description": "Claridad en la solución, alineación con el problema, viabilidad."
+            }
+          }
+        },
+        "Documentacion_Requerimientos": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Calidad, completitud y trazabilidad de los requerimientos." }
+          }
+        },
+        "Arquitectura_Propuesta": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Escalabilidad, seguridad, modularidad." }
+          }
+        },
+        "Diseno_UX_UI": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Experiencia de usuario, accesibilidad, consistencia visual." }
+          }
+        },
+        "Modelamiento_Datos": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Corrección del DER/MER, integridad, relaciones." }
+          }
+        },
+        "Diagramas_Clases_Secuencia": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Representación precisa, coherencia con la arquitectura." }
+          }
+        },
+        "Desarrollo_Backend": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Estructura, rendimiento, pruebas funcionales correctas." }
+          }
+        },
+        "Desarrollo_Frontend": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Enfoque monolítico/microservicios, responsividad, rendimiento." }
+          }
+        },
+        "Autenticacion_JWT": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Implementación segura, renovación de tokens, control de accesos." }
+          }
+        },
+        "Control_Versiones": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Uso correcto de ramas, commits descriptivos, orden." }
+          }
+        },
+        "Trabajo_Equipo_Versiones": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Colaboración, revisión de código, resolución de conflictos." }
+          }
+        },
+        "Plan_Pruebas": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Cobertura, calidad de pruebas unitarias y funcionales." }
+          }
+        },
+        "Despliegue_Nube": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Disponibilidad, seguridad, monitoreo." }
+          }
+        },
+        "Presentacion_Final": {
+          "type": "object",
+          "properties": {
+            "desempeno": { "type": "string", "enum": ["no evaluado", "muy bajo", "bajo", "básico", "avanzado"] },
+            "criterios": { "type": "string", "description": "Claridad, manejo del tiempo, capacidad de respuesta a preguntas." }
+          }
+        }
+      }
+    }
+  }
+}

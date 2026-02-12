@@ -1,0 +1,1 @@
+Realistic digital portrait of a young African man with short hair and a friendly smile, wearing a fitted black T-shirt. Arms crossed, with a smartwatch with a brown strap on the left wrist and a bracelet on the right. Gradient background from dark blue to turquoise, soft lighting highlighting skin tone and facial details, photorealistic style.

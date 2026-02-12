@@ -1,0 +1,66 @@
+{
+  "General": {
+    "nombre_aprendiz_representante": "",
+    "equipo": "",
+    "nivel_confianza": "",
+    "estrategia_defensa": ""
+  },
+  "Evaluacion": {
+    "Solucion_optima": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Requerimientos_funcionales": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Arquitectura_propuesta": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Diseno_UI_UX": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Modelamiento_datos": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Diagramas_clases_secuencia": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Desarrollo_backend": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Desarrollo_frontend": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Autenticacion_JWT": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Control_versiones": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Trabajo_equipo_versiones": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Plan_pruebas_unitarias": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Despliegue_nube": {
+      "desempeno": "",
+      "criterios": ""
+    },
+    "Argumentacion_presentacion_final": {
+      "desempeno": "",
+      "criterios": ""
+    }
+  }
+}
