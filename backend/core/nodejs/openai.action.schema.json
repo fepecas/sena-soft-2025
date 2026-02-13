@@ -18,20 +18,83 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "additionalProperties": true,
                     "properties": {
                       "description": { "type": "string" },
-                      "value": { "type": ["number", "string", "null"] }
+                      "value": {
+                        "oneOf": [
+                          { "type": "integer" },
+                          { "type": "object", "additionalProperties": { "type": ["integer", "array", "string"] } }
+                        ]
+                      }
                     },
                     "required": ["description", "value"]
                   }
                 },
                 "examples": {
-                  "ok": {
-                    "summary": "Ejemplo mínimo",
+                  "fullMetrics": {
+                    "summary": "Todas las métricas completas",
                     "value": [
-                      { "description": "# Aprendices inscritos únicos", "value": 775 },
-                      { "description": "% de perfiles DEV Backend", "value": "43.5%" }
+                      {
+                        "description": "Cantidad de aprendices inscritos por centro de formación",
+                        "value": {
+                          "Centro Industrial de Soacha": 2,
+                          "Centro Textil y de Gestión Industrial": 2,
+                          "Centro de Servicios Financieros": 2,
+                          "Centro Agropecuario del Meta": 2
+                        }
+                      },
+                      {
+                        "description": "Instructores recomendados por aprendices inscritos por centro de formación",
+                        "value": {
+                          "Centro Industrial de Soacha": ["Carlos Ramírez", "Marta Torres"],
+                          "Centro Textil y de Gestión Industrial": ["Luis Sánchez", "Claudia Herrera"],
+                          "Centro de Servicios Financieros": ["Andrés Melo", "Paola Díaz"],
+                          "Centro Agropecuario del Meta": ["Ricardo Peña", "Gloria Pardo"]
+                        }
+                      },
+                      {
+                        "description": "Cantidad de aprendices inscritos por centro y programa de formación",
+                        "value": {
+                          "Centro Industrial de Soacha": {
+                            "Desarrollo de Software": 1,
+                            "Análisis y Desarrollo de Sistemas": 1
+                          },
+                          "Centro Textil y de Gestión Industrial": {
+                            "Diseño de Software": 1,
+                            "Análisis y Desarrollo de Sistemas": 1
+                          },
+                          "Centro de Servicios Financieros": {
+                            "Desarrollo de Software": 1,
+                            "Administración de Redes": 1
+                          },
+                          "Centro Agropecuario del Meta": {
+                            "Análisis y Desarrollo de Sistemas": 1,
+                            "Administración de Redes": 1
+                          }
+                        }
+                      },
+                      {
+                        "description": "Cantidad de aprendices que reportan tener un usuario de GitHub",
+                        "value": 4
+                      },
+                      {
+                        "description": "Cantidad de aprendices por departamento de Colombia donde residen",
+                        "value": {
+                          "Cundinamarca": 2,
+                          "Antioquia": 2,
+                          "Bogotá D.C.": 2,
+                          "Meta": 2
+                        }
+                      },
+                      {
+                        "description": "Cantidad de aprendices con nivel de inglés B1 o B2 por centro de formación",
+                        "value": {
+                          "Centro Industrial de Soacha": 1,
+                          "Centro Textil y de Gestión Industrial": 2,
+                          "Centro de Servicios Financieros": 2,
+                          "Centro Agropecuario del Meta": 1
+                        }
+                      }
                     ]
                   }
                 }
@@ -40,10 +103,7 @@
                 "schema": {
                   "oneOf": [
                     { "type": "string", "description": "Texto plano; puede contener JSON serializado." },
-                    {
-                      "type": "array",
-                      "items": { "type": "object", "additionalProperties": true }
-                    }
+                    { "type": "array", "items": { "type": "object", "additionalProperties": true } }
                   ]
                 }
               }

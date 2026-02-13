@@ -1,0 +1,9 @@
+_id,aprendiz,centroFormacion,programa,departamento,instructorRecomendado,github,nivelIngles
+a1,Laura Pérez,Centro Industrial de Soacha,Desarrollo de Software,Cundinamarca,Carlos Ramírez,true,B1
+a2,Juan Martínez,Centro Industrial de Soacha,Análisis y Desarrollo de Sistemas,Cundinamarca,Marta Torres,false,A2
+a3,Ana Gómez,Centro Textil y de Gestión Industrial,Diseño de Software,Antioquia,Luis Sánchez,true,B2
+a4,Diego Rojas,Centro Textil y de Gestión Industrial,Análisis y Desarrollo de Sistemas,Antioquia,Claudia Herrera,false,B1
+a5,María López,Centro de Servicios Financieros,Desarrollo de Software,Bogotá D.C.,Andrés Melo,true,B2
+a6,Pedro Sánchez,Centro de Servicios Financieros,Administración de Redes,Bogotá D.C.,Paola Díaz,false,A2
+a7,Sofía Ramírez,Centro Agropecuario del Meta,Análisis y Desarrollo de Sistemas,Meta,Ricardo Peña,true,B1
+a8,Andrés Torres,Centro Agropecuario del Meta,Administración de Redes,Meta,Gloria Pardo,false,B1
