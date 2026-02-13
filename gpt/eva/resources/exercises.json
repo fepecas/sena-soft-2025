@@ -1,0 +1,98 @@
+{
+    "worldskills": [
+        {
+            "exercise_name": "Ejercicio Medallas Olímpicas",
+            "exercise_context": "Actualmente los países no tienen herramientas centralizadas de información para la gestión de países y medallas.",
+            "exercise_rule": "El ejercicio debe resolverse únicamente utilizando HTML, CSS y JavaScript, sin librerías externas.",
+            "exercise_solution": "El usuario debe crear un sistema web que permita agregar países, registrar medallas y generar un ranking dinámico de países por medallas.",
+            "exercise_time": 14400,
+            "exercise_year": 2025,
+            "tags": ["FRONTEND", "BACKEND"]
+        },
+        {
+            "exercise_name": "Tabla de Posiciones Copa América",
+            "exercise_context": "No existe una forma interactiva de ver la tabla de posiciones y actualizar resultados automáticamente.",
+            "exercise_rule": "Usar solo HTML, CSS y JavaScript para construir la tabla y actualizar los resultados.",
+            "exercise_solution": "Crear una tabla interactiva donde se ingresen partidos, goles y puntos, y que se recalculen automáticamente las posiciones de los equipos.",
+            "exercise_time": 14400,
+            "exercise_year": 2025,
+            "tags": ["FRONTEND", "BACKEND"]
+        },
+        {
+            "exercise_name": "Gestión Juegos Nintendo",
+            "exercise_context": "Se requiere un mini sistema que simule la gestión de personajes y niveles de un juego tipo Mario Bros.",
+            "exercise_rule": "Usar HTML, CSS y JavaScript; no usar bases de datos externas ni frameworks.",
+            "exercise_solution": "Implementar un CRUD donde se puedan agregar, modificar y eliminar personajes y niveles, mostrando los cambios de forma dinámica en la interfaz.",
+            "exercise_time": 3600,
+            "exercise_year": 2023,
+            "tags": ["BACKEND"]
+        },
+        {
+            "exercise_name": "Clon de Spotify",
+            "exercise_context": "Actualmente no existe un clon de Spotify que permita reproducir música y ver las canciones de los artistas.",
+            "exercise_rule": "Usar HTML, CSS y JavaScript; no usar bases de datos externas ni frameworks.",
+            "exercise_solution": "Crear una interfaz donde el usuario pueda reproducir música y ver las canciones de los artistas.",
+            "exercise_time": 3600,
+            "exercise_year": 2023,
+            "tags": ["FRONTEND"]
+        }
+    ],
+    "senasoft": [
+        {
+            "exercise_name": "AdoptaDog",
+            "exercise_context": "La Fundación Salva un Amigo ha contactado para la realización de un aplicativo Móvil que permita observar los perros que se encuentran para adopción, los puntos de comida que ellos tienen en la ciudad de Campoalegre, entre otros requerimientos.",
+            "exercise_rule": "La App debe ser creada mínimo sobre la api level 16, debe contener el método de navegación Navigation Drawer, la tipografía del aplicativo debe ser trabajada sobre Roboto, debe tener un splash screen con el icono de la aplicación, debe manejar un menú desplegable (navigation drawer) donde mostrará los items implementados en la aplicación (Inicio, Perros, Mapa, Siguenos, Contáctame) con su respectivo Icono, debe crear una base de datos en mySQL con los elementos necesarios para realizar la aplicación.",
+            "exercise_solution": "Crear una aplicación móvil con las siguientes características: Logo e Icono (512x512px para Play Store, 144x144px para instalación, logo AdoptaDog, iconos 60x60px para cada vista-control), pantalla de inicio con logo de la fundación y descripción de beneficios, sección Perros con lista de animales (Nombre, Edad, Raza, Tipo) y vista detallada con imagen e información, sección Mapa con iconos en tres parques del municipio de Campoalegre, sección Siguenos con funcionalidad para compartir en Facebook/Twitter, sección Contáctame con formulario para enviar correos a pruebafundacion@gmail.com. El proyecto debe guardarse en carpeta SENASOFT 2016 con subcarpetas DISEÑOS e IMPLEMENTACION.",
+            "exercise_time": 18000,
+            "exercise_year": 2016,
+            "tags": ["MOBILE", "ANDROID", "DATABASE", "UI/UX"]
+        },
+        {
+            "exercise_name": "Sistema de Comercialización de Vehículos",
+            "exercise_context": "Desarrollar una aplicación web en lenguaje de programación JAVA que implemente un módulo para un sistema de información de comercialización de vehículos, trabajando con una base de datos dada en la prueba y cuyo modelo Entidad Relación se encuentra en un apartado posterior.",
+            "exercise_rule": "El módulo debe contar obligatoriamente con funcionalidades para comprador y vendedor. Sistema de login con validación de acceso, reconocimiento de roles (comprador/vendedor), manejo de usuarios con múltiples roles, registro de vehículos con validación de placa única, consulta de categorías pre-cargadas en base de datos, edición de perfil de vendedor (solo nombre, apellido, teléfono, email), consulta de vehículos por categoría con tabla de resultados, consulta de vehículos por rango de precios, visualización de datos del vendedor.",
+            "exercise_solution": "Crear aplicación web en JAVA con: Sistema de autenticación (login/password) con validación de roles, menús diferenciados para comprador y vendedor, cambio de roles para usuarios con múltiples permisos, registro de vehículos (modelo, color, estado, precio) asociado a vendedor y categoría con validación de placa única, edición de perfil de vendedor, consulta de vehículos por categoría mostrando tabla con modelo, marca, color, estado, precio y enlace 'Ver datos del vendedor', consulta por rango de precios con tabla mostrando modelo, marca, color, estado, precio y teléfono del vendedor. Estados de vehículo limitados a 'Nuevo' o 'Usado'.",
+            "exercise_time": 14400,
+            "exercise_year": 2013,
+            "tags": ["JAVA", "WEB", "DATABASE", "BACKEND", "AUTHENTICATION"]
+        }
+    ],
+    "softskills_pitch": [
+        {
+            "exercise_name": "Presentación Personal Efectiva",
+            "exercise_context": "El aprendiz necesita mejorar su capacidad de presentarse profesionalmente en reuniones o entrevistas.",
+            "exercise_rule": "Preparar un pitch de 2 minutos destacando experiencia, habilidades y logros sin leer texto directamente.",
+            "exercise_solution": "Grabar un video de la presentación, recibir feedback de un mentor sobre claridad, lenguaje corporal y confianza.",
+            "exercise_time": 180,
+            "exercise_year": 2025,
+            "tags": ["SOFTSKILLS", "PITCH", "COMUNICACION"]
+        },
+        {
+            "exercise_name": "Storytelling de Proyecto",
+            "exercise_context": "El aprendiz debe ser capaz de explicar proyectos complejos de manera comprensible para público no técnico.",
+            "exercise_rule": "Elegir un proyecto realizado, explicar objetivos, retos y resultados en menos de 5 minutos usando solo recursos visuales simples.",
+            "exercise_solution": "Presentar ante un pequeño grupo, recibir retroalimentación sobre claridad, estructura y engagement.",
+            "exercise_time": 180,
+            "exercise_year": 2025,
+            "tags": ["SOFTSKILLS", "PITCH", "COMUNICACION", "TEAMWORK"]
+        },
+        {
+            "exercise_name": "Roleplay de Entrevista",
+            "exercise_context": "Practicar situaciones de entrevista para mejorar respuestas y lenguaje corporal.",
+            "exercise_rule": "Simular entrevista con un mentor actuando como reclutador, preparar respuestas para preguntas técnicas y de comportamiento.",
+            "exercise_solution": "Recibir retroalimentación sobre claridad, confianza y coherencia, y repetir el ejercicio hasta mejorar la puntuación de feedback.",
+            "exercise_time": 180,
+            "exercise_year": 2025,
+            "tags": ["SOFTSKILLS", "PITCH", "COMUNICACION", "INTERVIEW"]
+        },
+        {
+            "exercise_name": "Feedback Constructivo en Equipo",
+            "exercise_context": "El aprendiz debe aprender a dar y recibir retroalimentación efectiva en entornos de equipo.",
+            "exercise_rule": "Participar en dinámicas grupales donde cada miembro da feedback sobre desempeño de tareas asignadas.",
+            "exercise_solution": "Registrar las observaciones recibidas y aplicarlas en la siguiente iteración de trabajo en equipo.",
+            "exercise_time": 180,
+            "exercise_year": 2025,
+            "tags": ["SOFTSKILLS", "TEAMWORK", "COMUNICACION", "LEADERSHIP"]
+        }
+    ]
+}
