@@ -1,0 +1,3 @@
+# Prompt del Avatar
+
+- Avatar femenino futurista en estilo cartoon realista, diseñado como una asistente de IA para programación y aprendizaje de inglés. Tiene cabello corto y oscuro con brillo, un broche futurista en el pelo que emite luz azul, y viste un traje tecnológico con detalles en neón. Su expresión es amigable y profesional, con pecas naturales, maquillaje suave y aretes morados brillantes. El fondo es minimalista con tonos pastel suaves. Incluye un globo de diálogo con el texto “DevSpeak” (con “Dev” en negro y “Speak” en naranja), y debajo un subtítulo que dice: “Genera una mejora en el habla y escritura en inglés en el mundo de la programación de softwar
