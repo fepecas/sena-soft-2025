@@ -4,7 +4,6 @@ require('dotenv').config({
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const app = express();
 
 /* ===== Hardening y headers ===== */
@@ -40,28 +39,143 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log("✅ Conectado a MongoDB Atlas"))
-.catch(err => console.error("❌ Error de conexión:", err));
+  .then(() => console.log("✅ Conectado a MongoDB Atlas"))
+  .catch(err => console.error("❌ Error de conexión:", err))
+
+
+// 📦 Modelo genérico para aprendices
+const aprendizSchema = new mongoose.Schema({}, { strict: false });
+const Aprendiz = mongoose.model("Aprendiz", aprendizSchema, "aprendices");
 
 /* ===== Modelo (colección metrics_scalar) ===== */
 const metricSchema = new mongoose.Schema({}, { strict: false });
 const Metric = mongoose.model('metrics_scalar', metricSchema, 'metrics_scalar');
 
-/* ===== Endpoints ===== */
 
-// GET /metrics/scalar  → JSON siempre, sin 304 y sin cache
+/* ===== Endpoints ===== */
 app.get('/metrics/scalar', async (req, res) => {
   try {
-    const data = await Metric.find({}).lean();
+    const { tipo } = req.query;
 
-    // Si quieres devolver SOLO los campos que usa el GPT:
-    // const projected = data.map(({ description, value }) => ({ description, value }));
+    let resultado = [];
 
+    // Tipo 1: métricas ya cargadas en la colección 'metrics_scalar'
+    if (!tipo) {
+      const data = await Metric.find({}).lean();
+      resultado = data.map(({ description, value }) => ({
+        description,
+        value
+      }));
+    }
+
+    // Tipo 2: cantidad de aprendices por centro
+    else if (tipo === 'por-centro') {
+      const data = await Aprendiz.find({}).lean();
+      const agrupado = {};
+      for (const doc of data) {
+        const centro = doc.centro?.nombre_centro || 'Desconocido';
+        agrupado[centro] = (agrupado[centro] || 0) + 1;
+      }
+      resultado = Object.entries(agrupado).map(([centro, count]) => ({
+        description: `Aprendices en ${centro}`,
+        value: count
+      }));
+    }
+
+    // Tipo 3: instructores recomendados por centro
+    else if (tipo === 'instructores-por-centro') {
+      const data = await Aprendiz.find({}).lean();
+      const agrupado = {};
+      for (const doc of data) {
+        const centro = doc.centro?.nombre_centro || 'Desconocido';
+        const instructor = doc.instructor_recomendado;
+        if (instructor) {
+          if (!agrupado[centro]) agrupado[centro] = new Set();
+          agrupado[centro].add(instructor.nombre_instructor);
+        }
+      }
+      resultado = Object.entries(agrupado).map(([centro, instructores]) => ({
+        description: `Instructores recomendados en ${centro}`,
+        value: Array.from(instructores).join(', ')
+      }));
+    }
+
+    // Tipo 4: cantidad de aprendices por centro y programa (máx 4 programas)
+    else if (tipo === 'por-centro-programa') {
+      const data = await Aprendiz.find({}).lean();
+      const agrupado = {};
+      for (const doc of data) {
+        const centro = doc.centro?.nombre_centro || 'Desconocido';
+        const programa = doc.programa_formacion || 'Sin programa';
+        if (!agrupado[centro]) agrupado[centro] = {};
+        agrupado[centro][programa] = (agrupado[centro][programa] || 0) + 1;
+      }
+      for (const [centro, programas] of Object.entries(agrupado)) {
+        const top4 = Object.entries(programas).slice(0, 4);
+        for (const [programa, count] of top4) {
+          resultado.push({
+            description: `Aprendices en ${centro} - ${programa}`,
+            value: count
+          });
+        }
+      }
+    }
+
+    // Tipo 5: cantidad por departamento (de los que respondieron)
+    else if (tipo === 'por-departamento') {
+      const data = await Aprendiz.find({ "departamento_residencia": { $exists: true, $ne: null } }).lean();
+      const agrupado = {};
+      for (const doc of data) {
+        const dpto = doc.departamento_residencia || 'Desconocido';
+        agrupado[dpto] = (agrupado[dpto] || 0) + 1;
+      }
+      resultado = Object.entries(agrupado).map(([departamento, count]) => ({
+        description: `Aprendices en ${departamento}`,
+        value: count
+      }));
+    }
+
+    // Tipo 6: cantidad con usuario GitHub
+    else if (tipo === 'con-github') {
+      const data = await Aprendiz.find({}).lean();
+      const count = data.filter(d => d.tiene_github === true).length;
+      resultado.push({
+        description: "Aprendices con usuario de GitHub",
+        value: count
+      });
+    }
+
+    // Tipo 7: nivel de inglés B1 o B2 por centro
+    else if (tipo === 'ingles-b1-b2-por-centro') {
+      const data = await Aprendiz.find({}).lean();
+      const agrupado = {};
+      for (const doc of data) {
+        if (["B1", "B2"].includes(doc.nivel_ingles)) {
+          const centro = doc.centro?.nombre_centro || 'Desconocido';
+          agrupado[centro] = (agrupado[centro] || 0) + 1;
+        }
+      }
+      resultado = Object.entries(agrupado).map(([centro, count]) => ({
+        description: `Aprendices con inglés B1 o B2 en ${centro}`,
+        value: count
+      }));
+    }
+
+    // Tipo no válido
+    else {
+      return res
+        .status(400)
+        .type('application/json; charset=utf-8')
+        .json({ error: `Tipo de métrica no válido: ${tipo}` });
+    }
+
+    // Respuesta final
     res
       .status(200)
-      .type('application/json; charset=utf-8')   // Content-Type explícito
-      .set('Cache-Control', 'no-store')          // refuerzo por ruta
-      .json(data);                               // o .json(projected)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(resultado);
+
   } catch (err) {
     res
       .status(500)
@@ -69,6 +183,7 @@ app.get('/metrics/scalar', async (req, res) => {
       .json({ error: err.message });
   }
 });
+
 
 /* (Opcional) Healthcheck rápido */
 app.get('/health', (_req, res) => {
@@ -78,6 +193,7 @@ app.get('/health', (_req, res) => {
     .set('Cache-Control', 'no-store')
     .json({ ok: true });
 });
+
 
 /* ===== Iniciar servidor ===== */
 const PORT = process.env.PORT || 8080;

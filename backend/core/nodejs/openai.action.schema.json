@@ -1,59 +1,100 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "SENASoft Metrics API", "version": "1.0.0" },
+  "info": {
+    "title": "SENASoft Metrics API",
+    "version": "1.0.1",
+    "description": "Un solo endpoint con tipos de métrica para aprendices"
+
+  },
   "servers": [
-    { "url": "https://senasoft-core-dev-h2erabc0hhbcg7ee.eastus2-01.azurewebsites.net" }
+    {
+      "url": "https://senasoft-zvma.onrender.com"
+    }
   ],
   "paths": {
     "/metrics/scalar": {
       "get": {
-        "operationId": "getScalarData",
-        "summary": "Obtener métricas escalares de SENASoft",
+        "operationId": "getScalarMetrics",
+        "summary": "Obtener métricas escalares de SENASoft y aprendices",
+        "description": "Devuelve métricas en formato lista de objetos { description, value }. Si se pasa un parámetro 'tipo', se obtiene una métrica específica.",
+        "parameters": [
+          {
+            "name": "tipo",
+            "in": "query",
+            "description": "Tipo de métrica solicitada. Si se omite, se devuelven las métricas estáticas por defecto.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "por-centro",
+                "instructores-por-centro",
+                "por-centro-programa",
+                "por-departamento",
+                "con-github",
+                "ingles-b1-b2-por-centro"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Lista de métricas",
+            "description": "Lista de métricas solicitadas",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "additionalProperties": true,
                     "properties": {
-                      "description": { "type": "string" },
-                      "value": { "type": ["number", "string", "null"] }
+                      "description": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": ["number", "string", "null"]
+                      }
                     },
-                    "required": ["description", "value"]
+                    "required": ["description", "value"],
+                    "additionalProperties": true
                   }
                 },
                 "examples": {
-                  "ok": {
-                    "summary": "Ejemplo mínimo",
+                  "por-centro": {
+                    "summary": "Cantidad de aprendices por centro",
                     "value": [
-                      { "description": "# Aprendices inscritos únicos", "value": 775 },
-                      { "description": "% de perfiles DEV Backend", "value": "43.5%" }
+                      { "description": "Aprendices en SENA Cali", "value": 120 },
+                      { "description": "Aprendices en SENA Medellín", "value": 95 }
+                    ]
+                  },
+                  "instructores-por-centro": {
+                    "summary": "Instructores recomendados por centro",
+                    "value": [
+                      { "description": "Instructores recomendados en SENA Cali", "value": "Carlos Pérez, Ana Gómez" }
+                    ]
+                  },
+                  "con-github": {
+                    "summary": "Aprendices con cuenta GitHub",
+                    "value": [
+                      { "description": "Aprendices con usuario de GitHub", "value": 523 }
                     ]
                   }
                 }
-              },
-              "text/plain": {
-                "schema": {
-                  "oneOf": [
-                    { "type": "string", "description": "Texto plano; puede contener JSON serializado." },
-                    {
-                      "type": "array",
-                      "items": { "type": "object", "additionalProperties": true }
-                    }
-                  ]
-                }
               }
-            }
+            } 
           },
           "default": {
             "description": "Error inesperado",
             "content": {
-              "application/json": { "schema": { "type": "object", "additionalProperties": true } },
-              "text/plain": { "schema": { "type": "string" } }
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
