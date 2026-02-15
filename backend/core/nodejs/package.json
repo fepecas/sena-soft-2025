@@ -1,26 +1,40 @@
 {
-  "name": "nodejs",
+  "name": "senasoft-metrics-backend",
   "version": "1.0.0",
-  "main": "server.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "private": true,
+  "license": "MIT",
+  "description": "Enhanced metrics system for SENASoft challenge with specialized endpoints",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "jest --runInBand",
+    "legacy:start": "node server.js",
+    "legacy:dev": "cross-env NODE_ENV=development nodemon server.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
     "mongoose": "^8.17.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.10",
     "cross-env": "^10.0.0",
-    "nodemon": "^3.1.10"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
   },
-  "scripts": {
-  "start": "node server.js",
-  "dev": "cross-env NODE_ENV=development nodemon server.js",
-  "qa": "cross-env NODE_ENV=qa nodemon server.js",
-  "prod": "cross-env NODE_ENV=production node server.js",
-  "test": "echo \"Error: no test specified\" && exit 0"
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/test/**/*.test.ts"]
   }
 }
