@@ -1,0 +1,463 @@
+{
+    "metadata": {
+        "version": "1.0.0",
+        "last_updated": "2024-08-16",
+        "source": "Documentación oficial SENASOFT",
+        "total_editions": 5,
+        "years_covered": "2020-2024"
+    },
+    "senasoft_editions": {
+        "2020": {
+            "basic_info": {
+                "year": 2020,
+                "dates": "2020-10-13/2020-10-16",
+                "location": "Híbrido (Virtual + Presencial)",
+                "theme": "Tecnología en tiempos de resiliencia",
+                "modality": "hybrid",
+                "context": "Primera edición adaptada a pandemia COVID-19"
+            },
+            "participation": {
+                "participants": 400,
+                "regions": 23,
+                "training_centers": 60,
+                "historical_impact": 30000
+            },
+            "organizers": {
+                "main": "SENA",
+                "partners": [
+                    "Adobe",
+                    "Cisco",
+                    "Huawei",
+                    "IBM",
+                    "Siigo",
+                    "Naska"
+                ]
+            },
+            "categories": {
+                "comunicacion_diseno_grafico": {
+                    "name": "Comunicación y Diseño Gráfico",
+                    "winners": [
+                        {
+                            "names": [
+                                "Maria Sofía Maje Ríos",
+                                "Laura Jimena Sanabria"
+                            ],
+                            "region": "Distrito Capital"
+                        }
+                    ]
+                },
+                "desarrollo_web_php": {
+                    "name": "Desarrollo Web (PHP)",
+                    "winners": [
+                        {
+                            "names": [
+                                "Juan Esteban Ospina",
+                                "Diego Cantero",
+                                "Santiago Cardona"
+                            ],
+                            "region": "Antioquia"
+                        }
+                    ]
+                },
+                "desarrollo_web_python": {
+                    "name": "Desarrollo Web (Python)",
+                    "winners": [
+                        {
+                            "names": [
+                                "Juan Pablo Ardila",
+                                "Juan Cadavid",
+                                "Santiago Gómez"
+                            ],
+                            "region": "Distrito Capital"
+                        }
+                    ]
+                },
+                "gaming": {
+                    "name": "Gaming",
+                    "winners": [
+                        {
+                            "names": [
+                                "Amaury Bohórquez",
+                                "David Ramírez"
+                            ],
+                            "region": "Distrito Capital"
+                        }
+                    ]
+                },
+                "desarrollo_movil": {
+                    "name": "Desarrollo Móvil",
+                    "winners": [
+                        {
+                            "names": [
+                                "Emerson Jaramillo",
+                                "Eric Alape"
+                            ],
+                            "region": "Quindío"
+                        },
+                        {
+                            "names": [
+                                "Luis Dávila",
+                                "Jeferson Herrera"
+                            ],
+                            "region": "Valle"
+                        }
+                    ]
+                },
+                "redes": {
+                    "name": "Redes",
+                    "winners": [
+                        {
+                            "names": [
+                                "Stivel Gómez",
+                                "Cristhian Argumero"
+                            ],
+                            "region": "Distrito Capital"
+                        }
+                    ]
+                },
+                "animacion_3d": {
+                    "name": "Animación 3D",
+                    "winners": [
+                        {
+                            "names": [
+                                "Equipo Naska"
+                            ],
+                            "region": "No especificado"
+                        }
+                    ]
+                },
+                "diseno_interactivo": {
+                    "name": "Diseño Interactivo",
+                    "winners": [
+                        {
+                            "names": [
+                                "Yesid Zapata",
+                                "Jhon Bedoya"
+                            ],
+                            "region": "Antioquia"
+                        }
+                    ]
+                },
+                "produccion_audiovisual": {
+                    "name": "Producción Audiovisual",
+                    "winners": [
+                        {
+                            "names": [
+                                "Astrid Molina",
+                                "Juan Medina"
+                            ],
+                            "region": "Boyacá"
+                        }
+                    ]
+                }
+            },
+            "benefits": [
+                "Entrega de equipos tecnológicos",
+                "Proyección en empresas como IBM y Adobe",
+                "Referencia a viajes internacionales (Silicon Valley, Google)"
+            ]
+        },
+        "2021": {
+            "basic_info": {
+                "year": 2021,
+                "dates": "2021-01-01/2021-12-31",
+                "location": "Virtual",
+                "base_location": "Valle del Cauca - Centro de Diseño Tecnológico Industrial (CDTI)",
+                "modality": "virtual",
+                "theme": "Innovación digital en pandemia"
+            },
+            "participation": {
+                "participants": "Decenas de regionales",
+                "regions": "Multiple",
+                "focus": "Soluciones digitales para problemas sociales"
+            },
+            "organizers": {
+                "main": "SENA",
+                "partners": [
+                    "Fedesoft",
+                    "Sector Salud"
+                ]
+            },
+            "categories": {
+                "desarrollo_web_vertical_1": {
+                    "name": "Desarrollo Web Vertical 1",
+                    "winners": [
+                        {
+                            "names": [
+                                "Julián Giraldo",
+                                "Jair Hernández",
+                                "Johan Muelas"
+                            ],
+                            "region": "Regional Valle",
+                            "center": "CDTI",
+                            "project": "Aplicativo para el sector salud con validación de firmas médicas"
+                        }
+                    ]
+                }
+            },
+            "benefits": [
+                "Reconocimiento nacional por Fedesoft",
+                "Proyección hacia el ecosistema digital de salud"
+            ]
+        },
+        "2022": {
+            "basic_info": {
+                "year": 2022,
+                "dates": "2022-09-05/2022-09-09",
+                "location": "Bogotá",
+                "region": "Regional Distrito Capital",
+                "modality": "presencial",
+                "context": "Vuelta a la presencialidad post-pandemia"
+            },
+            "participation": {
+                "participants": 307,
+                "regions": 25,
+                "total_categories": 12
+            },
+            "organizers": {
+                "main": "SENA",
+                "partners": [
+                    "IBM",
+                    "Adobe",
+                    "Mnemo",
+                    "Q'Vision",
+                    "Diptongo"
+                ]
+            },
+            "categories": {
+                "audiovisuales": {
+                    "name": "Audiovisuales (Adobe & Pcmac)",
+                    "winner_region": "Distrito Capital"
+                },
+                "experiencia_usuario": {
+                    "name": "Experiencia de Usuario",
+                    "winner_region": "Cauca"
+                },
+                "animacion_3d": {
+                    "name": "Animación 3D",
+                    "winner_region": "Distrito Capital"
+                },
+                "inteligencia_artificial": {
+                    "name": "Inteligencia Artificial",
+                    "winner_region": "Cauca"
+                },
+                "desarrollo_moviles": {
+                    "name": "Desarrollo Móviles",
+                    "winner_region": "Cauca"
+                },
+                "desarrollo_integral": {
+                    "name": "Desarrollo Integral",
+                    "winner_region": "Antioquia"
+                },
+                "redes_nube_ciberseguridad": {
+                    "name": "Redes, Nube, Ciberseguridad",
+                    "winner_region": "Varios (destacando Distrito Capital y Cauca)"
+                },
+                "algoritmia": {
+                    "name": "Algoritmia",
+                    "winner_region": "Varios (destacando Distrito Capital y Cauca)"
+                }
+            },
+            "benefits": [
+                "Premios tecnológicos",
+                "Certificación con empresas patrocinadoras"
+            ]
+        },
+        "2023": {
+            "basic_info": {
+                "year": 2023,
+                "dates": "2023-10-02",
+                "location": "Risaralda, Colombia",
+                "theme": "Impulsando habilidades digitales",
+                "modality": "presencial"
+            },
+            "participation": {
+                "participants": 335,
+                "regions": 26
+            },
+            "organizers": {
+                "main": "SENA",
+                "partners": [
+                    "Adobe",
+                    "Pcmac",
+                    "Cisco",
+                    "Globant",
+                    "Intelligent Training",
+                    "Q'Vision",
+                    "GOYN",
+                    "Siigo"
+                ]
+            },
+            "official_statement": {
+                "speaker": "Sandra Yulieth García González",
+                "title": "Subdirectora del Centro de Diseño e Innovación Tecnológica Industrial",
+                "quote": "Risaralda se enorgullece de ser sede de este evento, que desde 2008 nos permite compartir y descubrir el enorme talento de nuestros jóvenes en diversas áreas tecnológicas"
+            },
+            "categories": {
+                "ingenieria_datos": {
+                    "name": "Ingeniería de Datos",
+                    "winner_region": "Regional Cauca"
+                },
+                "automatizacion_pruebas": {
+                    "name": "Automatización de pruebas",
+                    "winner_region": "Regional Distrito Capital"
+                },
+                "experiencia_usuario": {
+                    "name": "Experiencia de Usuario (UX)",
+                    "winner_region": "Regional Bolívar"
+                },
+                "medios_audiovisuales": {
+                    "name": "Medios Audiovisuales",
+                    "winner_region": "Regional Santander"
+                },
+                "mujeres_digitales": {
+                    "name": "Mujeres Digitales",
+                    "winner_region": "Regional Valle"
+                },
+                "desarrollo_libre": {
+                    "name": "Desarrollo Libre",
+                    "winner_region": "Regional Santander"
+                },
+                "seguridad_redes": {
+                    "name": "Seguridad en las redes",
+                    "winner_region": "Regional Distrito Capital"
+                },
+                "desarrollo_integral": {
+                    "name": "Desarrollo integral",
+                    "winner_region": "Regionales Antioquia y Distrito Capital"
+                },
+                "inteligencia_artificial": {
+                    "name": "Inteligencia Artificial",
+                    "winner_region": "Regional Antioquia"
+                },
+                "fotografia_cinematografica": {
+                    "name": "Fotografía cinematográfica",
+                    "project": "Hordas Zombi",
+                    "participants": 13,
+                    "description": "Proyecto colaborativo entre múltiples regionales"
+                }
+            },
+            "benefits": [
+                "Viaje a la Semana Internacional en México (noviembre 2023)",
+                "Visitas a empresas líderes en educación y tecnología",
+                "Preparación para el mundo laboral"
+            ]
+        },
+        "2024": {
+            "basic_info": {
+                "year": 2024,
+                "dates": "2024-09-24/2024-09-27",
+                "location": "Cali, Valle del Cauca",
+                "venues": [
+                    "Zonamérica",
+                    "NIDO"
+                ],
+                "modality": "presencial"
+            },
+            "participation": {
+                "participants": 300,
+                "regions": 23
+            },
+            "organizers": {
+                "main": "SENA",
+                "partners": [
+                    "IBM",
+                    "Globant",
+                    "Adobe",
+                    "Uniandes",
+                    "R-fast"
+                ]
+            },
+            "focus_areas": [
+                "Industrias Creativas",
+                "Desarrollo de Software",
+                "Infraestructura"
+            ],
+            "categories": {
+                "desarrollo_libre": {
+                    "name": "Desarrollo Libre",
+                    "sponsor": "IBM"
+                },
+                "desarrollo_integral": {
+                    "name": "Desarrollo Integral",
+                    "sponsor": "Globant"
+                },
+                "audiovisuales": {
+                    "name": "Audiovisuales",
+                    "sponsor": "Adobe"
+                },
+                "publicaciones_digitales": {
+                    "name": "Publicaciones Digitales",
+                    "sponsor": "Adobe"
+                },
+                "animacion_realidad_extendida": {
+                    "name": "Animación 2.5D / Realidad Extendida",
+                    "sponsor": "Uniandes"
+                },
+                "mujeres_digitales": {
+                    "name": "Mujeres Digitales",
+                    "sponsor": "R-fast"
+                },
+                "seguridad_redes": {
+                    "name": "Seguridad en las Redes",
+                    "sponsor": "SENA"
+                }
+            },
+            "status": "winners_pending",
+            "impact": [
+                "Consolidación de Cali como epicentro de innovación",
+                "Proyección hacia empleabilidad digital a través de NIDO"
+            ]
+        }
+    },
+    "analysis": {
+        "total_participants": "1600+",
+        "total_regions": 26,
+        "recurring_partners": [
+            "Adobe",
+            "IBM",
+            "SENA"
+        ],
+        "trending_categories": [
+            "Desarrollo Web",
+            "Inteligencia Artificial",
+            "Desarrollo Integral",
+            "Audiovisuales",
+            "Seguridad en Redes"
+        ],
+        "regional_leaders": [
+            "Distrito Capital",
+            "Cauca",
+            "Antioquia",
+            "Valle del Cauca"
+        ],
+        "technology_evolution": {
+            "2020": [
+                "PHP",
+                "Python",
+                "Gaming",
+                "3D Animation"
+            ],
+            "2021": [
+                "Health Tech",
+                "Digital Signatures"
+            ],
+            "2022": [
+                "AI",
+                "Cloud",
+                "Cybersecurity",
+                "UX"
+            ],
+            "2023": [
+                "Data Engineering",
+                "Test Automation",
+                "Digital Women"
+            ],
+            "2024": [
+                "Extended Reality",
+                "Creative Industries",
+                "Infrastructure"
+            ]
+        }
+    }
+}
