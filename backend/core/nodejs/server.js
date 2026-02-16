@@ -8,22 +8,15 @@ const cors = require('cors');
 const app = express();
 
 /* ===== Hardening y headers ===== */
-// 1) Desactiva ETag para que NUNCA devuelva 304
 app.set('etag', false);
-
-// 2) Desactiva X-Powered-By (higiene)
 app.disable('x-powered-by');
-
-// 3) Fuerza no-cache a nivel global (puedes afinar por ruta si prefieres)
 app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store');     // sin cache
+  res.set('Cache-Control', 'no-store');
   next();
 });
 
 /* ===== Middlewares ===== */
 app.use(express.json());
-
-// CORS desde ALLOWED_ORIGINS (mantengo tu lógica)
 const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['*'];
 app.use(cors({
   origin: function (origin, callback) {
@@ -43,25 +36,22 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("✅ Conectado a MongoDB Atlas"))
 .catch(err => console.error("❌ Error de conexión:", err));
 
-/* ===== Modelo (colección metrics_scalar) ===== */
+/* ===== Modelos ===== */
 const metricSchema = new mongoose.Schema({}, { strict: false });
 const Metric = mongoose.model('metrics_scalar', metricSchema, 'metrics_scalar');
 
-/* ===== Endpoints ===== */
+const aprendizSchema = new mongoose.Schema({}, { strict: false });
+const Aprendiz = mongoose.model("aprendices", aprendizSchema, "aprendices");
 
-// GET /metrics/scalar  → JSON siempre, sin 304 y sin cache
+/* ===== Endpoints existentes ===== */
 app.get('/metrics/scalar', async (req, res) => {
   try {
     const data = await Metric.find({}).lean();
-
-    // Si quieres devolver SOLO los campos que usa el GPT:
-    // const projected = data.map(({ description, value }) => ({ description, value }));
-
     res
       .status(200)
-      .type('application/json; charset=utf-8')   // Content-Type explícito
-      .set('Cache-Control', 'no-store')          // refuerzo por ruta
-      .json(data);                               // o .json(projected)
+      .type('application/json; charset=utf-8')
+      .set('Cache-Control', 'no-store')
+      .json(data);
   } catch (err) {
     res
       .status(500)
@@ -70,7 +60,6 @@ app.get('/metrics/scalar', async (req, res) => {
   }
 });
 
-/* (Opcional) Healthcheck rápido */
 app.get('/health', (_req, res) => {
   res
     .status(200)
@@ -79,8 +68,100 @@ app.get('/health', (_req, res) => {
     .json({ ok: true });
 });
 
+/* ===== Endpoints nuevos (reto) ===== */
+
+// 1) inscritos por centro
+app.get("/metrics/inscritos/centro", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      { $group: { _id: "$centro_formacion", total: { $sum: 1 } } },
+      { $sort: { total: -1 } }
+    ]);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 2) instructores por centro
+app.get("/metrics/instructores/centro", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      { $unwind: "$instructores_recomendados" },
+      {
+        $group: {
+          _id: "$centro_formacion",
+          instructores: { $addToSet: "$instructores_recomendados.nombre" }
+        }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 3) inscritos por centro y programa
+app.get("/metrics/inscritos/centro-programa", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      {
+        $group: {
+          _id: { centro: "$centro_formacion", programa: "$programa" },
+          total: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.centro": 1, "_id.programa": 1 } }
+    ]);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 4) inscritos por departamento
+app.get("/metrics/inscritos/departamento", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      { $group: { _id: "$departamento", total: { $sum: 1 } } },
+      { $sort: { total: -1 } }
+    ]);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 5) aprendices con GitHub
+app.get("/metrics/inscritos/github", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      { $match: { github: true } },
+      { $count: "total_con_github" }
+    ]);
+    res.json(result[0] || { total_con_github: 0 });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 6) aprendices con inglés B1/B2 por centro
+app.get("/metrics/inscritos/ingles", async (req, res) => {
+  try {
+    const result = await Aprendiz.aggregate([
+      { $match: { nivel_ingles: { $in: ["B1", "B2"] } } },
+      { $group: { _id: "$centro_formacion", total: { $sum: 1 } } },
+      { $sort: { total: -1 } }
+    ]);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 /* ===== Iniciar servidor ===== */
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(` Servidor corriendo en el puerto ${PORT}`);
 });
