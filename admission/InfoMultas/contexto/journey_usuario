@@ -1,0 +1,49 @@
+# 🛤️ User Journey  
+
+El recorrido del usuario describe cómo **descubre, adopta y usa InfoMultas** para gestionar sus sanciones y mantenerse informado sobre cámaras de fotodetección.  
+
+---
+
+## 👣 Etapas  
+
+1. **Descubrimiento**  
+   - El usuario encuentra InfoMultas en redes, recomendaciones o buscadores.  
+   - Motivación: necesidad de verificar si tiene fotomultas o conocer ubicaciones de cámaras.  
+
+2. **Primer acceso / Onboarding**  
+   - Consulta inicial ingresando la placa del vehículo.  
+   - Breve explicación de las funciones: consulta de sanciones, mapa de cámaras y asistente de ayuda.  
+
+3. **Primer uso**  
+   - El sistema devuelve el estado de las fotomultas en segundos.  
+   - Usuario percibe valor inmediato → “Ya sé si tengo multas pendientes”.  
+
+4. **Uso recurrente**  
+   - Revisiones periódicas para estar al día con el estado del vehículo.  
+   - Uso del mapa para planificar rutas evitando cámaras activas.  
+   - Consulta al asistente de IA para resolver dudas legales.  
+
+---
+
+## 📌 Touchpoints  
+
+- **Web App / Aplicación móvil**  
+- **Chatbot en WhatsApp o Telegram**  
+- **Notificaciones sobre vencimiento de multas**  
+
+---
+
+## 🎯 Resultado esperado  
+
+- Usuario percibe InfoMultas como su **aliado confiable para evitar sorpresas con sanciones**.  
+- Retorno periódico para consultas y uso del mapa interactivo.  
+- Recomendación boca a boca entre conductores.  
+
+---
+
+## 📊 Métricas a medir  
+
+- Número de consultas por placa.  
+- Retención mensual de usuarios.  
+- Cantidad de interacciones con el asistente de IA.  
+- Reportes ciudadanos enviados.  
