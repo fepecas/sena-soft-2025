@@ -1,0 +1,3 @@
+link de acceso al prototipo funcional:
+
+https://lumina-dnz.vercel.app/
