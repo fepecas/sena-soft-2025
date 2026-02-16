@@ -1,0 +1,5 @@
+English
+Cyberpunk portrait of an elderly Colombian man, inspired by traditional paisa culture, wearing a typical hat, a poncho with glowing neon circuits, a leather carriel, and holding a machete with a purple neon glow. Friendly expression but with a strong and confident demeanor. High-contrast lighting with neon accents in blue, pink, and purple. Futuristic city background with bright signs and wet streets reflecting the lights. Cinematic composition, hyperrealistic and ultra-detailed textures, photorealistic style, portrait format for profile picture.
+
+Versión a español
+"Retrato ciberpunk de un hombre mayor colombiano, inspirado en la cultura tradicional paisa, con sombrero típico, poncho con circuitos de neón brillantes, carriel de cuero y sosteniendo un machete con brillo púrpura neón. Expresión amable pero con porte fuerte y seguro. Iluminación de alto contraste con acentos de neón en azul, rosa y púrpura. Fondo de ciudad futurista con letreros luminosos y calles mojadas que reflejan las luces. Composición cinematográfica, texturas hiperrealistas y ultra detalladas, estilo fotorrealista, formato retrato para foto de perfil."
