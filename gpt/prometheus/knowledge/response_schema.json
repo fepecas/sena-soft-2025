@@ -1,0 +1,18 @@
+{
+    "nombre_aprendiz": "string",
+    "estado_actual": "string",
+    "habilidades_a_mejorar": ["string"],
+    "resumen_asistencias": "string",
+    "evaluaciones": [
+      {
+        "fecha": "YYYY-MM-DD",
+        "tipo": "teorica | practica",
+        "resultado": "string"
+      }
+    ],
+    "progreso": {
+      "tema_cubierto": "string",
+      "nivel_tecnico": "principiante | intermedio | avanzado",
+      "subtemas_cubiertos": ["string"]
+    }
+  }
