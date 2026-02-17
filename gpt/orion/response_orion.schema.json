@@ -1,0 +1,289 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.schema/response_orion.schema.json",
+  "title": "Orion Response Block",
+  "description": "Contrato de salida para el bloque JSON al final de cada respuesta de Orion.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["status", "context_summary", "recommendations", "next_steps"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Versión del formato de respuesta.",
+      "default": "1.0"
+    },
+    "id_consulta": {
+      "type": "string",
+      "description": "Identificador opcional de la consulta/conversación."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca de tiempo ISO-8601 de la generación de la respuesta."
+    },
+    "status": {
+      "type": "string",
+      "description": "Estado de madurez de la recomendación.",
+      "enum": ["draft", "provisional", "final"]
+    },
+    "executive_summary": {
+      "type": "string",
+      "description": "Resumen ejecutivo breve (opcional).",
+      "maxLength": 1200
+    },
+    "context_summary": {
+      "type": "string",
+      "description": "Resumen del contexto entendido (objetivo, fase, stack, restricciones).",
+      "minLength": 1
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "process_flow": {
+      "type": "array",
+      "description": "Flujo de análisis aplicado (p.ej., O·R·I·O·N).",
+      "items": { "type": "string", "minLength": 1 },
+      "examples": [["Objetivo", "Recorrido", "Inspección", "Oportunidades", "Números"]]
+    },
+    "process_notes": {
+      "type": "array",
+      "description": "Notas breves sobre el proceso/alcance analizado.",
+      "items": { "type": "string" }
+    },
+    "diagnostic": {
+      "$ref": "#/$defs/Diagnostic"
+    },
+    "risks": {
+      "type": "array",
+      "description": "Riesgos identificados con impacto/probabilidad y mitigación.",
+      "items": { "$ref": "#/$defs/Risk" }
+    },
+    "recommendations": {
+      "type": "object",
+      "description": "Recomendaciones priorizadas.",
+      "additionalProperties": true,
+      "properties": {
+        "quick_wins": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/RecItem" }
+        },
+        "strategy": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/RecStrategyItem" }
+        }
+      },
+      "anyOf": [
+        { "required": ["quick_wins"], "properties": { "quick_wins": { "minItems": 1 } } },
+        { "required": ["strategy"],   "properties": { "strategy":   { "minItems": 1 } } }
+      ]
+    },
+    "next_steps": {
+      "type": "array",
+      "description": "Acciones inmediatas secuenciadas.",
+      "items": { "$ref": "#/$defs/Step" },
+      "minItems": 1
+    },
+    "indicators": {
+      "type": "array",
+      "description": "Indicadores de éxito (alias de success_indicators).",
+      "items": { "$ref": "#/$defs/Indicator" }
+    },
+    "success_indicators": {
+      "type": "array",
+      "description": "Indicadores/objetivos con herramienta de medición.",
+      "items": { "$ref": "#/$defs/Indicator" }
+    },
+    "mode": {
+      "$ref": "#/$defs/Mode"
+    },
+    "security_notes": {
+      "type": "array",
+      "description": "Advertencias de seguridad/privacidad.",
+      "items": { "type": "string" }
+    },
+    "links": {
+      "type": "array",
+      "description": "Enlaces relevantes (documentación, dashboards, issues).",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "attachments": {
+      "type": "array",
+      "description": "Metadatos de adjuntos (opcional).",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "url":  { "type": "string", "format": "uri" }
+        },
+        "required": ["name"]
+      }
+    }
+  },
+  "$defs": {
+    "Context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "objective": { "type": "string" },
+        "phase": { "type": "string" },
+        "stack": { "type": "array", "items": { "type": "string" } },
+        "constraints": { "type": "array", "items": { "type": "string" } },
+        "symptoms": { "type": "array", "items": { "type": "string" } },
+        "assumptions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Diagnostic": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "area": { "type": "string" },
+              "description": { "type": "string" },
+              "evidence": { "type": "string" }
+            },
+            "required": ["area", "description"]
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Risk": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "risk": { "type": "string" },
+        "impact": {
+          "type": "string",
+          "description": "Recomendado: A/M/B o High/Medium/Low.",
+          "pattern": "^(A|M|B|[Hh]igh|[Mm]edium|[Ll]ow)$"
+        },
+        "probability": {
+          "type": "string",
+          "description": "Recomendado: A/M/B o High/Medium/Low.",
+          "pattern": "^(A|M|B|[Hh]igh|[Mm]edium|[Ll]ow)$"
+        },
+        "mitigation": { "type": "string" }
+      },
+      "required": ["risk"]
+    },
+    "RecItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "action": { "type": "string" },
+        "benefit": { "type": "string" }
+      },
+      "required": ["action"]
+    },
+    "RecStrategyItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "action": { "type": "string" },
+        "outcome": { "type": "string" },
+        "dependencies": { "type": "array", "items": { "type": "string" } },
+        "safeguards": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["action"]
+    },
+    "Step": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "step": { "type": "string" },
+        "owner": { "type": "string" },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "due": { "type": "string" }
+      },
+      "required": ["step"]
+    },
+    "Indicator": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "metric": { "type": "string" },
+        "target": { "type": ["string", "number"] },
+        "tool": { "type": "string" }
+      },
+      "required": ["metric", "target"]
+    },
+    "Mode": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["diagnostico", "adr", "plan-rendimiento", "checklist", "mentoria"]
+        },
+        "verbosity": {
+          "type": "string",
+          "enum": ["baja", "media", "alta"]
+        },
+        "code": {
+          "type": "string",
+          "enum": ["evitar", "minimo", "permitido"]
+        },
+        "critique": {
+          "type": "string",
+          "enum": ["suave", "equilibrada", "implacable"]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "1.0",
+      "id_consulta": "exp-001",
+      "timestamp": "2025-08-16T18:20:00Z",
+      "status": "provisional",
+      "executive_summary": "Lentitud bajo carga por bloqueo del event loop y ausencia de escalado horizontal.",
+      "context_summary": "MVP de mensajería en Node.js/Express con picos nocturnos y restricciones de equipo/tiempo.",
+      "context": {
+        "objective": "Estabilizar el backend en picos",
+        "phase": "MVP",
+        "stack": ["Node.js", "Express", "WebSockets", "PostgreSQL"],
+        "constraints": ["1 mes para estabilizar", "equipo de 3 devs"],
+        "symptoms": ["latencia p95 > 800ms", "timeouts 2%"],
+        "assumptions": ["1 instancia sin balanceo", "sin caché"]
+      },
+      "process_flow": ["Objetivo", "Recorrido", "Inspección", "Oportunidades", "Números"],
+      "diagnostic": {
+        "findings": [
+          { "area": "Concurrencia", "description": "Event loop bloqueado por tareas CPU-bound", "evidence": "CPU > 80% y caída de throughput" },
+          { "area": "Escalado", "description": "Sin clustering/proxy inverso" }
+        ]
+      },
+      "risks": [
+        { "risk": "Caídas en horas pico", "impact": "High", "probability": "High", "mitigation": "clustering + balanceo + backpressure" }
+      ],
+      "recommendations": {
+        "quick_wins": [
+          { "action": "Habilitar PM2 cluster + reverse proxy", "benefit": "Aprovechar multi-core y distribuir carga" },
+          { "action": "Mover CPU-bound a workers/queue", "benefit": "Liberar event loop" }
+        ],
+        "strategy": [
+          { "action": "APM + tracing WS/HTTP", "outcome": "Detección de cuellos de botella", "dependencies": ["Cuenta APM"], "safeguards": ["canary"] }
+        ]
+      },
+      "next_steps": [
+        { "step": "Configurar PM2 cluster + Nginx", "owner": "DevOps" },
+        { "step": "Integrar Redis pub/sub", "owner": "Backend" }
+      ],
+      "success_indicators": [
+        { "metric": "latencia p95", "target": "< 300ms", "tool": "APM" },
+        { "metric": "timeouts", "target": "< 0.5%", "tool": "logs" }
+      ],
+      "mode": { "type": "diagnostico", "verbosity": "media", "code": "minimo", "critique": "equilibrada" }
+    }
+  ]
+}
