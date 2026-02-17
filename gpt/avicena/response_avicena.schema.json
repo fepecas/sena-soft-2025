@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de respuesta para AVICENA",
+  "type": "object",
+  "properties": {
+    "General": {
+      "type": "object",
+      "properties": {
+        "nombre_usuario": { "type": "string" },
+        "rol_usuario": { "type": "string" },
+        "duracion_total": { "type": "string" },
+        "numero_interacciones": { "type": "integer" },
+        "sentimiento_equipo": {
+          "type": "string",
+          "enum": [
+            "agotado",
+            "estresado",
+            "equilibrado",
+            "motivado",
+            "fluyendo"
+          ]
+        },
+        "nivel_confianza_IA": {
+          "type": "string",
+          "enum": ["bajo", "medio", "alto"]
+        }
+      },
+      "required": ["nombre_usuario", "rol_usuario"]
+    },
+    "Especifico": {
+      "type": "object",
+      "properties": {
+        "equipo_tipo": {
+          "type": "string",
+          "enum": ["startup", "empresa", "open_source", "hackathon", "otro"]
+        },
+        "equipo_ubicacion": { "type": "string" },
+        "problemas_detectados": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mvp_funcionalidades": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "comportamiento_agentico": { "type": "string" },
+        "impacto_esperado": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "metricas_exito": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "desafios_producto": { "type": "string" },
+        "recursos_necesarios": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "busco_equipo": { "type": "string" },
+        "descripcion_avicena": { "type": "string" }
+      }
+    }
+  }
+}
