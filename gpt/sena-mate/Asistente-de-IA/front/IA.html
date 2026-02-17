@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat tipo ChatGPT</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="./style/IA.css"/>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="../assets/avatar.png" alt="Logo" class="logo">
+      <h1>GloSenIA</h1>
+    </div>
+    <div class="chat-list">
+      <div class="chat-item"><i class="fa-regular fa-comment" id="chat-list"></i></div>
+      
+    </div>
+    <button class="new-chat"><i class="fa-solid fa-plus"></i> Nuevo chat</button>
+  </div>
+
+  <div class="main">
+    <div class="messages" id="messages">
+      <div class="message bot">
+        <img src="../assets/avatar.png" alt="Logo" class="logo">
+        <div class="text">¿En qué estás trabajando?</div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." />
+      <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

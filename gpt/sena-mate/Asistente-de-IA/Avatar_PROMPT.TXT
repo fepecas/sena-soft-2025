@@ -1,0 +1,8 @@
+Avatar para un proyecto de asistente de IA  GloSenIA,con un  estilo minimalista que sea mitad robot y mitad persona, moderno y educativo .
+Los Colores principales son : 
+#FFFFFF (Blanco)
+#A4C639 (verde Brillante)
+#333333 (gris)
+El Avatar Debe transmitir: [sensación De: tecnología, seguridad, educación, y apoyo hacia los usuarios ]
+Formato cuadrado, fondo transparente o sólido.
+Sin texto, solo símbolo/gráfico representativo.
