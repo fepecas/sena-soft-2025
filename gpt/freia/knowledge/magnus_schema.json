@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de evaluación para Magnus con desempeño por competencia",
+  "type": "object",
+  "properties": {
+    "General": {
+      "type": "object",
+      "properties": {        
+        "nombre_aprendiz": {
+          "type": "string"
+        },
+        "duracion_total": {
+          "type": "string"
+        },
+        "numero_interacciones": {
+          "type": "integer"
+        },
+        "sentimiento": {
+          "type": "string",
+          "enum": [
+            "inseguro",
+            "confiado",
+            "temeroso",
+            "emocionado",
+            "expectante"
+          ]
+        },
+        "pegar_de_internet": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "Especifico": {
+      "type": "object",
+      "properties": {
+        "competencias": {
+          "type": "object"
+        },
+        "lenguajes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "frameworks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rol_backend": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "rol_frontend": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "descripcion_magnus": {
+          "type": "string"
+        }        
+      }
+    }
+  }
+}
