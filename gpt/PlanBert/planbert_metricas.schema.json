@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/planbert/metricas.schema.json",
+  "title": "Esquema de métricas PlanBert",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "penitencia": {
+      "title": "Penitencia",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idPenitencia": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "Ejercicio extra",
+            "Trivia",
+            "Microproyecto"
+          ]
+        },
+        "descripcion": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "fechaAplicacion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "superada": {
+          "type": "boolean"
+        }
+      }
+    },
+    "estilosAprendizaje": {
+      "title": "Estilos de aprendizaje",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idEstilo": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string",
+          "enum": [
+            "Visual",
+            "Auditivo",
+            "Kinestésico"
+          ]
+        },
+        "descripcion": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "recursosRecomendados": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        }
+      }
+    },
+    "nivelConocimiento": {
+      "title": "Nivel de conocimiento del usuario",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idNivel": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nombre": {
+          "type": "string",
+          "enum": [
+            "Básico",
+            "Intermedio",
+            "Avanzado"
+          ]
+        },
+        "criterios": {
+          "type": "string",
+          "maxLength": 800
+        },
+        "fechaEvaluacion": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "puntaje": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  },
+  "description": "Solo define el esquema; los datos se irán incorporando dinámicamente durante la interacción con el asistente."
+}
