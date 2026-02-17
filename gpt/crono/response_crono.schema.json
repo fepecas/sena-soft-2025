@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Esquema de respuesta para Crono (supervisor de tiempo productivo) v1",
+  "type": "object",
+  "properties": {
+    "General": {
+      "type": "object",
+      "properties": {
+        "nombre_mvp": { "type": "string" },
+        "duracion_total": { "type": "string" },
+        "numero_interacciones": { "type": "integer", "minimum": 0 },
+        "sentimiento": {
+          "type": "string",
+          "enum": ["", "inseguro", "confiado", "temeroso", "emocionado", "expectante"]
+        },
+        "pegar_de_internet": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+
+    "Especifico": {
+      "type": "object",
+      "properties": {
+        "horizonte": { "type": "string", "enum": ["diario", "custom"] },
+
+        "tiempo_restante_min": { "type": "integer", "minimum": 0 },
+        "tiempo_restante_horas": { "type": "number", "minimum": 0 },
+
+        "fecha_limite": { "type": "string", "format": "date-time" },
+        "resumen": { "type": "string" },
+
+        "capacidad_equipo": {
+          "type": "object",
+          "properties": {
+            "integrantes": { "const": 3 },
+            "horas_disponibles_por_dia": { "type": "number", "minimum": 0 },
+            "roles_horas": {
+              "type": "object",
+              "properties": {
+                "DEV": { "type": "number", "minimum": 0 },
+                "BA":  { "type": "number", "minimum": 0 },
+                "QC":  { "type": "number", "minimum": 0 }
+              }
+            },
+            "miembros": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "nombre": { "type": "string" },
+                  "rol": { "type": "string", "enum": ["DEV", "BA", "QC"] },
+                  "horas_disponibles": { "type": "number", "minimum": 0 }
+                }
+              }
+            }
+          }
+        },
+
+        "plan_de_trabajo": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "fecha": { "type": "string", "format": "date" },
+              "hitos": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "titulo": { "type": "string" },
+                    "fecha_objetivo": { "type": "string", "format": "date-time" },
+                    "prioridad": { "type": "string", "enum": ["alta", "media", "baja"] },
+                    "tareas": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "titulo": { "type": "string" },
+                          "descripcion": { "type": "string" },
+                          "estimacion_horas": { "type": "number", "minimum": 0, "multipleOf": 0.5 },
+                          "responsable": { "type": "string", "enum": ["DEV", "BA", "QC"] },
+                          "estado": { "type": "string", "enum": ["pendiente", "en_progreso", "bloqueada", "completada"] },
+                          "dependencias": { "type": "array", "items": { "type": "string" } }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "recordatorios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "trigger": { "type": "string", "enum": ["al_enviar_informe", "al_abrir_crono", "al_cerrar_jornada"] },
+              "criterios": {
+                "type": "object",
+                "properties": {
+                  "deadline_en_min_lte": { "type": "integer", "minimum": 0 },
+                  "prioridades": { "type": "array", "items": { "type": "string", "enum": ["alta", "media", "baja"] } },
+                  "estados": { "type": "array", "items": { "type": "string", "enum": ["pendiente", "en_progreso", "bloqueada"] } },
+                  "max_items": { "type": "integer", "minimum": 1 }
+                }
+              },
+              "mensajes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tarea_id": { "type": "string" },
+                    "titulo": { "type": "string" },
+                    "hito_id": { "type": "string" },
+                    "prioridad": { "type": "string", "enum": ["alta", "media", "baja"] },
+                    "estado": { "type": "string", "enum": ["pendiente", "en_progreso", "bloqueada"] },
+                    "vence_en_min": { "type": "integer", "minimum": 0 },
+                    "recomendacion": { "type": "string" }
+                  }
+                }
+              },
+              "siguiente_revision": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+
+        "tecnicas_sugeridas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metodo": { "type": "string", "enum": ["Pomodoro", "Kanban", "Scrum"] },
+              "justificacion": { "type": "string" },
+              "configuracion": { "type": "object" }
+            }
+          }
+        },
+
+        "progreso": {
+          "type": "object",
+          "properties": {
+            "porcentaje_avance": { "type": "number", "minimum": 0, "maximum": 100 },
+            "tareas_totales": { "type": "integer", "minimum": 0 },
+            "tareas_pendientes": { "type": "integer", "minimum": 0 },
+            "hitos_cumplidos": { "type": "integer", "minimum": 0 },
+            "riesgo": {
+              "type": "object",
+              "properties": {
+                "nivel": { "type": "string", "enum": ["bajo", "medio", "alto"] },
+                "causas": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        },
+
+        "alertas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tipo": { "type": "string", "enum": ["tarea_critica", "retraso", "capacidad_saturada", "bloqueo"] },
+              "detalle": { "type": "string" },
+              "impacto": { "type": "string" },
+              "acciones_recomendadas": { "type": "array", "items": { "type": "string" } },
+              "severidad": { "type": "string", "enum": ["alta", "media", "baja"] }
+            }
+          }
+        },
+
+        "proxima_accion": { "type": "string", "minLength": 1 }
+      },
+
+      "oneOf": [
+        { "required": ["tiempo_restante_min"] },
+        { "required": ["tiempo_restante_horas"] }
+      ]
+    }
+  }
+}
