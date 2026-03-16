@@ -1,0 +1,51 @@
+{
+  "general": {
+    "nombre_aprendiz": "",
+    "duracion_total": "",
+    "numero_interacciones": 0,
+    "sentimiento": ""
+  },
+  "arquitectura_software": {
+    "idea_original": "",
+    "actores_principales": [],
+    "actores_secundarios": [],
+    "funcionalidades_core": [],
+    "funcionalidades_secundarias": [],
+    "restricciones_tecnicas": [],
+    "integraciones_externas": []
+  },
+  "diagramas_uml": {
+    "casos_de_uso": {
+      "actores": [],
+      "casos_principales": [],
+      "casos_alternativos": [],
+      "limites_sistema": ""
+    },
+    "clases": {
+      "entidades_principales": [],
+      "atributos_por_clase": {},
+      "metodos_por_clase": {},
+      "relaciones": []
+    },
+    "componentes": {
+      "modulos": [],
+      "interfaces": [],
+      "dependencias": []
+    }
+  },
+  "validacion_arquitectonica": {
+    "patrones_diseño": [],
+    "principios_escalabilidad": [],
+    "alineacion_politicas_ia": "",
+    "coherencia_manifesto_globant": ""
+  },
+  "salidas_tecnicas": {
+    "codigo_plantuml": {
+      "casos_uso": "",
+      "clases": "",
+      "componentes": ""
+    },
+    "recomendaciones_implementacion": [],
+    "herramientas_sugeridas": []
+  }
+}

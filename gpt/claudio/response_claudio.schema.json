@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Response Claudio Schema",
+  "description": "Esquema para validar la estructura JSON del registro arquitectónico de Claudio",
+  "type": "object",
+  "properties": {
+    "general": {
+      "type": "object",
+      "properties": {
+        "nombre_aprendiz": { "type": "string" },
+        "duracion_total": { "type": "string" },
+        "numero_interacciones": { "type": "integer", "minimum": 0 },
+        "sentimiento": { "type": "string" }
+      },
+      "required": ["nombre_aprendiz", "duracion_total", "numero_interacciones"]
+    },
+    "arquitectura_software": {
+      "type": "object",
+      "properties": {
+        "idea_original": { "type": "string" },
+        "actores_principales": { "type": "array", "items": { "type": "string" } },
+        "actores_secundarios": { "type": "array", "items": { "type": "string" } },
+        "funcionalidades_core": { "type": "array", "items": { "type": "string" } },
+        "funcionalidades_secundarias": { "type": "array", "items": { "type": "string" } },
+        "restricciones_tecnicas": { "type": "array", "items": { "type": "string" } },
+        "integraciones_externas": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["idea_original", "actores_principales", "funcionalidades_core"]
+    },
+    "diagramas_uml": {
+      "type": "object",
+      "properties": {
+        "casos_de_uso": {
+          "type": "object",
+          "properties": {
+            "actores": { "type": "array", "items": { "type": "string" } },
+            "casos_principales": { "type": "array", "items": { "type": "string" } },
+            "casos_alternativos": { "type": "array", "items": { "type": "string" } },
+            "limites_sistema": { "type": "string" }
+          }
+        },
+        "clases": {
+          "type": "object",
+          "properties": {
+            "entidades_principales": { "type": "array", "items": { "type": "string" } },
+            "atributos_por_clase": { "type": "object" },
+            "metodos_por_clase": { "type": "object" },
+            "relaciones": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "componentes": {
+          "type": "object",
+          "properties": {
+            "modulos": { "type": "array", "items": { "type": "string" } },
+            "interfaces": { "type": "array", "items": { "type": "string" } },
+            "dependencias": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "required": ["casos_de_uso", "clases", "componentes"]
+    },
+    "validacion_arquitectonica": {
+      "type": "object",
+      "properties": {
+        "patrones_diseño": { "type": "array", "items": { "type": "string" } },
+        "principios_escalabilidad": { "type": "array", "items": { "type": "string" } },
+        "alineacion_politicas_ia": { "type": "string" },
+        "coherencia_manifesto_globant": { "type": "string" }
+      }
+    },
+    "salidas_tecnicas": {
+      "type": "object",
+      "properties": {
+        "codigo_plantuml": {
+          "type": "object",
+          "properties": {
+            "casos_uso": { "type": "string" },
+            "clases": { "type": "string" },
+            "componentes": { "type": "string" }
+          },
+          "required": ["casos_uso", "clases", "componentes"]
+        },
+        "recomendaciones_implementacion": { "type": "array", "items": { "type": "string" } },
+        "herramientas_sugeridas": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["codigo_plantuml"]
+    }
+  },
+  "required": ["general", "arquitectura_software", "diagramas_uml", "validacion_arquitectonica", "salidas_tecnicas"]
+}
