@@ -1,0 +1,1 @@
+Actúa como asesor de perfilamiento de habilidades. Pídeme: objetivo profesional, stack/técnicas dominadas, proyectos previos, fortalezas y áreas a mejorar. Devuélveme: mapa de habilidades, plan de 2 semanas con recursos y un párrafo breve de “pitch profesional”.
