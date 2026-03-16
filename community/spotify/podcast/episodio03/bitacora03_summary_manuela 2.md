@@ -1,0 +1,17 @@
+# Puntos importantes de la charla entregados por Manuela Beltrán
+
+Imagina que crear un producto digital es como abrir y operar un restaurante exitoso en una ciudad moderna.
+
+El producto digital sería el restaurante en sí: un espacio donde clientes llegan con hambre (necesidades/expectativas), buscan soluciones (platos/servicios) y esperan salir satisfechos (experiencia/resolución de problemas). Hacer producto digital no es solo “cocinar” (programar), sino entender gustos, tendencias, salud, logística, precios, atención y evolución constante para que el restaurante se mantenga relevante, rentable y destacado frente a la competencia.
+Aquí entran el Product Manager (PM) y el Business Analyst (BA):
+El Product Manager es como el chef ejecutivo y gerente del restaurante a la vez: se encarga de definir qué platos deben estar en el menú (qué construir y por qué), anticipar tendencias, escuchar a clientes, priorizar qué mejorar primero, coordinar con cocina, meseros, proveedores, y asegurar que todo el equipo remará hacia el mismo objetivo de negocio (satisfacción del cliente, rentabilidad, reputación).
+El Business Analyst actúa como el sommelier y consultor de procesos: traduce las necesidades del cliente en requisitos claros para la cocina y barra, detecta detalles que mejoran la experiencia, estudia qué platos son los más rentables y cuándo cambiarlos, y documenta procesos para que los cambios sean claros, auditables y medibles.
+Sin estas dos figuras, el restaurante podría ofrecer platos sin demanda, gastar en ingredientes innecesarios, confundir a sus empleados o perder clientes por no escuchar ni medir. Con ellas, se asegura que cada decisión esté informada, coordinada y centrada en mejorar tanto la experiencia del comensal como los resultados del negocio.
+
+--
+
+El producto digital es la panadería misma: un lugar donde los vecinos llegan cada día buscando pan fresco (soluciones a sus necesidades), pero también nuevas recetas, buen trato y precios justos. Hacer producto digital implica mucho más que saber hornear; es entender qué le gusta realmente a tu comunidad, cuándo y cuánto necesita, cómo innovar (¿pan sin gluten, especiales los sábados?) y cómo mantener el interés frente a nuevas panaderías o cambios en los gustos del pueblo.
+En este contexto:
+El Product Manager sería la persona que planea y decide el menú diario: investiga qué tipos de pan o postres busca el pueblo, prioriza cuáles lanzar primero (pan de agua, integral, bollos), ajusta el inventario, coordina con panaderos y vendedores, y se asegura de que la panadería sea rentable y querida. Sabe cuándo escuchar sugerencias de los clientes y cuándo innovar con una receta diferente.
+El Business Analyst actúa como ese amigo del panadero que observa y analiza: toma nota de cuántos clientes llegan y cuándo, qué productos se venden más, por qué la gente prefiere los bollos del sábado o por qué no están comprando el pan dulce. Transforma esos datos en propuestas claras para el panadero y para mejorar la experiencia de los clientes. También documenta los procesos para que, si la panadería crece, todos sepan cómo trabajar y no se pierda la calidad.
+Sin un Product Manager, la panadería podría terminar haciendo más pan del que vende, o no enterarse de que los vecinos quieren pan integral y así perder clientes frente a la competencia. Sin un Business Analyst, no habría claridad del porqué de los éxitos o fracasos y el negocio funcionaría a prueba y error
