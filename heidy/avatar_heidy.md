@@ -1,0 +1,7 @@
+**Español**
+
+    Quiero que generes una imagen de Hedy, en el que se visualizase la cara, una joven mirando de frente con un poco de inclinación a hacia la derecha, de piel blanca, con los ojos verdes, con una nariz de forma puntiaguda, tiene unos labios que miden la distancia entre el centro de ojo a ojo. Además, tiene unos aretes dorados con una figura de dos corazones entrelazados entre sí. Tiene el pelo hasta la mitad de la espalda, un poco ondulado, desordenado y de bastante volumen. Tiene un vestido rojo que sigue un patrón de muchas estrellas blancas, de modo que se vea más que el mismo rojo con cierta redondez. La imagen debe ser cuadrada.
+
+**English**
+
+    Generate an image of Hedy in which her face is visible: a young woman looking straight ahead with a slight tilt to the right, fair skin, green eyes, a pointed nose, and lips whose width equals the distance between the centers of her eyes. She wears gold earrings shaped as two intertwined hearts. Her hair reaches mid-back, is slightly wavy, tousled, and very voluminous. She wears a red dress patterned with many white stars, with the star pattern appearing more prominent than the red itself and giving a slightly rounded look. The image should be square.
