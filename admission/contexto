@@ -1,0 +1,88 @@
+# 🚀 PR: Versión v0 – CiviLink
+
+Para ver el proyecto click aqui https://v0.app/chat/login-page-creation-t9m3OM2ucYl
+Para vel el video presentacion click aqui https://youtu.be/Acjgdc9j_Ng
+
+## 📌 Descripción
+Este PR introduce la **primera versión navegable (v0)** de **CiviLink**, una plataforma de **ayudas ciudadanas** pensada para facilitar la interacción entre comunidad e instituciones.  
+El flujo de navegación está diseñado bajo principios de **Material Design**, garantizando simplicidad y usabilidad.
+
+📌 Problemática Contextual
+
+En muchas ciudades y regiones de Colombia (y Latinoamérica en general), los ciudadanos enfrentan diariamente problemas locales sin canales eficientes de solución: calles en mal estado, luminarias dañadas, acumulación de basura, falta de acceso a servicios de salud o apoyo social, entre otros.
+
+Aunque existen líneas de atención y oficinas públicas, estas suelen ser burocráticas, lentas y poco transparentes, lo que genera desconfianza ciudadana y desmotivación para reportar problemas. Por otro lado, muchas iniciativas comunitarias o de voluntariado no logran visibilidad ni articulación con las instituciones, perdiéndose oportunidades de ayuda y solidaridad.
+
+El resultado es un círculo vicioso: los ciudadanos no reportan porque “nadie hace nada”, las entidades no tienen información confiable para actuar, y las comunidades más vulnerables quedan desatendidas.
+
+---
+
+## 🧭 Flujo de navegación (capturas incluidas)
+
+### 1️⃣ Mapa de Reportes
+- Visualización satelital con pines de estado:  
+  - 🔴 Urgente  
+  - 🟡 En gestión  
+  - 🔵 Resuelto  
+- Barra de búsqueda de incidencias por dirección o palabra clave.  
+- Controles de zoom y vista responsiva.  
+
+<img width="893" height="503" alt="mapa" src="https://github.com/user-attachments/assets/7b958a2b-d1d1-4e3c-8673-0c1521ae66f0" />
+
+---
+
+### 2️⃣ Mis Seguimientos
+- Lista de incidencias creadas por el usuario.  
+- Cada tarjeta muestra: ubicación, fecha, categoría, estado y prioridad.  
+- Botón **"Ver Detalles"** para ampliar información del caso.  
+
+<img width="877" height="430" alt="seguimientos" src="https://github.com/user-attachments/assets/e6aa84c2-7667-437f-8fef-e09e69b451c1" />
+
+---
+
+### 3️⃣ Mis Solicitudes
+- Búsqueda y gestión de solicitudes (ejemplo: permisos, apoyos, trámites).  
+- Opción **“Nueva Solicitud”** con formulario integrado.  
+- Cada solicitud muestra categoría, fecha y estado.  
+
+<img width="901" height="503" alt="solicitudes" src="https://github.com/user-attachments/assets/aef8deea-fc52-4adf-876b-1f881a3f972f" />
+
+---
+
+### 4️⃣ Perfil
+- Información del ciudadano: nombre, correo, teléfono y ubicación.  
+- Sección de **estadísticas personales** con número de reportes totales, resueltos y pendientes.  
+- Pensado para motivar la participación comunitaria.  
+
+<img width="892" height="505" alt="perfil" src="https://github.com/user-attachments/assets/8deed8b1-dd1f-4e43-ae47-4e4dbe7ed07f" />
+
+---
+
+## ✨ Funcionalidades incluidas en v0
+- 🔑 Inicio de sesión básico.  
+- 🗺️ Mapa interactivo con pines de reportes.  
+- 📋 Seguimiento de casos activos.  
+- 🆘 Registro y consulta de solicitudes ciudadanas.  
+- 👤 Perfil con estadísticas de usuario.  
+- 🤖 Chatbot inicial (botón flotante).  
+
+---
+
+## 🎯 Próximos pasos (v1)
+- Autenticación con JWT / OAuth2.  
+- Notificaciones push para actualizaciones de casos.  
+- Dashboard de zonas urgentes con analítica avanzada.  
+- Módulo de voluntariado y donaciones.  
+
+---
+
+## ✅ Checklist
+- [ ] Flujo de navegación implementado.  
+- [x] Capturas de pantalla agregadas.  
+- [ ] Funcionalidades mínimas v0 operativas.  
+- [ ] Documentación extendida para API backend.  
+
+Integrantes : 
+*Monica Ismelia Cañas
+*Cristian Estiven Pinzon Rojas
+*Carlos Alberto Restrepo

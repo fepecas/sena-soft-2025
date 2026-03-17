@@ -1,0 +1,18 @@
+
+github.com/2Juguitos/senasoft/new/main/admission/civilink
+Necesito crear un login que este al inicio de la pagina
+
+Diseña una aplicación móvil con estilo Material Design llamada "CiviLink", enfocada en ayudas ciudadanas. 
+La interfaz debe ser minimalista, intuitiva y accesible. 
+Pantalla principal: mapa interactivo con pines de reportes (rojo = urgentes, verde = resueltos, amarillo = en gestión). 
+Incluye un botón flotante (FAB) para “Reportar ayuda” con icono de +. 
+Añade barra inferior de navegación con 4 secciones: Mapa, Seguimientos, Solicitudes, Perfil. 
+Incluye un chatbot de asistencia ciudadana con IA en la esquina inferior derecha (ícono de mensaje). 
+Colores principales: verde (#4CAF50), azul (#1976D2) y amarillo (#FFC107). 
+Tipografía: Roboto. 
+Estilo moderno, limpio, con tarjetas y sombreados sutiles.
+
+agrega una opcion para entrar sin credencial, crea restriccion para que usuarios sin credencial no puedan postear
+
+**** Para ver prompts completos entrar aqui****
+https://v0.app/chat/login-page-creation-t9m3OM2ucYl?b=b_HItv5koqpQB
